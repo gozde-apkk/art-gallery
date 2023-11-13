@@ -17,18 +17,18 @@ class FlowFieldEffect {
     #height;
     constructor(ctx , width , height){
         this.#ctx = ctx;
+        this.#ctx.strokeStyle = 'white';
         this.#width = width;
         this.#height = height;
         console.log("effect loaded");
     }
     //Private methods
     #draw(x , y) {
-        const length = 300;
-        this.#ctx.strokeStyle = 'white';
+        const length =400 ;
         this.#ctx.beginPath();
         this.#ctx.moveTo(x, y);
         this.#ctx.lineTo(x + length , y + length);
-        
+        this.#ctx.stroke();
     }
 
     //Public Methods
