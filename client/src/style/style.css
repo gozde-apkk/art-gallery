@@ -1,0 +1,78 @@
+
+
+
+.App {
+    width: 100%;
+    height: 100%;
+ 
+    background-color: rgb(47 47 47);
+}
+
+#nav{
+    background-color: rgb(34 29 34);
+}
+
+.navbar-med {
+    color: whitesmoke;
+    height: 65px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    position: relative;
+    top: 13px;
+    width: 635px;
+}
+.navbar-med a {
+    width: 100px;
+}
+.navbar-left {
+    width: 234px;
+    display: flex;
+    justify-content: center;
+}
+
+.nav-container{
+       width: 1060px;
+       display: flex;
+       justify-content: center;
+}
+
+.article{
+    height: 70%;
+     display: flex;
+}
+
+.article-left {
+
+    width : 50%
+}
+
+.left {
+    height: 70%;
+    margin: 19px;
+}
+.article-right {
+
+    width : 50%;
+    
+}
+.article-title{
+    width: 436px;
+    height: 165px;
+    font-size: 48px;
+    position: relative;
+    left: 127px;
+    top: 105px;
+    color: aliceblue;
+    font-family: auto;
+    font-weight: bolder;
+
+}
+.home-page-wrapper{
+    height : 100%;
+}
+
+.right-container{
+    margin: 35px;
+}
