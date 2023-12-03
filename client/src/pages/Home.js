@@ -2,12 +2,11 @@
 
 import React from 'react'
 
+
 import '../style/style.css'
 
 
 const Home = () => {
-
-
 
   return (
     <div className='home-page-wrapper'>
@@ -21,18 +20,14 @@ const Home = () => {
              </div>
         </div>
         <div className="article-right">
-             <div className="right-container">
-               <div className="right">
-               <img src='./icon/dali.jpeg'/>
-               
+             <div className="right-container"> 
                </div>
 
              </div>
-        </div>
         
        </div>
-    </div>
-  )
+   </div>
+    );
 }
 
 export default Home
