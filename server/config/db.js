@@ -3,17 +3,16 @@
 
 
 
-// const mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
-// const CONNECTION_URL= "mongodb+srv://gozdeapak:157366@ecommerce.cgwv5jn.mongodb.net/?retryWrites=true&w=majority";
+const db = () => {
+    mongoose.connect("mongodb+srv://gozdeapak:157366@ecommerce.cgwv5jn.mongodb.net/", {
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+    })
+    .then(() => console.log('MongoDB connected'))
+    .catch(err => console.log(err));
+}
 
 
-
-// mongoose
-//     .connect(CONNECTION_URL, {
-//         useNewUrlParser: true,
-//         useUnifiedTopology: true,
-//     })
-//     .then(() => {
-//         console.log("success")
-//     })
+module.exports = db;
