@@ -10,10 +10,24 @@ const NavbarMed = () => {
   return (
     <div className='nav-container'>
       <div className='navbar-med'>
-        <Link className='color-white'> Gallery </Link>
-        <Link> Shop </Link>
-        <Link> News </Link>
-        <Link> Blog </Link>
+        
+        <Link to="/">
+          <li>Home</li>
+        </Link>
+        <Link to="/artwork">
+          <li>ArtWork</li> 
+         </Link>
+        <Link to="/profile" >
+          <li>Profile</li>
+        </Link>
+      </div>
+      <div className='navbar-right'>
+        <Link to="/sign-in">
+        <li>Sign In</li>
+        </Link>
+        <Link to="/sign-up">
+        <li>Sign Up</li>
+        </Link>
       </div>
     </div>
   )

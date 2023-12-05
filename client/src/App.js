@@ -15,11 +15,7 @@ function App() {
           <Navbar />
           <Routes>
             <Route path="/" element={<Home />} />{" "}
-            <Route path="/add-product" element={<AddProduct />} />{" "}
-            <Route path="/artworks" element={<ArtWork />} />{" "}
-            <Route path="/signin" element={<SignIn />} />{" "}
-            <Route path="/signout" element={<SignOut />} />{" "}
-            <Route path="/profile" element={<Profile />} />{" "}
+       
           </Routes>{" "}
         </BrowserRouter>{" "}
       </NextUIProvider>{" "}

@@ -2,12 +2,17 @@
 
 
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const NavbarRight = () => {
   return (
     <div>
-       <h1>sign in </h1>
-       <h1>login </h1>
+       <Link to="/sign-in">
+          <li>Sign In</li>
+       </Link>
+       <Link to="/sign-up">
+          <li>Sign Up</li>
+       </Link>
     </div>
   )
 }

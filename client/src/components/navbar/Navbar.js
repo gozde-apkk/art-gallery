@@ -13,7 +13,7 @@ const Navbar = () => {
     <div id="nav" className='flex w-full h-[100px] '>
         <NavbarLeft/>
         <NavbarMed/>
-        <NavbarRight/>
+        
     </div>
   )
 }

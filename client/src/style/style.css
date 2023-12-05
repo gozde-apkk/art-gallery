@@ -17,13 +17,12 @@
 
 .navbar-med {
     color: whitesmoke;
-    height: 65px;
+    height: 123px;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
     position: relative;
-    top: 13px;
     width: 635px;
 }
 .navbar-med a {
@@ -36,7 +35,7 @@
 }
 
 .nav-container{
-       width: 1060px;
+       width: 1284px;
        display: flex;
        justify-content: center;
 }
@@ -95,4 +94,12 @@
     display: flex;
     justify-content: center;
     margin: 39px;
+}
+
+.navbar-right{
+    color: aliceblue;
+    display: flex;
+    justify-content: center;
+    height: 51px;
+    width: 262px;
 }
