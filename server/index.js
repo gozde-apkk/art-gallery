@@ -16,15 +16,17 @@ const db = require("./config/db");
 dotenv.config();
 
 const app = express();
+app.use(express.json());
 app.use(cors());
 app.use(bodyParser.json({limit : "30mb" , extended : true}));
 app.use(cookieParser());
 
+app.set("view engine" , "pug");
+app.set("views" , "./views");
+
+app.use("/api/user", require("./routes/userRouter"))
 db();
 
-app.get("/products" , (req, res) => {
-    res.status(200).json({message: "Products yüklendii"})
-})
 
 const PORT = 4000;
 

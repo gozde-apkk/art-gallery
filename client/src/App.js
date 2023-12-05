@@ -1,22 +1,28 @@
-
-
-import { BrowserRouter , Routes , Route} from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Navbar from "./components/navbar/Navbar";
-import '../src/style/style.css'
-
+import "../src/style/style.css";
+import AddProduct from "./pages/AddProduct";
+import ArtWork from "./pages/ArtWork";
+import { NextUIProvider } from "@nextui-org/react";
+import SignOut from "./pages/SignOut";
 
 function App() {
-
   return (
-    <div className="App" >
-          <BrowserRouter >
-             <Navbar/>
-             <Routes>
-              <Route path="/" element={<Home/>} /> 
-            </Routes>
-          </BrowserRouter>
-
+    <div className="App">
+      <NextUIProvider>
+        <BrowserRouter>
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Home />} />{" "}
+            <Route path="/add-product" element={<AddProduct />} />{" "}
+            <Route path="/artworks" element={<ArtWork />} />{" "}
+            <Route path="/signin" element={<SignIn />} />{" "}
+            <Route path="/signout" element={<SignOut />} />{" "}
+            <Route path="/profile" element={<Profile />} />{" "}
+          </Routes>{" "}
+        </BrowserRouter>{" "}
+      </NextUIProvider>{" "}
     </div>
   );
 }

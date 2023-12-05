@@ -44,6 +44,7 @@
 .article{
     height: 70%;
      display: flex;
+     border: 2px solid red;
 }
 
 .article-left {
@@ -78,4 +79,20 @@
 
 .right-container{
     margin: 35px;
+    border: 2px solid black;
+    height: 383px;
+}
+
+
+.artist-container{
+
+    background-color: rgb(47 47 47);
+}
+
+.artist-title{ 
+    color: aliceblue;
+    font-size: 48px;
+    display: flex;
+    justify-content: center;
+    margin: 39px;
 }

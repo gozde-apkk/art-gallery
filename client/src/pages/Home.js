@@ -4,6 +4,7 @@ import React from 'react'
 
 
 import '../style/style.css'
+import Artist from '../layout/Artist';
 
 
 const Home = () => {
@@ -21,11 +22,13 @@ const Home = () => {
         </div>
         <div className="article-right">
              <div className="right-container"> 
+
                </div>
 
              </div>
         
        </div>
+       <Artist/>
    </div>
     );
 }
