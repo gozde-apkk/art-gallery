@@ -6,6 +6,8 @@ import AddProduct from "./pages/AddProduct";
 import ArtWork from "./pages/ArtWork";
 import { NextUIProvider } from "@nextui-org/react";
 import SignOut from "./pages/SignOut";
+import SignIn from "./pages/SignIn";
+import SignUp from "./pages/SignUp";
 
 function App() {
   return (
@@ -15,6 +17,8 @@ function App() {
           <Navbar />
           <Routes>
             <Route path="/" element={<Home />} />{" "}
+            <Route path="/sign-in" element={<SignIn />} />{" "}
+            <Route path="/sign-up" element={<SignUp />} />{" "}
        
           </Routes>{" "}
         </BrowserRouter>{" "}

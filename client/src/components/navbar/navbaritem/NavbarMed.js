@@ -23,10 +23,10 @@ const NavbarMed = () => {
       </div>
       <div className='navbar-right'>
         <Link to="/sign-in">
-        <li>Sign In</li>
+        <li>Log In</li>
         </Link>
         <Link to="/sign-up">
-        <li>Sign Up</li>
+        <li>Register</li>
         </Link>
       </div>
     </div>
