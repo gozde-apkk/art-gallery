@@ -3,7 +3,7 @@
 const express = require("express");
 const router = express.Router();
 
-const { createUser, deleteUser, getUser, getUsers, updateUser } = require("../controllers/userController");
+const { createUser, deleteUser, getUser, getUsers, updateUser } = require("../controllers/user.js");
 
 
 
