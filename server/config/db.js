@@ -2,17 +2,22 @@
 
 
 
+const MongoClient = require('mongodb').MongoClient;
 
-const mongoose = require('mongoose');
+const client = new MongoClient('mongodb://localhost:27017', { useNewUrlParser: true, useUnifiedTopology: true });
 
-const db = () => {
-    mongoose.connect("mongodb+srv://gozdeapak:157366@ecommerce.cgwv5jn.mongodb.net/", {
-        useNewUrlParser: true,
-        useUnifiedTopology: true
-    })
-    .then(() => console.log('MongoDB connected'))
-    .catch(err => console.log(err));
-}
+client.connect((err, db) => {
+  if (err) throw err;
 
+  const collection = db.db("art-gallery").collection('user');
 
-module.exports = db;
+  // Set a longer timeout for the insert operation
+  collection.insertOne({ /* your document */ }, { wtimeout: 20000 }, (err, result) => {
+    if (err) throw err;
+    
+    console.log('Document inserted successfully.');
+    
+    // Close the connection
+    client.close();
+  });
+});

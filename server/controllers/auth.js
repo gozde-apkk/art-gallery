@@ -1,28 +1,83 @@
+var jwt = require("jsonwebtoken");
+var bcrypt = require("bcrypt");
+var User = require("../models/user.js");
 
+exports.signup = (req, res) => {
+  const user = new User({
+    username: req.body.username,
+    email: req.body.email,
+    role: req.body.role,
+    password: bcrypt.hashSync(req.body.password, 8)
+  });
 
-
-const asyncHandler = require("express-async-handler");
-const { userModel } = require("../models/user");
-
-
-
-
-
-const getUsers =  asyncHandler(async (req, res) => { 
-    res.status(200).json({message : "Get registered users"});
-})
-
-
-
-const createUser = asyncHandler(async (req, res) => {
-    console.log("The request body", req.body);
-    const {username, email, password} = req.body;
-    if(!username || !email || !password) {
-        return res.status(400).json({message: "All fields are required"});
+  user.save((err, user) => {
+    if (err) {
+      res.status(500)
+        .send({
+          message: err
+        });
+      return;
+    } else {
+      res.status(200)
+        .send({
+          message: "User Registered successfully"
+        })
     }
-    res.status(200).json({message: `Create user ${username} ${email} ${password} from AuthRouter`})
-});
+  });
+};
 
+exports.signin = (req, res) => {
+  User.findOne({
+      email: req.body.email
+    })
+    .exec((err, user) => {
+      if (err) {
+        res.status(500)
+          .send({
+            message: err
+          });
+        return;
+      }
+      if (!user) {
+        return res.status(404)
+          .send({
+            message: "User Not found."
+          });
+      }
+
+      //comparing passwords
+      var passwordIsValid = bcrypt.compareSync(
+        req.body.password,
+        user.password
+      );
+      // checking if password was valid and send response accordingly
+      if (!passwordIsValid) {
+        return res.status(401)
+          .send({
+            accessToken: null,
+            message: "Invalid Password!"
+          });
+      }
+      //signing token with user id
+      var token = jwt.sign({
+        id: user.id
+      }, process.env.API_SECRET, {
+        expiresIn: 86400
+      });
+
+      //responding to client request with user profile success message and  access token .
+      res.status(200)
+        .send({
+          user: {
+            id: user._id,
+            email: user.email,
+            fullName: user.fullName,
+          },
+          message: "Login successfull",
+          accessToken: token,
+        });
+    });
+};
 
 
 const getUser = (req, res) => {
@@ -39,8 +94,6 @@ const deleteUser = (req, res) => {
 
 
 module.exports = {
-    getUsers,
-    createUser,
     getUser,
     updateUser,
     deleteUser}

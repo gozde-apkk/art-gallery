@@ -1,7 +1,7 @@
 
 const mongoose = require('mongoose');
 
-const Schema = mongoose.Schema;
+Schema = mongoose.Schema;
 
 const userSchema = new Schema({
     username : {
@@ -22,4 +22,4 @@ const userSchema = new Schema({
 }, {timestamps : true})
 
 
-const userModel = mongoose.model("User", userSchema);
+module.exports = mongoose.model('User', userSchema);

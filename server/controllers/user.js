@@ -2,8 +2,9 @@
 
 
 const asyncHandler = require("express-async-handler");
-const { userModel } = require("../models/user");
-
+const { User } = require("../models/user.js");
+const user = require("../models/user.js");
+const bcrypt = require("bcryptjs");
 
 
 
@@ -12,18 +13,34 @@ const getUsers =  asyncHandler(async (req, res) => {
     res.status(200).json({message : "Get all users"});
 })
 
+// router.get('/getAll', async (req, res) => {
+//     try{
+//         const data = await Model.find();
+//         res.json(data)
+//     }
+//     catch(error){
+//         res.status(500).json({message: error.message})
+//     }
+// })
 
+const createUser = async (req, res) => {
 
-const createUser = asyncHandler(async (req, res) => {
-    console.log("The request body", req.body);
-    const {username, email, password} = req.body;
-    if(!username || !email || !password) {
-        return res.status(400).json({message: "All fields are required"});
+    const {username , email, password} = req.body;
+    const hashPassword = bcrypt.hashSync(password, 10)
+    const data = new user({
+        username: req.body.username,
+        email: req.body.email,
+        password : hashPassword
+    })
+    
+    try {
+        const dataToSave = await data.save();
+        res.status(200).json(dataToSave)
     }
-    res.status(200).json({message: `Create user ${username} ${email} ${password}`})
-});
-
-
+    catch (error) {
+        res.status(400).json({message: error.message})
+    }
+}
 
 const getUser = (req, res) => {
     res.status(200).json({message : `Get user ${req.params.id}`})
