@@ -8,8 +8,7 @@ const { userModel } = require("../models/user");
 
 
 
-const getUsers =  asyncHandler(async (req, res) => {
-    
+const getUsers =  asyncHandler(async (req, res) => { 
     res.status(200).json({message : "Get all users"});
 })
 
