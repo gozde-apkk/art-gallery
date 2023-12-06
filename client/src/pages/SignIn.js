@@ -4,15 +4,15 @@
 
 import React from 'react'
 
-const LoginPage = () => {
+const SignIn = () => {
   return (
-    <div>
-         <main className="w-full h-screen flex flex-col items-center justify-center px-4">
+    <div className='h-full  flex justify-center text-white'> 
+         <main style={{height: "500px", width:"350px"}} className=" flex flex-col items-center justify-center px-4">
             <div className="max-w-sm w-full text-gray-600 space-y-5">
-                <div className="text-center pb-8">
-                    <img src="https://floatui.com/logo.svg" width={150} className="mx-auto" />
-                    <div className="mt-5">
-                        <h3 className="text-gray-800 text-2xl font-bold sm:text-3xl">Log in to your account</h3>
+                <div style={{margin:"16px"}} className="text-center flex h-[87px] justify-center items-center  pb-8">
+                   <img style={{width: "115px"}} className=' '  src='/icon/logo.png'/>
+                    <div className="mt-5 w-[151px] ">
+                        <h3 style={{fontSize: "xx-large"}} className="text-gray-800  h-[56px] font-bold sm:text-3xl">Log In</h3>
                     </div>
                 </div>
                 <form
@@ -39,7 +39,7 @@ const LoginPage = () => {
                             className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
                         />
                     </div>
-                    <div className="flex items-center justify-between text-sm">
+                    <div style={{marginTop: "13px"}} className="flex items-center justify-between text-sm">
                         <div className="flex items-center gap-x-3">
                             <input type="checkbox" id="remember-me-checkbox" className="checkbox-item peer hidden" />
                             <label
@@ -57,7 +57,7 @@ const LoginPage = () => {
                         Sign in
                     </button>
                 </form>
-                <button className="w-full flex items-center justify-center gap-x-3 py-2.5 border rounded-lg text-sm font-medium hover:bg-gray-50 duration-150 active:bg-gray-100">
+                <button style={{padding:"11px"}} className="w-full flex items-center justify-center gap-x-3 py-2.5 border rounded-lg text-sm font-medium hover:bg-gray-50 duration-150 active:bg-gray-100">
                     <svg className="w-5 h-5" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g clip-path="url(#clip0_17_40)">
                             <path d="M47.532 24.5528C47.532 22.9214 47.3997 21.2811 47.1175 19.6761H24.48V28.9181H37.4434C36.9055 31.8988 35.177 34.5356 32.6461 36.2111V42.2078H40.3801C44.9217 38.0278 47.532 31.8547 47.532 24.5528Z" fill="#4285F4" />
@@ -73,11 +73,11 @@ const LoginPage = () => {
                     </svg>
                     Continue with Google
                 </button>
-                <p className="text-center">Don't have an account? <a href="javascript:void(0)" className="font-medium text-indigo-600 hover:text-indigo-500">Sign up</a></p>
+                <p style={{marginTop:"14px"}} className="text-center">Don't have an account? <a href="javascript:void(0)" className="font-medium text-indigo-600 hover:text-indigo-500">Sign up</a></p>
             </div>
         </main>
     </div>
   )
 }
 
-export default LoginPage
+export default SignIn
