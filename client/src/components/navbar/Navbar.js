@@ -10,7 +10,7 @@ import '../../style/style.css'
 
 const Navbar = () => {
   return (
-    <div id="nav" className='flex w-full h-[100px] '>
+    <div id="nav" className='flex w-full h-[90px] '>
         <NavbarLeft/>
         <NavbarMed/>
         

@@ -16,13 +16,14 @@ function App() {
         <BrowserRouter>
           <Navbar />
           <Routes>
-            <Route path="/" element={<Home />} />{" "}
-            <Route path="/sign-in" element={<SignIn />} />{" "}
-            <Route path="/sign-up" element={<SignUp />} />{" "}
+            <Route path="/" element={<Home />} />
+            <Route path="/sign-in" element={<SignIn />} />
+            <Route path="/sign-up" element={<SignUp />} />
+            <Route path="/artwork" element={<ArtWork />} />
        
-          </Routes>{" "}
-        </BrowserRouter>{" "}
-      </NextUIProvider>{" "}
+          </Routes>
+        </BrowserRouter>
+      </NextUIProvider>
     </div>
   );
 }

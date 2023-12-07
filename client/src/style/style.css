@@ -5,14 +5,41 @@
     width: 100%;
     height: 100%;
  
-    background-color: rgb(47 47 47);
+    background-color: rgb(16 15 15);
 }
 .swiper {
     width: 100px;
     height: 300px;
   }
 #nav{
-    background-color: rgb(34 29 34);
+    background-color: lch(10 35.32 14.92);
+}
+.container {
+    display: flex;
+    width: 40rem;
+    justify-content: space-around;
+}
+.art-title{
+    height: 8rem;
+}
+.img-container{
+    display: flex;
+    border: 1px solid white;
+    height: 12rem;
+}
+
+.art-img {
+    height: 12rem;
+    width: 10rem;
+    border: 1px solid white;
+}
+
+.art-title h1 {
+    height: 6rem;
+    width: 49rem;
+    font-size: 36px;
+    position: relative;
+    top: 2rem;
 }
 
 .navbar-med {

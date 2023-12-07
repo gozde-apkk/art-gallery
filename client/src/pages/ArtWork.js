@@ -1,42 +1,33 @@
 
 
 
-import {Image} from "@nextui-org/react";
+
 import React from 'react'
+import '../style/style.css'
 
 const ArtWork = () => {
   return (
-    <div>
-       <h1>Discover physical, digital and NFT artworks</h1>
-       <Image
-      isBlurred
-      width={240}
-      src="https://nextui-docs-v2.vercel.app/images/album-cover.png"
-      alt="NextUI Album Cover"
-      classNames="m-5"
-    />
-     <Image
-      isBlurred
-      width={240}
-      src="https://nextui-docs-v2.vercel.app/images/album-cover.png"
-      alt="NextUI Album Cover"
-      classNames="m-5"
-    />
-     <Image
-      isBlurred
-      width={240}
-      src="https://nextui-docs-v2.vercel.app/images/album-cover.png"
-      alt="NextUI Album Cover"
-      classNames="m-5"
-    />
-     <Image
-      isBlurred
-      width={240}
-      src="https://nextui-docs-v2.vercel.app/images/album-cover.png"
-      alt="NextUI Album Cover"
-      classNames="m-5"
-    />
-
+    <div className="bg-black">
+       <div className="art-title">
+       <h1 className="text-white">Discover physical, digital and NFT artworks</h1>
+       </div>
+       <div className='img-container'>
+         <div className='container'>
+         <div className="art-img">
+          <h2>Canvas</h2>
+        <img src="/icon/artwork.png"/>
+       </div>
+       <div className="art-img">
+       <h2>NFT</h2>
+       <img src="/icon/artwork.png"/>
+       </div>
+       <div className="art-img">
+       <h2>Digital</h2>
+       <img src="/icon/artwork.png"/>
+       </div>
+         </div>
+       </div>
+       
     </div>
   )
 }

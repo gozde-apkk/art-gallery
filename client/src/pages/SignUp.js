@@ -1,15 +1,50 @@
-import React from 'react';
-import {
-  MDBBtn,
-  MDBContainer,
-  MDBCard,
-  MDBCardBody,
-  MDBInput,
-  MDBCheckbox
-}
-from 'mdb-react-ui-kit';
+import React, { useState } from 'react';
+import {useNavigate} from 'react-router-dom';
+
 
 const SignUp = () =>  {
+
+    const [formData , setFormData] = useState({});
+    const [error , setError] = useState(null);
+    const [loading, setLoading] = useState(false);
+
+
+    const handleChange = (e) => {
+        setFormData({
+            ...formData,
+           [ e.target.id] : e.target.value,
+        })
+    }
+    console.log(formData);
+
+    const  handleSubmit = async (e) => {
+
+        try{
+            e.preventDefault();
+            setLoading(true);
+            const res = await fetch('http://localhost:4000/api/user/', {
+                method : "POST",
+                headers : {
+                        "Content-Type": "application/json",
+                },
+                body: JSON.stringify(formData),
+            });
+            const data = await res.json();
+            if(data.success === false){
+                setError(data.message);
+                setLoading(false);
+                return;
+            }
+            setLoading(true);
+            setError(null);
+            navigate('/sign-in')
+        }catch(error){
+            setLoading(true);
+            setError(error.message);
+        }
+    }
+
+
   return (
     <div className='h-full  flex justify-center text-white'> 
     <main style={{height: "500px", width:"350px"}} className=" flex flex-col items-center justify-center px-4">
@@ -21,7 +56,7 @@ const SignUp = () =>  {
                </div>
            </div>
            <form
-               onSubmit={(e) => e.preventDefault()}
+               onSubmit={handleSubmit}
                className="space-y-5"
            >
                <div>
@@ -29,7 +64,9 @@ const SignUp = () =>  {
                       Username
                    </label>
                    <input
+                   onChange={handleChange}
                        type="name"
+                       id="username"
                        required
                        className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
                    />
@@ -39,7 +76,9 @@ const SignUp = () =>  {
                       Email
                    </label>
                    <input
+                   onChange={handleChange}
                        type="email"
+                       id="email"
                        required
                        className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
                    />
@@ -49,7 +88,9 @@ const SignUp = () =>  {
                        Password
                    </label>
                    <input
+                   onChange={handleChange}      
                        type="password"
+                       id="password"
                        required
                        className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
                    />
@@ -62,14 +103,14 @@ const SignUp = () =>  {
                            className="relative flex w-5 h-5 bg-white peer-checked:bg-indigo-600 rounded-md border ring-offset-2 ring-indigo-600 duration-150 peer-active:ring cursor-pointer after:absolute after:inset-x-0 after:top-[3px] after:m-auto after:w-1.5 after:h-2.5 after:border-r-2 after:border-b-2 after:border-white after:rotate-45"
                        >
                        </label>
-                       <span>Remember me</span>
+                       <span >Remember me</span>
                    </div>
                    <a href="javascript:void(0)" className="text-center text-indigo-600 hover:text-indigo-500">Forgot password?</a>
                </div>
-               <button
+               <button disabled={loading}
                    className="w-full px-4 py-2 text-white font-medium bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-600 rounded-lg duration-150"
                >
-                  Register
+                  {loading ? "Loading..." : "Sign Up..."}
                </button>
            </form>
            <button style={{padding:"11px"}} className="w-full flex items-center justify-center gap-x-3 py-2.5 border rounded-lg text-sm font-medium hover:bg-gray-50 duration-150 active:bg-gray-100">
@@ -90,6 +131,7 @@ const SignUp = () =>  {
            </button>
            <p style={{marginTop:"14px"}} className="text-center">Don't have an account? <a href="javascript:void(0)" className="font-medium text-indigo-600 hover:text-indigo-500">Sign up</a></p>
        </div>
+      
    </main>
 </div>
   );

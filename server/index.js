@@ -19,9 +19,18 @@ mongoose.connect(process.env.MONGO)
 // app.set("view engine" , "pug");
 // app.set("views" , "./views");
 app.use("/api/user" , require("./routes/userRouter.js"));
+app.use("/api/auth" , require("./routes/authRouter.js"));
 
 
-
+app.use((err , req, res, next) => {
+    const statusCode = err.statusCode || 500;
+    const message = err.message ||  "Invalid request";
+    return res.status(statusCode).json({
+        success : false,
+        statusCode,
+        message,
+    });
+});
 
 
 
