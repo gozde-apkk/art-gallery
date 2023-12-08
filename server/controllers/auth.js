@@ -1,63 +1,45 @@
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
-const user = require("../models/user.js");
+const User = require("../models/user");
+const express = require("express");
 
-const signIn = async (req, res, next) => {
-  let { email, password } = req.body;
-  console.log(email, password);
- 
-  let existingUser;
-  try {
-    existingUser = await user.findOne({ email: email });
-   console.log("existing user", existingUser);
-  } catch {
-    const error = new Error("Error! Something went wrong.");
-    return next(error);
+const loginUser = async (req, res, next) => {
+  const { email, password } = req.body;
+  console.log("loginUser", email, password);
+  if(!email || !password) {
+    res.status(400);
+    throw new Error("Please add email and password");
   }
-  if (!existingUser || existingUser.password != password) {
-    const error = Error("Wrong details please check at once");
-    return next(error);
-  }
-  let token;
-  try {
-    //Creating jwt token
-    token = jwt.sign(
-      { userId: existingUser.id, email: existingUser.email },
-      "secretkeyappearshere",
-      { expiresIn: "1h" }
-    );
-  } catch (err) {
-    console.log(err);
-    const error = new Error("Error! Something went wrong.");
-    return next(error);
-  }
- 
-  res
-    .status(200)
-    .json({
-      success: true,
-      data: {
-        userId: existingUser.id,
-        email: existingUser.email,
-        token: token,
+  const user = await User.findOne({ email});
+  console.log("user found", user);
+  if( user && (await bcrypt.compare(password, user.password))){
+    const accessToken = jwt.sign({
+      user : {
+        id : user.id,
+        username : user.username,
+        email : user.email,
       },
-    });
-};
-const getUser = (req, res) => {
-    res.status(200).json({message : `auth controller i working`})
+    },
+    process.env.API_SECRET,
+    );
+    res.status(200).send({accessToken});
+  }else{
+    res.status(401);
+    throw new Error("Invalid email or password");
+  }
+
 }
 
 
-const createUser = async (req, res , next) => {
-
+const registerUser = async (req, res , next) => {
   const {username , email, password} = req.body;
-  const hashPassword = bcrypt.hashSync(password, 10)
-  const data = new user({
+  if(!username || !password || !email) return next(new Error("Please add all fields"));
+  const hashPassword = bcrypt.hashSync(password, 10);
+  const data = new User({
       username: req.body.username,
       email: req.body.email,
       password : hashPassword
   })
-  
   try {
       const dataToSave = await data.save();
       res.status(200).json(dataToSave)
@@ -69,7 +51,6 @@ const createUser = async (req, res , next) => {
 }
 
 module.exports = {
-    getUser,
-    createUser,
-    signIn,
+    registerUser,
+    loginUser,
    }
