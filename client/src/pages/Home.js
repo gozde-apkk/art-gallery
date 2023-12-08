@@ -26,7 +26,7 @@ const Home = () => {
         </div>
         <div className="article-right">
              <div className="right-container"> 
-
+                <img style={{width: "100%", height: "383px" , objectFit: "cover"}} src="/icon/back.jpeg"/>
                </div>
 
              </div>

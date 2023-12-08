@@ -14,8 +14,8 @@ const ArtWork = () => {
        <div className='img-container'>
          <div className='container'>
          <div className="art-img">
-          <h2>Canvas</h2>
         <img src="/icon/artwork.png"/>
+        <h2>Canvas</h2>
        </div>
        <div className="art-img">
        <h2>NFT</h2>
