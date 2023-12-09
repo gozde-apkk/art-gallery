@@ -22,11 +22,11 @@ const NavbarMed = () => {
         </Link>
       </div>
       <div className='navbar-right'>
-        <Link to="/sign-in">
-        <li>Log In</li>
+        <Link to="/login">
+            Sign in
         </Link>
-        <Link to="/sign-up">
-        <li>Register</li>
+        <Link to="/signup">
+          Sign up
         </Link>
       </div>
     </div>

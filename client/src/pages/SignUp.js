@@ -4,6 +4,8 @@ import {useNavigate} from 'react-router-dom';
 
 const SignUp = () =>  {
 
+
+    const navigate = useNavigate();
     const [formData , setFormData] = useState({});
     const [error , setError] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -22,7 +24,7 @@ const SignUp = () =>  {
         try{
             e.preventDefault();
             setLoading(true);
-            const res = await fetch('http://localhost:4000/api/user/', {
+            const res = await fetch('http://localhost:4000/api/auth/signup', {
                 method : "POST",
                 headers : {
                         "Content-Type": "application/json",
@@ -37,7 +39,7 @@ const SignUp = () =>  {
             }
             setLoading(true);
             setError(null);
-            navigate('/sign-in')
+            navigate("/");
         }catch(error){
             setLoading(true);
             setError(error.message);
@@ -52,7 +54,7 @@ const SignUp = () =>  {
            <div style={{margin:"16px"}} className="text-center flex h-[87px] justify-center items-center  pb-8">
              
                <div className="mt-5 w-[151px] ">
-                   <h3 style={{fontSize: "xx-large"}} className="text-gray-800  h-[56px] font-bold sm:text-3xl">Register</h3>
+                   <h3 style={{fontSize: "xx-large"}} className="text-gray-800  h-[56px] font-bold sm:text-3xl">Sign up</h3>
                </div>
            </div>
            <form
@@ -108,12 +110,12 @@ const SignUp = () =>  {
                    <a href="javascript:void(0)" className="text-center text-indigo-600 hover:text-indigo-500">Forgot password?</a>
                </div>
                <button disabled={loading}
-                   className="w-full px-4 py-2 text-white font-medium bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-600 rounded-lg duration-150"
+                   className="w-full px-4 py-2 text-white font-medium border-1 bg-indigo-600 hover:bg-indigo-500 rounded-lg duration-150"
                >
                   {loading ? "Loading..." : "Sign Up..."}
                </button>
            </form>
-           <button style={{padding:"11px"}} className="w-full flex items-center justify-center gap-x-3 py-2.5 border rounded-lg text-sm font-medium hover:bg-gray-50 duration-150 active:bg-gray-100">
+           <button disabled={loading} style={{padding:"11px"}} className="w-full flex items-center justify-center gap-x-3 py-2.5 border rounded-lg text-sm font-medium hover:bg-gray-50 duration-150 active:bg-gray-100">
                <svg className="w-5 h-5" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                    <g clip-path="url(#clip0_17_40)">
                        <path d="M47.532 24.5528C47.532 22.9214 47.3997 21.2811 47.1175 19.6761H24.48V28.9181H37.4434C36.9055 31.8988 35.177 34.5356 32.6461 36.2111V42.2078H40.3801C44.9217 38.0278 47.532 31.8547 47.532 24.5528Z" fill="#4285F4" />
@@ -129,9 +131,12 @@ const SignUp = () =>  {
                </svg>
                Continue with Google
            </button>
-           <p style={{marginTop:"14px"}} className="text-center">Don't have an account? <a href="javascript:void(0)" className="font-medium text-indigo-600 hover:text-indigo-500">Sign up</a></p>
+           <p style={{marginTop:"14px"}} className="text-center">
+             Have an account?
+             <a href="/sign-in" className="font-medium text-indigo-600 hover:text-indigo-500">Sign in</a>
+            </p>
        </div>
-      
+      {error && <p>{error}</p>}
    </main>
 </div>
   );

@@ -5,13 +5,13 @@ const express = require("express");
 
 const loginUser = async (req, res, next) => {
   const { email, password } = req.body;
-  console.log("loginUser", email, password);
+
   if(!email || !password) {
     res.status(400);
     throw new Error("Please add email and password");
   }
+
   const user = await User.findOne({ email});
-  console.log("user found", user);
   if( user && (await bcrypt.compare(password, user.password))){
     const accessToken = jwt.sign({
       user : {
@@ -21,8 +21,12 @@ const loginUser = async (req, res, next) => {
       },
     },
     process.env.API_SECRET,
+   
     );
-    res.status(200).send({accessToken});
+
+    const {password, ...others} = user._doc
+    res.cookie("access_token", accessToken, {httpOnly: true, sameSite: "none", secure: true})
+    .status(200).json({others});
   }else{
     res.status(401);
     throw new Error("Invalid email or password");
@@ -33,7 +37,9 @@ const loginUser = async (req, res, next) => {
 
 const registerUser = async (req, res , next) => {
   const {username , email, password} = req.body;
+
   if(!username || !password || !email) return next(new Error("Please add all fields"));
+  
   const hashPassword = bcrypt.hashSync(password, 10);
   const data = new User({
       username: req.body.username,

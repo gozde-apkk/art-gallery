@@ -17,3 +17,10 @@ function errorHandler(err, req, res, next) {
     // default to 500 server error
     return res.status(500).json({ message: err.message });
 }
+
+export const errHandler = (status, message) => {
+    const error = new Error(message);
+    statusCode = error.statusCode;
+    message = error.message;
+    return error;
+}
