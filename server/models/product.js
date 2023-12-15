@@ -24,14 +24,6 @@ const productSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    like : {
-        type : Number,
-        default : 0
-    },
-    size: {
-        type : Number,
-        required : true
-    },
     category : {
         type : String,
         required : true

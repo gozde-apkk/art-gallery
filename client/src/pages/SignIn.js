@@ -4,28 +4,30 @@
 
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import {useDispatch, useSelector} from 'react-redux';
-import { signInFailure, signInStart, signInSuccess } from '../redux/user/userSlice';
+
 import OAuth from '../components/oauth/OAuth';
+
 
 const SignIn = () => {
 
     const navigate = useNavigate();
     const [formData , setFormData] = useState({});
-    const {loading, error} = useSelector(state => state.user);
-    const dispatch = useDispatch();
+ const [ error , setError] = useState({});
+
+
     const handleChange = (e) =>{
         setFormData({
             ...formData,
             [e.target.id] : e.target.value
         })
     }
-   
+   const user = localStorage.getItem('persist:root')
     const handleSubmit = async (e) => {
+ 
 
         try{
           e.preventDefault ();
-         dispatch(signInStart());
+        //  dispatch(signInStart());
           const res = await fetch('http://localhost:4000/api/auth/login', {
             method : 'POST',
             headers : {
@@ -35,22 +37,24 @@ const SignIn = () => {
           });
           const data = await res.json();
           if(data.success === false){
-           dispatch(signInFailure(data.message));
+        //    dispatch(signInFailure(data.message));
             return
           }
-          navigate('/')
+        //   dispatch(signInSuccess(data)); 
+        //   dispatch({type : 'AUTH', payload : data})
+         navigate('/profile');
         }catch(error){
-           dispatch(signInFailure(error.message));
+        //    dispatch(signInFailure(error.message));
         }
     }
   return (
-    <div className='h-full  flex justify-center text-white'> 
-         <main style={{height: "500px", width:"350px"}} className=" flex flex-col items-center justify-center px-4">
-            <div className="max-w-sm w-full text-gray-600 space-y-5">
-                <div style={{margin:"16px"}} className="text-center flex h-[87px] justify-center items-center  pb-8">
-                   <img style={{width: "115px"}} className=' '  src='/icon/logo.png'/>
-                    <div className="mt-5 w-[151px] ">
-                        <h3 style={{fontSize: "xx-large"}} className="text-gray-800  h-[56px] font-bold sm:text-3xl">Sign in</h3>
+    <div className='h-full  flex justify-center text-gray-100'> 
+         <main  className=" flex flex-col items-center justify-center ">
+            <div className="max-w-sm w-full text-gray-300 space-y-7">
+                <div style={{margin:"16px"}} className="text-center flex h-[87px] justify-center items-center">
+                   <img style={{width: "30px"}} className=' '  src='/icon/whitelogo.png'/>
+                    <div className="mt-3 w-[151px] ">
+                        <h3 style={{fontSize: "xx-large"}} className="text-gray-100  h-[56px] font-bold sm:text-3xl">Sign in</h3>
                     </div>
                 </div>
                 <form
@@ -100,7 +104,7 @@ const SignIn = () => {
                     </button>
                 </form>
            <OAuth/>
-                <p style={{marginTop:"14px"}} className="text-center">Don't have an account? <a href="/sign-up" className="font-medium text-indigo-600 hover:text-indigo-500">Sign up</a></p>
+                <p style={{marginTop:"14px"}} className="text-center">Don't have an account? <a href="/sign-up" className="font-medium text-indigo-600 hover:text-indigo-500">Create Account</a></p>
             </div>
             {error && <p>{error}</p>}
         </main>

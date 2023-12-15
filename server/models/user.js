@@ -18,6 +18,10 @@ const userSchema = new Schema({
         type : String,
         required : true,
         unique: true
+    },
+    avatar : {
+        type : String,
+        default : '',
     }
 }, {timestamps : true})
 

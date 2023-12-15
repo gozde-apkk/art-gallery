@@ -1,24 +1,24 @@
 
 
-import {combineReducers, configureStore} from '@reduxjs/toolkit'
-import userReducer from './user/userSlice'
-import thunk from 'redux-thunk'
-import {persistStore, persistReducer} from 'redux-persist'
-import storage from 'redux-persist/lib/storage'
+import { legacy_createStore , applyMiddleware, compose} from 'redux';
+import thunk from 'redux-thunk';
+import { composeWithDevTools } from 'redux-devtools-extension';
+import rootReducer from './reducers/rootReducer'
 
-const rootReducer = combineReducers({ user: userReducer});
 
-const persistConfig ={
-    key : 'root',
-    storage,
-    version: 1,
-}
-const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-export const store = configureStore({
-    reducer : persistedReducer,
-    middleware : [thunk],
-    
-    }
-)
-export const persistor = persistStore(store)
+
+
+
+
+export const store = legacy_createStore(rootReducer , {}, compose(applyMiddleware(thunk), composeWithDevTools()));
+// export function authReducer (state, action) {
+//     switch (action.type) {
+//         case 'AUTHENTICATION':
+//             return [...action.payload];
+//         default:
+//             return state;
+//     }
+// }
+
+export default store;

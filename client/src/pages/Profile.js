@@ -5,8 +5,8 @@ import React from 'react'
 
 const Profile = () => {
   return (
-    <div>
-       Profile
+    <div className='w-full text-white'>
+      profile
     </div>
   )
 }

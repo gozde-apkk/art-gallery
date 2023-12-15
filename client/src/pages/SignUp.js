@@ -1,14 +1,20 @@
 import React, { useState } from 'react';
 import {useNavigate} from 'react-router-dom';
 import OAuth from '../components/oauth/OAuth';
+// import {useDispatch, useSelector} from 'react-redux';
+// import { signInFailure, signInStart, signInSuccess } from '../redux/user/userSlice';
+// import { setCredentials } from '../redux/user/authSlice';
+// import { setCredentialsAction } from '../redux/actions';
 
 const SignUp = () =>  {
 
 
     const navigate = useNavigate();
     const [formData , setFormData] = useState({});
-    const [error , setError] = useState(null);
-    const [loading, setLoading] = useState(false);
+    const [error , setError] = useState({});
+    // const {error} = useSelector(state => state.user);
+    // const {user} = useSelector(state => state.auth);
+    // const dispatch = useDispatch();
 
 
     const handleChange = (e) => {
@@ -17,13 +23,12 @@ const SignUp = () =>  {
            [ e.target.id] : e.target.value,
         })
     }
-    console.log(formData);
 
     const  handleSubmit = async (e) => {
 
         try{
             e.preventDefault();
-            setLoading(true);
+            // dispatch(signInStart());
             const res = await fetch('http://localhost:4000/api/auth/signup', {
                 method : "POST",
                 headers : {
@@ -33,28 +38,26 @@ const SignUp = () =>  {
             });
             const data = await res.json();
             if(data.success === false){
-                setError(data.message);
-                setLoading(false);
+                // dispatch(signInFailure(data.message));
                 return;
             }
-            setLoading(true);
-            setError(null);
-            navigate("/");
+            // dispatch(signInSuccess(data));
+            // dispatch(setCredentialsAction(data));
+           navigate('/profile');
         }catch(error){
-            setLoading(true);
-            setError(error.message);
+            // dispatch(signInFailure(error.message));
         }
     }
 
 
   return (
-    <div className='h-full  flex justify-center text-white'> 
-    <main style={{height: "500px", width:"350px"}} className=" flex flex-col items-center justify-center px-4">
-       <div className="max-w-sm w-full text-gray-600 space-y-5">
-           <div style={{margin:"16px"}} className="text-center flex h-[87px] justify-center items-center  pb-8">
+    <div className='h-full  flex justify-center text-gray-200'> 
+    <main  className=" h-[583px] w-[350px] flex mt-1 flex-col items-center justify-center px-4">
+       <div className="max-w-sm mt-2 w-full text-gray-200 space-y-5">
+           <div  className="text-center flex h-[87px] justify-center items-center">
              
-               <div className="mt-5 w-[151px] ">
-                   <h3 style={{fontSize: "xx-large"}} className="text-gray-800  h-[56px] font-bold sm:text-3xl">Sign up</h3>
+               <div className="mt-5 w-[251px] ">
+                   <h3 style={{fontSize: "xx-large"}} className=" h-[56px] font-WorkSans text-2xl sm:text-3xl">Create Account</h3>
                </div>
            </div>
            <form
@@ -109,16 +112,18 @@ const SignUp = () =>  {
                    </div>
                    <a href="javascript:void(0)" className="text-center text-indigo-600 hover:text-indigo-500">Forgot password?</a>
                </div>
-               <button disabled={loading}
+               <button 
                    className="w-full px-4 py-2 text-white font-medium border-1 bg-indigo-600 hover:bg-indigo-500 rounded-lg duration-150"
                >
-                  {loading ? "Loading..." : "Sign Up..."}
+                  {/* {loading ? "Loading..." : ""} */}
+                  Sign Up...
+ 
                </button>
            </form>
            <OAuth/>
            <p style={{marginTop:"14px"}} className="text-center">
              Have an account?
-             <a href="/sign-in" className="font-medium text-indigo-600 hover:text-indigo-500">Sign in</a>
+             <a href="/login" className="font-medium text-indigo-600 hover:text-indigo-500">Sign in</a>
             </p>
        </div>
       {error && <p>{error}</p>}
