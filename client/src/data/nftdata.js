@@ -12,7 +12,7 @@ export const nft_data = [
         favorite : 11,
         price : "545$",
         createTime : Date.now(),
-        img : './products/nft5.jpeg',
+        img : './products/nft/nft5.jpeg',
         description : ''
 
     },
@@ -24,7 +24,7 @@ export const nft_data = [
         favorite : 59,
         price : "765$",
         createTime : Date.now(),
-        img : './products/nft2.jpg',
+        img : './products/nft/nft2.jpg',
         description : ''
 
     },
@@ -36,7 +36,7 @@ export const nft_data = [
         favorite : 8,
         price : "345$",
         createTime : Date.now(),
-        img : './products/nft6.jpeg',
+        img : './products/nft/nft6.jpeg',
         description : ''
     },
     {
@@ -47,7 +47,7 @@ export const nft_data = [
         favorite : 21,
         price : "7$",
         createTime : Date.now(),
-        img : './products/nft13.jpeg',
+        img : './products/nft/nft13.jpeg',
         description : ''
     },
     {
@@ -58,7 +58,7 @@ export const nft_data = [
         favorite : 21,
         price : "485$",
         createTime : Date.now(),
-        img : './products/nft8.jpeg',
+        img : './products/nft/nft8.jpeg',
         description : ''
     },
     {
@@ -69,7 +69,7 @@ export const nft_data = [
         favorite : 6,
         price : "785$",
         createTime : Date.now(),
-        img : './products/nft9.jpeg',
+        img : './products/nft/nft9.jpeg',
         description : ''
     },
     {
@@ -80,7 +80,7 @@ export const nft_data = [
         favorite : 31,
         price : "705$",
         createTime : Date.now(),
-        img : './products/nft10.jpeg',
+        img : './products/nft/nft10.jpeg',
         description : ''
     },
     {
@@ -91,7 +91,7 @@ export const nft_data = [
         favorite : 31,
         price : "1645$",
         createTime : Date.now(),
-        img : './products/nft11.jpeg',
+        img : './products/nft/nft11.jpeg',
         description : ''
     },    {
         id:"54622",
@@ -101,7 +101,7 @@ export const nft_data = [
         favorite : 45,
         price : "2345$",
         createTime : Date.now(),
-        img : './products/nft12.jpeg',
+        img : './products/nft/nft12.jpeg',
         description : ''
     }
 

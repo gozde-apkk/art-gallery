@@ -9,16 +9,16 @@
 
 
 
-export const nft_data = [
+export const canvas_data = [
     {
-        id:"4785",
+        id:"56458464",
         creater : "Temper",
         name :  "Deathtap",
         views : 75,
         favorite : 42,
         price : "74$",
         createTime : Date.now(),
-        img : './products/digital1.jpg',
+        img : './products/canvas/digital1.jpg',
         description : 'lorem ipsum lorem'
 
     },
@@ -30,7 +30,7 @@ export const nft_data = [
         favorite : 42,
         price : "46$",
         createTime : Date.now(),
-        img : './products/digital2.jpg',
+        img : './products/canvas/digital2.jpg',
         description : 'The Global Pass is perfect for those who fly occasionally but still want to enjoy a taste of the perks of a frequent flyer.'
 
     },
@@ -42,7 +42,7 @@ export const nft_data = [
         favorite : 486,
         price : "654$",
         createTime : Date.now(),
-        img : './products/digital3.jpg',
+        img : './products/canvas/digital3.jpg',
         description : 'Enjoy your entry into the world of private jet travel.'
     },
     {
@@ -53,7 +53,7 @@ export const nft_data = [
         favorite : 69,
         price : "52$",
         createTime : Date.now(),
-        img : './products/nft4.jpg',
+        img : './products/canvas/nft4.jpg',
         description : 'By Padica'
     },
     {
@@ -64,7 +64,7 @@ export const nft_data = [
         favorite : 48,
         price : "78$",
         createTime : Date.now(),
-        img : './products/nft4.jpg',
+        img : './products/canvas/nft4.jpg',
         description : 'By 80AD1A'
     },
     {
@@ -75,7 +75,7 @@ export const nft_data = [
         favorite : 145,
         price : "500$",
         createTime : Date.now(),
-        img : './products/nft4.jpg',
+        img : './products/canvas/nft4.jpg',
         description : 'abstract butterfly'
     },
     {
@@ -86,7 +86,7 @@ export const nft_data = [
         favorite : 313,
         price : "560$",
         createTime : Date.now(),
-        img : './products/nft4.jpg',
+        img : './products/canvas/nft4.jpg',
         description : 'lorem ipsum lorem'
     },
     {
@@ -97,7 +97,7 @@ export const nft_data = [
         favorite : 471,
         price : "251$",
         createTime : Date.now(),
-        img : './products/nft4.jpg',
+        img : './products/canvas/nft4.jpg',
         description : 'Oh! for fox sake'
     },    {
         id:"85621",
@@ -107,7 +107,7 @@ export const nft_data = [
         favorite : 68,
         price : "43$",
         createTime : Date.now(),
-        img : './products/nft4.jpg',
+        img : './products/canvas/nft4.jpg',
         description : 'Sufferings'
     }
 

@@ -32,7 +32,7 @@ function App() {
       <BrowserRouter>
         <div
           id={theme}
-          className=" bg-black min-h-screen relative flex flex-col"
+          className=" bg-black h-full min-h-screen relative flex flex-col"
         >
           {/* <div className="">
           <label >{theme === 'light' ? 'Light Mode' : 'Dark Mode'}  </label>

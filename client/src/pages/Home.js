@@ -43,7 +43,6 @@ const Home = () => {
         }}
         className="text-white font-medium w-4"
       >
-        <h1> NFT </h1>{" "}
       </div>{" "}
       <HomeNftSection />
       <div
@@ -56,9 +55,8 @@ const Home = () => {
         }}
         className="text-white font-medium w-4"
       >
-        <h1> DIGITAL </h1>{" "}
       </div>{" "}
-      <HomeProduct />
+
       <div
         style={{
           width: "9rem",
@@ -69,10 +67,7 @@ const Home = () => {
         }}
         className="text-white font-medium w-4"
       >
-        <h1> CANVAS </h1>{" "}
       </div>{" "}
-      <HomeNftSection />
-      <Artist />
     </div>
   );
 };
