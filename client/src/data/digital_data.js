@@ -1,11 +1,5 @@
 
 
-
-
-
-
-
-
 export const digital_data = [
     {
         id:"56686",
@@ -16,7 +10,8 @@ export const digital_data = [
         price : "75$",
         createTime : Date.now(),
         img : './products/digitalart/digital1.jpg',
-        description : 'Pixelated lives'
+        description : 'Pixelated lives',
+        categories : "digital art",
 
     },
     {
@@ -28,7 +23,8 @@ export const digital_data = [
         price : "9$",
         createTime : Date.now(),
         img : './products/digitalart/digital2.jpg',
-        description : 'The Global Pass is perfect for those who fly occasionally but still want to enjoy a taste of the perks of a frequent flyer.'
+        description : 'The Global Pass is perfect for those who fly occasionally but still want to enjoy a taste of the perks of a frequent flyer.',
+        categories : "digital art",
 
     },
     {
@@ -40,7 +36,8 @@ export const digital_data = [
         price : "25$",
         createTime : Date.now(),
         img : './products/digitalart/digital3.jpg',
-        description : 'Enjoy your entry into the world of private jet travel.'
+        description : 'Enjoy your entry into the world of private jet travel.',
+        categories : "digital art",
     },
     {
         id:"21315",
@@ -51,7 +48,8 @@ export const digital_data = [
         price : "64$",
         createTime : Date.now(),
         img : './products/digitalart/digital4.jpg',
-        description : 'By Rebecca All'
+        description : 'By Rebecca All',
+        categories : "digital art",
     },
     {
         id:"78954",
@@ -62,7 +60,8 @@ export const digital_data = [
         price : "414$",
         createTime : Date.now(),
         img : './products/digitalart/digital5.jpeg',
-        description : 'Sunset of Digital'
+        description : 'Sunset of Digital',
+        categories : "digital art",
     },
     {
         id:"544641",
@@ -73,7 +72,8 @@ export const digital_data = [
         price : "250$",
         createTime : Date.now(),
         img : './products/digitalart/digital6.jpeg',
-        description : 'abstract butterfly'
+        description : 'abstract butterfly',
+        categories : "digital art",
     },
     {
         id:"78541",
@@ -84,7 +84,8 @@ export const digital_data = [
         price : "70$",
         createTime : Date.now(),
         img : './products/digitalart/digital7.jpeg',
-        description : 'The Global Pass is perfect for those who fly occasionally but still want to enjoy a taste of the perks of a frequent flyer.'
+        description : 'The Global Pass is perfect for those who fly occasionally but still want to enjoy a taste of the perks of a frequent flyer.',
+        categories : "digital art",
     },
     {
         id:"467975",
@@ -95,7 +96,8 @@ export const digital_data = [
         price : "420$",
         createTime : Date.now(),
         img : './products/digitalart/digital8.jpeg',
-        description : 'Oh! Woman..'
+        description : 'Oh! Woman..',
+        categories : "digital art",
     },
     {
         id:"75458",
@@ -106,7 +108,8 @@ export const digital_data = [
         price : "43$",
         createTime : Date.now(),
         img : './products/digitalart/digital9.jpeg',
-        description : 'Colorful life'
+        description : 'Colorful life',
+        categories : "digital art",
     },
     {
         id:"79663522",
@@ -117,7 +120,8 @@ export const digital_data = [
         price : "360$",
         createTime : Date.now(),
         img : './products/digitalart/digital10.jpeg',
-        description : ''
+        description : '',
+        categories : "digital art",
     },
     {
         id:"4525784",
@@ -128,7 +132,8 @@ export const digital_data = [
         price : "370$",
         createTime : Date.now(),
         img : './products/digitalart/digital11.jpeg',
-        description : ''
+        description : '',
+        categories : "digital art",
     },
     {
         id:"95654",
@@ -139,7 +144,8 @@ export const digital_data = [
         price : "354$",
         createTime : Date.now(),
         img : './products/digitalart/digital12.jpeg',
-        description : ''
+        description : '',
+        categories : "digital art",
     },
     {
         id:"7895422",
@@ -150,7 +156,8 @@ export const digital_data = [
         price : "652$",
         createTime : Date.now(),
         img : './products/digitalart/digital13.jpeg',
-        description : ''
+        description : '',
+        categories : "digital art",
     },
     {
         id:"95636164",
@@ -161,7 +168,8 @@ export const digital_data = [
         price : "263$",
         createTime : Date.now(),
         img : './products/digitalart/digital14.jpeg',
-        description : ''
+        description : '',
+        categories : "digital art",
     },
     {
         id:"3467427",
@@ -172,7 +180,8 @@ export const digital_data = [
         price : "562$",
         createTime : Date.now(),
         img : './products/digitalart/digital15.jpeg',
-        description : ''
+        description : '',
+        categories : "digital art",
     },
     {
         id:"6798516",
@@ -183,7 +192,8 @@ export const digital_data = [
         price : "698$",
         createTime : Date.now(),
         img : './products/digitalart/digital16.jpeg',
-        description : ''
+        description : '',
+        categories : "digital art",
     },
     {
         id:"98254",
@@ -194,8 +204,7 @@ export const digital_data = [
         price : "410$",
         createTime : Date.now(),
         img : './products/digitalart/digital17.jpeg',
-        description : ''
+        description : '',
+        categories : "digital art",
     }
-
-
 ]

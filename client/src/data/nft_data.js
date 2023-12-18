@@ -1,9 +1,7 @@
 
 
 
-
 export const nft_data = [
-
     {
         id:"56481",
         creater : "Mpkozilla",
@@ -13,7 +11,8 @@ export const nft_data = [
         price : "545$",
         createTime : Date.now(),
         img : './products/nft/nft5.jpeg',
-        description : ''
+        description : '',
+        categories : "nft"
 
     },
     {
@@ -25,7 +24,8 @@ export const nft_data = [
         price : "765$",
         createTime : Date.now(),
         img : './products/nft/nft2.jpg',
-        description : ''
+        description : '',
+        categories : "nft"
 
     },
     {
@@ -37,7 +37,8 @@ export const nft_data = [
         price : "345$",
         createTime : Date.now(),
         img : './products/nft/nft6.jpeg',
-        description : ''
+        description : '',
+        categories : "nft"
     },
     {
         id:"14852",
@@ -48,7 +49,8 @@ export const nft_data = [
         price : "7$",
         createTime : Date.now(),
         img : './products/nft/nft13.jpeg',
-        description : ''
+        description : '',
+        categories : "nft"
     },
     {
         id:"88546",
@@ -59,7 +61,8 @@ export const nft_data = [
         price : "485$",
         createTime : Date.now(),
         img : './products/nft/nft8.jpeg',
-        description : ''
+        description : '',
+        categories : "nft"
     },
     {
         id:"659524",
@@ -70,7 +73,8 @@ export const nft_data = [
         price : "785$",
         createTime : Date.now(),
         img : './products/nft/nft9.jpeg',
-        description : ''
+        description : '',
+        categories : "nft"
     },
     {
         id:"26564",
@@ -81,7 +85,8 @@ export const nft_data = [
         price : "705$",
         createTime : Date.now(),
         img : './products/nft/nft10.jpeg',
-        description : ''
+        description : '',
+        categories : "nft"
     },
     {
         id:"65452",
@@ -92,7 +97,8 @@ export const nft_data = [
         price : "1645$",
         createTime : Date.now(),
         img : './products/nft/nft11.jpeg',
-        description : ''
+        description : '',
+        categories : "nft"
     },    {
         id:"54622",
         creater : "KINGSHIP",
@@ -102,7 +108,7 @@ export const nft_data = [
         price : "2345$",
         createTime : Date.now(),
         img : './products/nft/nft12.jpeg',
-        description : ''
+        description : '',
+        categories : "nft"
     }
-
 ]

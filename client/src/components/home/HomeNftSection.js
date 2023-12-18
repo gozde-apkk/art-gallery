@@ -1,13 +1,12 @@
 import React from "react";
 import AliceCarousel from "react-alice-carousel";
 import HomeSectionCard from "./HomeSectionCard";
-import Button from "@mui/material/Button";
-import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
-import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
+
 import { useState } from "react";
-import { nft_data } from "../../data/nftdata";
-import { digital_data } from "../../data/digitaldata";
-import { canvas_data } from "../../data/canvasdata";
+import { nft_data } from "../../data/nft_data";
+import { fake_data } from "../../data/fakedata";
+import { canvas_data } from "../../data/canvas_data";
+import { digital_data } from "../../data/digital_data";
 import "./style.css"
 
 const HomeNftSection = () => {

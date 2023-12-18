@@ -2,13 +2,6 @@
 
 
 
-
-
-
-
-
-
-
 export const canvas_data = [
     {
         id:"56458464",
@@ -19,7 +12,8 @@ export const canvas_data = [
         price : "74$",
         createTime : Date.now(),
         img : './products/canvas/canvas1.jpg',
-        description : 'lorem ipsum lorem'
+        description : 'lorem ipsum lorem',
+        categories : "canvas",
 
     },
     {
@@ -31,7 +25,9 @@ export const canvas_data = [
         price : "46$",
         createTime : Date.now(),
         img : './products/canvas/canvas2.jpg',
-        description : 'The Global Pass is perfect for those who fly occasionally but still want to enjoy a taste of the perks of a frequent flyer.'
+        description : 'The Global Pass is perfect for those who fly occasionally but still want to enjoy a taste of the perks of a frequent flyer.',
+        categories : "canvas",
+
 
     },
     {
@@ -43,7 +39,9 @@ export const canvas_data = [
         price : "654$",
         createTime : Date.now(),
         img : './products/canvas/canvas3.jpg',
-        description : 'Enjoy your entry into the world of private jet travel.'
+        description : 'Enjoy your entry into the world of private jet travel.',
+        categories : "canvas",
+
     },
     {
         id:"4552165",
@@ -54,7 +52,9 @@ export const canvas_data = [
         price : "52$",
         createTime : Date.now(),
         img : './products/canvas/canvas4.jpg',
-        description : 'By Padica'
+        description : 'By Padica',
+        categories : "canvas",
+
     },
     {
         id:"585",
@@ -65,7 +65,8 @@ export const canvas_data = [
         price : "500$",
         createTime : Date.now(),
         img : './products/canvas/canvas6.jpeg',
-        description : 'abstract butterfly'
+        description : 'abstract butterfly',
+        categories : "canvas",
     },
     {
         id:"7895",
@@ -97,7 +98,9 @@ export const canvas_data = [
         price : "43$",
         createTime : Date.now(),
         img : './products/canvas/canvas9.jpeg',
-        description : 'Sufferings'
+        description : 'Sufferings',
+        categories : "canvas",
+
     },
     {
         id:"897856526",
@@ -108,7 +111,9 @@ export const canvas_data = [
         price : "437$",
         createTime : Date.now(),
         img : './products/canvas/canvas11.jpeg',
-        description : 'Woman'
+        description : 'Woman',
+        categories : "canvas",
+
     },
     {
         id:"7289784",
@@ -119,7 +124,9 @@ export const canvas_data = [
         price : "589$",
         createTime : Date.now(),
         img : './products/canvas/canvas12.jpeg',
-        description : 'Human Face But Half!'
+        description : 'Human Face But Half!',
+        categories : "canvas",
+
     },
     {
         id:"2898456",
@@ -142,7 +149,8 @@ export const canvas_data = [
         price : "10655$",
         createTime : Date.now(),
         img : './products/canvas/canvas14.jpeg',
-        description : 'Bird-Color'
+        description : 'Bird-Color',
+        categories : "canvas",
     } ,
     {
         id:"98921521",
@@ -175,7 +183,8 @@ export const canvas_data = [
         price : "5410$",
         createTime : Date.now(),
         img : './products/canvas/canvas17.jpeg',
-        description : 'ballerina'
+        description : 'ballerina',
+        categories : "canvas"
     },
     {
         id:"891451",
@@ -186,9 +195,7 @@ export const canvas_data = [
         price : "4120$",
         createTime : Date.now(),
         img : './products/canvas/canvas18.jpeg',
-        description : 'woman'
-    }
-
-
-
+        description : 'woman',
+        categories : "canvas",
+    },
 ]
