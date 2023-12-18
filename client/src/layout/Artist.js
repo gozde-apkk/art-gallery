@@ -11,13 +11,11 @@ const Artist = () => {
 
   return (
     <div style={{
-    
-     height:"160rem",
      color:"white",
 
     }
-    } className='flex flex-col'>
-        <div className='text-aliceblue text-4xl flex justify-center m-10'>
+    } className='flex h-full bg-black flex-col'>
+        <div className='text-aliceblue  text-4xl flex justify-center m-10'>
         <h1>THE ARTIST</h1>
         </div>
         <Swiper style={{
@@ -28,8 +26,7 @@ const Artist = () => {
         spaceBetween={10}
         centeredSlides={true}
         autoplay={{
-          delay: 2500,
-          disableOnInteraction: false,
+          delay: 3000,
           pauseOnMouseEnter: true,
         }}
         pagination={{

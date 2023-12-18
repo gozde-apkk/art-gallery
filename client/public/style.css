@@ -3,11 +3,7 @@
 
 body{
  
-  background-repeat: no-repeat;
-  background-position: center;
-  background-attachment: fixed;
   background-size: cover;
-  height: 100%;
   font-family: "poppins";
   background-color: black;
 }
@@ -27,6 +23,8 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,
 html,body {
   margin:0;
   padding:0;
+height: 300vh;
+background-color: bisque;
 }
 table {
   border-collapse:collapse;

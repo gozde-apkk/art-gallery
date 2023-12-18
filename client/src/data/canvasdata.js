@@ -18,7 +18,7 @@ export const canvas_data = [
         favorite : 42,
         price : "74$",
         createTime : Date.now(),
-        img : './products/canvas/digital1.jpg',
+        img : './products/canvas/canvas1.jpg',
         description : 'lorem ipsum lorem'
 
     },
@@ -30,7 +30,7 @@ export const canvas_data = [
         favorite : 42,
         price : "46$",
         createTime : Date.now(),
-        img : './products/canvas/digital2.jpg',
+        img : './products/canvas/canvas2.jpg',
         description : 'The Global Pass is perfect for those who fly occasionally but still want to enjoy a taste of the perks of a frequent flyer.'
 
     },
@@ -42,7 +42,7 @@ export const canvas_data = [
         favorite : 486,
         price : "654$",
         createTime : Date.now(),
-        img : './products/canvas/digital3.jpg',
+        img : './products/canvas/canvas3.jpg',
         description : 'Enjoy your entry into the world of private jet travel.'
     },
     {
@@ -53,19 +53,8 @@ export const canvas_data = [
         favorite : 69,
         price : "52$",
         createTime : Date.now(),
-        img : './products/canvas/nft4.jpg',
+        img : './products/canvas/canvas4.jpg',
         description : 'By Padica'
-    },
-    {
-        id:"87854",
-        creater : "Jora Aslari",
-        name :  "Framsiswork  ",
-        views : 96,
-        favorite : 48,
-        price : "78$",
-        createTime : Date.now(),
-        img : './products/canvas/nft4.jpg',
-        description : 'By 80AD1A'
     },
     {
         id:"585",
@@ -75,7 +64,7 @@ export const canvas_data = [
         favorite : 145,
         price : "500$",
         createTime : Date.now(),
-        img : './products/canvas/nft4.jpg',
+        img : './products/canvas/canvas6.jpeg',
         description : 'abstract butterfly'
     },
     {
@@ -86,7 +75,7 @@ export const canvas_data = [
         favorite : 313,
         price : "560$",
         createTime : Date.now(),
-        img : './products/canvas/nft4.jpg',
+        img : './products/canvas/canvas7.jpeg',
         description : 'lorem ipsum lorem'
     },
     {
@@ -97,7 +86,7 @@ export const canvas_data = [
         favorite : 471,
         price : "251$",
         createTime : Date.now(),
-        img : './products/canvas/nft4.jpg',
+        img : './products/canvas/canvas8.jpeg',
         description : 'Oh! for fox sake'
     },    {
         id:"85621",
@@ -107,8 +96,99 @@ export const canvas_data = [
         favorite : 68,
         price : "43$",
         createTime : Date.now(),
-        img : './products/canvas/nft4.jpg',
+        img : './products/canvas/canvas9.jpeg',
         description : 'Sufferings'
+    },
+    {
+        id:"897856526",
+        creater : "Miraslav Andrict",
+        name :  "Gorgeous Lady",
+        views : 562,
+        favorite : 756,
+        price : "437$",
+        createTime : Date.now(),
+        img : './products/canvas/canvas11.jpeg',
+        description : 'Woman'
+    },
+    {
+        id:"7289784",
+        creater : "Thomson",
+        name :  "Color Face",
+        views : 682,
+        favorite : 321,
+        price : "589$",
+        createTime : Date.now(),
+        img : './products/canvas/canvas12.jpeg',
+        description : 'Human Face But Half!'
+    },
+    {
+        id:"2898456",
+        creater : "BoomLandPix",
+        name :  "Death Men",
+        views : 3556,
+        favorite : 1563,
+        price : "759$",
+        createTime : Date.now(),
+        img : './products/canvas/canvas13.jpeg',
+        description : 'Death!'
     }
+    ,
+    {
+        id:"8795661",
+        creater : "LoudPunck",
+        name :  "Realistically Bird",
+        views : 4563,
+        favorite : 869,
+        price : "10655$",
+        createTime : Date.now(),
+        img : './products/canvas/canvas14.jpeg',
+        description : 'Bird-Color'
+    } ,
+    {
+        id:"98921521",
+        creater : "STORMIE",
+        name :  "Girl Playing The Violin",
+        views : 79896,
+        favorite : 4632,
+        price : "6562$",
+        createTime : Date.now(),
+        img : './products/canvas/canvas15.jpeg',
+        description : 'Violin'
+    },
+    {
+        id:"684652",
+        creater : "AlignDRAW",
+        name :  "Ballerina",
+        views : 2345,
+        favorite : 3685,
+        price : "6631$",
+        createTime : Date.now(),
+        img : './products/canvas/canvas16.jpeg',
+        description : 'ballerina'
+    },
+    {
+        id:"982984",
+        creater : "Rare Bob",
+        name :  "Gradient",
+        views : 6254,
+        favorite : 2365,
+        price : "5410$",
+        createTime : Date.now(),
+        img : './products/canvas/canvas17.jpeg',
+        description : 'ballerina'
+    },
+    {
+        id:"891451",
+        creater : "Deep Purple",
+        name :  "A Lady!",
+        views : 5264,
+        favorite : 3201,
+        price : "4120$",
+        createTime : Date.now(),
+        img : './products/canvas/canvas18.jpeg',
+        description : 'woman'
+    }
+
+
 
 ]

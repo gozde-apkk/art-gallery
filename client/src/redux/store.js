@@ -4,6 +4,8 @@ import { legacy_createStore , applyMiddleware, compose} from 'redux';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import rootReducer from './reducers/rootReducer'
+import {configureStore} from '@reduxjs/toolkit'
+import categorySlice from './reducers/categorySlice';
 
 
 
@@ -11,14 +13,10 @@ import rootReducer from './reducers/rootReducer'
 
 
 
-export const store = legacy_createStore(rootReducer , {}, compose(applyMiddleware(thunk), composeWithDevTools()));
-// export function authReducer (state, action) {
-//     switch (action.type) {
-//         case 'AUTHENTICATION':
-//             return [...action.payload];
-//         default:
-//             return state;
-//     }
-// }
+export const store =configureStore ({
+    reducer : {
+        categories : categorySlice
+    },
+})
 
 export default store;

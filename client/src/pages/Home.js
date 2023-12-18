@@ -4,14 +4,12 @@ import { Link } from "react-router-dom";
 import "../style/style.css";
 import Artist from "../layout/Artist";
 import HomeNftSection from "../components/home/HomeNftSection";
-import HomeCanvasSection from "../canvas/HomeCanvasCard";
-import HomeProductSection from "../digital/HomeProductCard";
-import HomeProduct from "../digital/HomeProduct";
+import Footer from "../components/footer/Footer";
 
 const Home = () => {
   return (
-    <div className="w-full bg-black">
-      <div className="flex-grow flex-1 mx-auto   md:px-20 w-full max-w-screen-xl ">
+    <div className="w-full h-full text-white bg-black">
+      <div className="flex-grow flex-1 mx-auto  my-5  md:px-20 w-full max-w-screen-xl ">
         <div className="py-20 md:px-20 mx-auto text-center flex flex-col items-center max-w-3xl">
           <h1 className="text-4xl font-bold px-2.5  tracking-tight text-gray-300 sm:text-6xl">
             Creavity is internal expression of{" "}
@@ -33,40 +31,11 @@ const Home = () => {
           </div>{" "}
         </div>{" "}
       </div>{" "}
-      <div
-        style={{
-          width: "9rem",
-          fontFamily: "Poppins",
-          fontSize: "70px",
-          marginLeft: "3rem",
-          color: "crimson",
-        }}
-        className="text-white font-medium w-4"
-      >
-      </div>{" "}
-      <HomeNftSection />
-      <div
-        style={{
-          width: "9rem",
-          fontFamily: "Poppins",
-          fontSize: "70px",
-          marginLeft: "3rem",
-          color: "crimson",
-        }}
-        className="text-white font-medium w-4"
-      >
-      </div>{" "}
+      <div className=" h-full w-full justify-center flex flex-col">
+        <HomeNftSection />
 
-      <div
-        style={{
-          width: "9rem",
-          fontFamily: "Poppins",
-          fontSize: "70px",
-          marginLeft: "3rem",
-          color: "crimson",
-        }}
-        className="text-white font-medium w-4"
-      >
+        <Artist />
+        <Footer />
       </div>{" "}
     </div>
   );

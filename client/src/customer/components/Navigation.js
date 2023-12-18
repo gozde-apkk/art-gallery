@@ -359,10 +359,6 @@ export default function Navigation() {
       </Transition.Root>
 
       <header className="relative ">
-        <p className="flex h-10 items-center justify-center px-4 text-sm font-medium text-white sm:px-6 lg:px-8">
-          Get free delivery on orders over $100
-        </p>
-
         <nav aria-label="Top" className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="border-b border-gray-200">
             <div className="flex h-16 items-center">
@@ -381,8 +377,8 @@ export default function Navigation() {
                 <a href="#">
                   <span className="sr-only">Your Company</span>
                   <img
-                    className="h-8 w-auto"
-                    src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                    className="h-8 w-7 "
+                    src="./icon/whitelogo.png"
                     alt=""
                   />
                 </a>

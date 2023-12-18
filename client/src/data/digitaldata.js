@@ -61,7 +61,7 @@ export const digital_data = [
         favorite : 145,
         price : "414$",
         createTime : Date.now(),
-        img : './products/digitalart/digital5.jpg',
+        img : './products/digitalart/digital5.jpeg',
         description : 'Sunset of Digital'
     },
     {
