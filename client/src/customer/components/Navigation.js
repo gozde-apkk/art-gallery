@@ -3,27 +3,53 @@
 
 import React from 'react'
 import { Link, NavLink } from 'react-router-dom'
-import styles from './Navigation.module.scss'
-import {FaShoppingCart} from 'react-icons/fa'
+import {styles} from "./styles";
+import {FaShoppingCart, FaTimes} from 'react-icons/fa'
+import { useState } from 'react'
+import {HiOutlineMenuAlt3} from 'react-icons/hi'
+import sass from './Navigation.module.scss'
 
-const activeLink = ({isActive}) => (isActive ? `${styles.active}` : "") 
+export const logo = (
+  <Link>
+  <img className='w-10 ' src="./icon/whitelogo.png" alt="logo" />
+  </Link>
+)
+
 const Navigation = () => {
+     const [showMenu, setShowMenu] = useState(false)
+
+      const toggleMenu = () => {
+        setShowMenu(!showMenu)
+      }
+
+      const hideMenu= () => {
+        setShowMenu(false)
+      }
   const cart = (
-    <span>
-      <Link to="/cart">
+    <span className=' w-20  flex relative text-white hover:text-red-600 active:text-red-500'>
+      <Link className='' to="/cart">
       Cart
-        <FaShoppingCart />
+        <FaShoppingCart size={20} className='inline ml-2'/>
+        <p className='absolute top-0 right-1 bg-red-500 text-white text-xs px-1 rounded-full'>0</p>
       </Link>
     </span>
   )
   return (
     <div className=' text-lg h-20 p-2 items-center mx-52 justify-between  bg-black text-white flex  mt-4 '>
      
-      <Link>
-      <img className='w-10 ' src="./icon/whitelogo.png" alt="logo" />
-      </Link>
-       <nav className='flex h-8 justify-between w-[94%]'>
-        <ul className='flex w-[50%] justify-between list-none'>
+        {logo}
+       <nav className='flex'  >
+
+        {/* <div className={showMenu ? `${sass["nav-wrapper"]} ${sass["show-nav-wrapper"]}` : `${sass["nav-wrapper"]} ${sass["hide-nav-wrappr"]}`}  
+        onClick={hideMenu}>
+
+        </div> */}
+        <ul >
+          {/* <li className={sass["logo-menu"]}>
+            {logo}
+            <FaTimes size={22} onClick={hideMenu} color='white'/>
+            </li> */}
+
           <li className='mx-4 hover:bg-red-600'>
             <NavLink className="active:relative active:text-rose-500" to="/shop">
             Shop
@@ -40,6 +66,9 @@ const Navigation = () => {
              {cart}
         </div>
        </nav>
+       <div className='menu-icon'>
+       <HiOutlineMenuAlt3 className='inline ml-3' size={30} onClick={toggleMenu}/>
+        </div>
     </div>
   )
 }

@@ -6,6 +6,7 @@ import Artist from "../layout/Artist";
 import HomeNftSection from "../components/home/HomeNftSection";
 import Footer from "../components/footer/Footer";
 import Navigation from "../customer/components/Navigation";
+import HomeInfoBox from "../customer/components/HomeInfoBox";
 
 const Home = () => {
   return (
@@ -36,6 +37,7 @@ const Home = () => {
         <HomeNftSection />
 
         <Artist />
+        <HomeInfoBox/>
         <Footer />
       </div>{" "}
     </div>

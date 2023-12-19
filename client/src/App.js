@@ -19,7 +19,7 @@ function App() {
      
       <BrowserRouter>
  
-        <div  className="relative h-[300vh] bg-black flex flex-col">
+        <div  className="relative h-[100%] bg-black flex flex-col">
        
         <Navigation />
           <Routes>
