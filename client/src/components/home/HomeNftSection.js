@@ -48,13 +48,15 @@ const HomeNftSection = () => {
       <div className="relative p-10">
         {items.map((item) => (
           <div className="my-10 h-26 " key={item.id}>
-            <h1
+         <div>
+         <h1
               style={{ color: "crimson" }}
               className=" mb-6 text-center text-4xl"
             >
               {item.title}
             </h1>
-
+           <p>Show All</p>
+         </div>
             <div className="w-full h-full text-center text-white">
               <AliceCarousel
                 className="relative w-1"
