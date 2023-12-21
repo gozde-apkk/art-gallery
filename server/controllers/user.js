@@ -2,13 +2,14 @@ const asyncHandler = require("express-async-handler");
 const  User  = require("../models/user.js");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const { constructFrom } = require("date-fns");
 
 
 
 const registerUser = asyncHandler(async (req, res) => {
   const { username, email, password } = req.body;
 
-  //Validation
+//   Validation
   if (!username || !email || !password) {
     res.status(400);
     throw new Error("Please add all fields");
@@ -26,9 +27,9 @@ const registerUser = asyncHandler(async (req, res) => {
 
   //Create a new user
   const user = await User.create({
-    username: username,
-    email: email,
-    password: password,
+    username: req.body.username,
+    email: req.body.email,
+    password: req.body.password,
   });
 
   const generateToken = () => {
@@ -137,9 +138,24 @@ const loginUser = asyncHandler (async (req, res) => {
 //         next(error);
 //     }
 //   }
-const getUsers = asyncHandler(async (req, res) => {
-  res.status(200).json({ message: "Get all users" });
+const logout = asyncHandler(async (req, res) => {
+     res.cookie("token" , "", {
+        path: "/",
+        httpOnly : true,
+        expires : new Date(0),
+     });
+     return res.status(200).json({message : "Successfully logged out"});
 });
+
+const getUser = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.user.id).select("-password");
+  if (user) {
+    res.json(user);
+  } else {
+    res.status(404);
+    throw new Error("User not found");
+  }
+})
 
 // router.get('/getAll', async (req, res) => {
 //     try{
@@ -169,24 +185,44 @@ const createUser = async (req, res, next) => {
   }
 };
 
-const getUser = (req, res) => {
-  res.status(200).json({ message: `Get user ${req.params.id}` });
-};
+const getLoginStatus = asyncHandler(async (req, res) => {   
 
-const updateUser = (req, res) => {
-  res.status(200).json({ message: `Update user ${req.params.id}` });
-};
+    const token = req.cookies.token;
+    if(!token) {
+        res.json(false);
+    }
+    const verified = jwt.verify(token, process.env.JWT_SECRET);
+    if(!verified) {
+        res.json(false);
+    }
+    res.json(true);
+    res.send("Login successful")
+});
 
-const deleteUser = (req, res) => {
-  res.status(200).json({ message: `Delete user ${req.params.id}` });
-};
+ const updateUser = asyncHandler(async (req, res) => {
+    const user = await User.findById(req.user.id);
+
+    if(user ) {
+        const {username, phone , address} = user;
+        user.username = req.body.username || username;
+        user.phone = req.body.phone || phone;
+        user.address = req.body.address || address;
+
+        const updateUser = await user.save();
+        res.status(200).json(updateUser);
+    }else {
+        res.status(404);
+        throw new Error("User not found");
+    }
+    res.send("update user");
+ })
 
 module.exports = {
   registerUser,
-  getUsers,
+  logout,
   createUser,
   getUser,
-  updateUser,
-  deleteUser,
-  loginUser
+  loginUser,
+  getLoginStatus,
+  updateUser
 };
