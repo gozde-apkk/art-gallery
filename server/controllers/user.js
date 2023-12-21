@@ -70,7 +70,52 @@ const registerUser = asyncHandler(async (req, res) => {
   }
 });
 
+const loginUser = asyncHandler (async (req, res) => {
 
+    const {email, password} = req.body;
+
+    const generateToken = () => {
+        return jwt.sign({ 
+          user : {
+            id : user._id,
+            username : user.username,
+            email : user.email,
+         
+          }
+         }, process.env.JWT_SECRET, {
+          expiresIn: "1d",
+        });
+      };
+
+    //Validate Request
+    if(!email || !password){
+        res.status(400);
+        throw new Error("Please add email and password")
+    }
+
+    //Check if the user exists
+    const user = await User.findOne({email});
+
+    //User exists, check if password is correct
+    const passwordIsCorrect = await bcrypt.compare(password, user.password);
+
+    //Generate Token
+    const token = generateToken(user);
+    if(user && passwordIsCorrect){
+        const  newUser = await User.findOne({email}).select("-password");
+       res.cookie("token", token), {
+        path : "/",
+        httpOnly : true,
+        expires : new Date(Date.now() + 1000 * 86400)};
+
+        res.status(200).json(newUser);
+    }else{
+        res.status(403);
+        throw new Error("Invalid email or password")  
+    }
+    res.send("Welcome")
+
+})
 
 // const registerUser = async (req, res , next) => {
 //     const {username , email, password} = req.body;
@@ -143,4 +188,5 @@ module.exports = {
   getUser,
   updateUser,
   deleteUser,
+  loginUser
 };
