@@ -3,6 +3,7 @@ const  User  = require("../models/user.js");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { constructFrom } = require("date-fns");
+const { use } = require("../routes/userRouter.js");
 
 
 
@@ -217,6 +218,16 @@ const getLoginStatus = asyncHandler(async (req, res) => {
     res.send("update user");
  })
 
+
+ const updatePhoto = asyncHandler(async (req, res) => {
+    const {photo} = req.body;
+    const user = await User.findById(req.user.id);
+    user.photo = photo;
+    const updateUser = await user.save();
+    res.status(200).json(updateUser);
+     res.send("update photo");
+ })
+
 module.exports = {
   registerUser,
   logout,
@@ -224,5 +235,6 @@ module.exports = {
   getUser,
   loginUser,
   getLoginStatus,
-  updateUser
+  updateUser,
+  updatePhoto
 };
