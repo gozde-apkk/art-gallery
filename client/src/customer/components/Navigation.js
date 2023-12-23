@@ -1,13 +1,11 @@
 
 
 
-import React from 'react'
+import React, { useRef } from 'react'
 import { Link, NavLink } from 'react-router-dom'
-import {styles} from "./styles";
 import {FaShoppingCart, FaTimes} from 'react-icons/fa'
 import { useState } from 'react'
 import {HiOutlineMenuAlt3} from 'react-icons/hi'
-import sass from './Navigation.module.scss'
 
 export const logo = (
   <Link>
@@ -16,6 +14,11 @@ export const logo = (
 )
 
 const Navigation = () => {
+
+  const navRef = useRef();
+  const showNavbar = () => {
+    navRef.current.classList.toggle("responsive_nav")
+  }
      const [showMenu, setShowMenu] = useState(false)
 
       const toggleMenu = () => {
@@ -38,18 +41,8 @@ const Navigation = () => {
     <div className=' text-lg h-20 p-2 items-center mx-52 justify-between  bg-black text-white flex  mt-4 '>
      
         {logo}
-       <nav className='flex'  >
-
-        <div className={showMenu ? `${sass["nav-wrapper"]} ${sass["show-nav-wrapper"]}` : `${sass["nav-wrapper"]} ${sass["hide-nav-wrappr"]}`}  
-        onClick={hideMenu}>
-
-        </div>
+       <nav  ref={navRef} className='flex'  >
         <ul >
-          <li className={sass["logo-menu"]}>
-            {logo}
-            <FaTimes size={22} onClick={hideMenu} color='white'/>
-            </li>
-
           <li className='mx-4 hover:bg-red-600'>
             <NavLink className="active:relative active:text-rose-500" to="/shop">
             Shop
@@ -67,7 +60,7 @@ const Navigation = () => {
         </div>
        </nav>
        <div className='menu-icon'>
-       <HiOutlineMenuAlt3 className='inline ml-3' size={30} onClick={hideMenu}/>
+      <HiOutlineMenuAlt3 style={{display:"inline", cursor:"pointer", marginLeft:"1rem"}} className='nav-btn' size={30} onClick={showNavbar}/>
         </div>
     </div>
   )

@@ -10,12 +10,17 @@ import HomePage from "./customer/components/HomePage";
 import Product from "./product/Product";
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
+import axios from "axios";
+import { ToastContainer } from "react-toastify";
 
 function App() {
+
+  axios.defaults.withCredentials = true;
   return (
     <NextUIProvider>
       <BrowserRouter>
         <div className="relative h-[100%] bg-black flex flex-col">
+          <ToastContainer/>
           <Navigation />
           <Routes>
             <Route path="/" element={<Home />} />
