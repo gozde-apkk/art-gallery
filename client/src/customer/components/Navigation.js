@@ -40,15 +40,15 @@ const Navigation = () => {
         {logo}
        <nav className='flex'  >
 
-        {/* <div className={showMenu ? `${sass["nav-wrapper"]} ${sass["show-nav-wrapper"]}` : `${sass["nav-wrapper"]} ${sass["hide-nav-wrappr"]}`}  
+        <div className={showMenu ? `${sass["nav-wrapper"]} ${sass["show-nav-wrapper"]}` : `${sass["nav-wrapper"]} ${sass["hide-nav-wrappr"]}`}  
         onClick={hideMenu}>
 
-        </div> */}
+        </div>
         <ul >
-          {/* <li className={sass["logo-menu"]}>
+          <li className={sass["logo-menu"]}>
             {logo}
             <FaTimes size={22} onClick={hideMenu} color='white'/>
-            </li> */}
+            </li>
 
           <li className='mx-4 hover:bg-red-600'>
             <NavLink className="active:relative active:text-rose-500" to="/shop">
@@ -67,7 +67,7 @@ const Navigation = () => {
         </div>
        </nav>
        <div className='menu-icon'>
-       <HiOutlineMenuAlt3 className='inline ml-3' size={30} onClick={toggleMenu}/>
+       <HiOutlineMenuAlt3 className='inline ml-3' size={30} onClick={hideMenu}/>
         </div>
     </div>
   )

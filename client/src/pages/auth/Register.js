@@ -1,94 +1,68 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import {
-  FacebookLoginButton,
-  InstagramLoginButton
-} from "react-social-login-buttons";
+import React, { useState } from 'react';
+import './authstyle.css'
 
-class SignInForm extends Component {
-  constructor() {
-    super();
 
-    this.state = {
-      email: "",
-      password: ""
-    };
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  handleChange(event) {
-    let target = event.target;
-    let value = target.type === "checkbox" ? target.checked : target.value;
-    let name = target.name;
-
-    this.setState({
-      [name]: value
-    });
-  }
-
-  handleSubmit(event) {
-    event.preventDefault();
-
-    console.log("The form was submitted with the following data:");
-    console.log(this.state);
-  }
-
-  render() {
-    return (
-      <div className="mb-40">
-        <form className="formFields" onSubmit={this.handleSubmit}>
-          <div className="mb-10">
-            <label className="block transform-translate-x-1 text-md" htmlFor="email">
-              E-Mail Address
-            </label>
-            <input
-              type="email"
-              id="email"
-              className="formFieldInput"
-              placeholder="Enter your email"
-              name="email"
-              value={this.state.email}
-              onChange={this.handleChange}
-            />
-          </div>
-
-          <div className="formField">
-            <label className="formFieldLabel" htmlFor="password">
-              Password
-            </label>
-            <input
-              type="password"
-              id="password"
-              className="formFieldInput"
-              placeholder="Enter your password"
-              name="password"
-              value={this.state.password}
-              onChange={this.handleChange}
-            />
-          </div>
-
-          <div className="formField">
-            <button className="formFieldButton">Sign In</button>{" "}
-            <Link to="/" className="formFieldLink">
-              Create an account
-            </Link>
-          </div>
-
-          <div className="socialMediaButtons">
-            <div className="facebookButton">
-              <FacebookLoginButton onClick={() => alert("Hello")} />
-            </div>
-
-            <div className="instagramButton">
-              <InstagramLoginButton onClick={() => alert("Hello")} />
-            </div>
-          </div>
-        </form>
-      </div>
-    );
-  }
+const initialState = {
+     username : '',
+     email : '',
+     password : '',
+     cPassword : ""
 }
 
-export default SignInForm;
+const Register = () => {
+
+  const [formData, setFormDate] = useState(initialState);
+  const {username, email, password, cPassword} = initialState;
+  const [formType, setFormType] = useState('login');
+
+  const handleFormToggle = (type) => {
+    setFormType(type);
+  };
+
+  const handleInputChange = (e) => {  
+    const {name , value} = e.target
+    setFormDate({...formData, [name] : value})
+  }
+  const registerUser = () => {}
+
+  return (
+    <div className="h-full ">
+      <div className="form-box">
+        <div className="button-box">
+          <div id="btn"  ></div>
+          <button
+            type="button"
+            className="toggle-btn"
+            onClick={() => handleFormToggle('register')}
+          >
+            Register
+          </button>
+        </div>
+        <div className="social-icons">
+          {/* Lottie animations */}
+        </div>
+        {/* <form className="input-group" id="Login" style={{ left: formType === 'login' ? '-400px' : '50px' }}>
+          <input value={email} onChange={(e) => setEmail(e.target.value)} className="input-field" type="email" placeholder="Enter Email" required />
+          <input  value={password} onChange={(e) => setPassword(e.target.value)} className="input-field" type="password" placeholder="Enter Password" required />
+          <a href="">Lost Your Password</a>
+          <button type="submit" className="submit-btn">
+            Log In
+          </button>
+        </form> */}
+        <form onSubmit={registerUser} className="input-group" id="Register" style={{ left: formType === 'register' ? '450px' : '50px' }}>
+          <input value={username} onChange={handleInputChange} className="input-field" type="text" placeholder="Enter Username" required />
+          <input value={email} onChange={handleInputChange} className="input-field" type="email" placeholder="Enter Email" required />
+          <input value={password}   onChange={handleInputChange} className="input-field" type="password" placeholder="Enter Password" required />
+          <a href="">
+            By registering, you agree to the Terms, Data Policy and Cookies Policy
+          </a>
+          <button type="submit" className="submit-btn">
+            Register
+          </button>
+        </form>
+      </div>
+    </div>
+  );
+};
+
+export default Register;

@@ -1,130 +1,63 @@
 import React, { useState } from 'react';
-import {
-  MDBContainer,
-  MDBTabs,
-  MDBTabsItem,
-  MDBTabsLink,
-  MDBTabsContent,
-  MDBTabsPane,
-  MDBBtn,
-  MDBIcon,
-  MDBInput,
-  MDBCheckbox
-}
-from 'mdb-react-ui-kit';
+import './authstyle.css'
+import { Link } from 'react-router-dom';
 
-function App() {
+const Login = () => {
 
-  const [justifyActive, setJustifyActive] = useState('tab1');;
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState('');
+  const [formType, setFormType] = useState('login');
 
-  const handleJustifyClick = (value) => {
-    if (value === justifyActive) {
-      return;
-    }
-
-    setJustifyActive(value);
+  const handleFormToggle = (type) => {
+    setFormType(type);
   };
 
-  return (
-    <MDBContainer className="p-3 text-white  flex-column w-50">
-
-      <MDBTabs pills justify className='mb-3 d-flex flex-row justify-content-between'>
-        <MDBTabsItem>
-          <MDBTabsLink onClick={() => handleJustifyClick('tab1')} active={justifyActive === 'tab1'}>
-            Login
-          </MDBTabsLink>
-        </MDBTabsItem>
-        <MDBTabsItem>
-          <MDBTabsLink onClick={() => handleJustifyClick('tab2')} active={justifyActive === 'tab2'}>
+  return ( 
+    <div className="h-full text-white ">
+      <div className="form-box">
+        <div className="button-box">
+          <div id="btn"></div>
+          <button
+            type="button"
+            className="toggle-btn"
+            onClick={() => handleFormToggle('login')}          >
+            Log In
+          </button>
+          {/* <button
+            type="button"
+            className="toggle-btn"
+            onClick={() => handleFormToggle('register')}
+            style={{ left: formType === 'login' ? '50px' : '-400px' }}
+          >
             Register
-          </MDBTabsLink>
-        </MDBTabsItem>
-      </MDBTabs>
-
-      <MDBTabsContent>
-
-        <MDBTabsPane show={justifyActive === 'tab1'}>
-
-          <div className="text-center mb-3">
-            <p>Sign in with:</p>
-
-            <div className='d-flex justify-content-between mx-auto' style={{width: '40%'}}>
-              <MDBBtn tag='a' color='none' className='m-1' style={{ color: '#1266f1' }}>
-                <MDBIcon fab icon='facebook-f' size="sm"/>
-              </MDBBtn>
-
-              <MDBBtn tag='a' color='none' className='m-1' style={{ color: '#1266f1' }}>
-                <MDBIcon fab icon='twitter' size="sm"/>
-              </MDBBtn>
-
-              <MDBBtn tag='a' color='none' className='m-1' style={{ color: '#1266f1' }}>
-                <MDBIcon fab icon='google' size="sm"/>
-              </MDBBtn>
-
-              <MDBBtn tag='a' color='none' className='m-1' style={{ color: '#1266f1' }}>
-                <MDBIcon fab icon='github' size="sm"/>
-              </MDBBtn>
-            </div>
-
-            <p className="text-center mt-3">or:</p>
-          </div>
-
-          <MDBInput wrapperClass='mb-4' label='Email address' id='form1' type='email'/>
-          <MDBInput wrapperClass='mb-4' label='Password' id='form2' type='password'/>
-
-          <div className="d-flex justify-content-between mx-4 mb-4">
-            <MDBCheckbox name='flexCheck' value='' id='flexCheckDefault' label='Remember me' />
-            <a href="!#">Forgot password?</a>
-          </div>
-
-          <MDBBtn className="mb-4 w-100">Sign in</MDBBtn>
-          <p className="text-center">Not a member? <a href="#!">Register</a></p>
-
-        </MDBTabsPane>
-
-        <MDBTabsPane show={justifyActive === 'tab2'}>
-
-          <div className="text-center mb-3">
-            <p>Sign un with:</p>
-
-            <div className='d-flex justify-content-between mx-auto' style={{width: '40%'}}>
-              <MDBBtn tag='a' color='none' className='m-1' style={{ color: '#1266f1' }}>
-                <MDBIcon fab icon='facebook-f' size="sm"/>
-              </MDBBtn>
-
-              <MDBBtn tag='a' color='none' className='m-1' style={{ color: '#1266f1' }}>
-                <MDBIcon fab icon='twitter' size="sm"/>
-              </MDBBtn>
-
-              <MDBBtn tag='a' color='none' className='m-1' style={{ color: '#1266f1' }}>
-                <MDBIcon fab icon='google' size="sm"/>
-              </MDBBtn>
-
-              <MDBBtn tag='a' color='none' className='m-1' style={{ color: '#1266f1' }}>
-                <MDBIcon fab icon='github' size="sm"/>
-              </MDBBtn>
-            </div>
-
-            <p className="text-center mt-3">or:</p>
-          </div>
-
-          <MDBInput wrapperClass='mb-4' label='Name' id='form1' type='text'/>
-          <MDBInput wrapperClass='mb-4' label='Username' id='form1' type='text'/>
-          <MDBInput wrapperClass='mb-4' label='Email' id='form1' type='email'/>
-          <MDBInput wrapperClass='mb-4' label='Password' id='form1' type='password'/>
-
-          <div className='d-flex justify-content-center mb-4'>
-            <MDBCheckbox name='flexCheck' id='flexCheckDefault' label='I have read and agree to the terms' />
-          </div>
-
-          <MDBBtn className="mb-4 w-100">Sign up</MDBBtn>
-
-        </MDBTabsPane>
-
-      </MDBTabsContent>
-
-    </MDBContainer>
+          </button> */}
+        </div>
+        <div className="social-icons">
+          {/* Lottie animations */}
+        </div>
+        <form className="input-group" id="Login" >
+          <input value={email} onChange={(e) => setEmail(e.target.value)} className="input-field" type="email" placeholder="Enter Email" required />
+          <input  value={password} onChange={(e) => setPassword(e.target.value)} className="input-field" type="password" placeholder="Enter Password" required />
+          <a href="">Lost Your Password</a>
+          <button type="submit" className="submit-btn">
+            Log In
+          </button>
+        </form>
+        {/* <form className="input-group" id="Register" style={{ left: formType === 'register' ? '450px' : '50px' }}>
+          <input value={username} className="input-field" type="text" placeholder="Enter Username" required />
+          <input value={email} className="input-field" type="email" placeholder="Enter Email" required />
+          <input value={password} className="input-field" type="password" placeholder="Enter Password" required />
+          <a href="">
+            By registering, you agree to the Terms, Data Policy and Cookies Policy
+          </a>
+          <button type="submit" className="submit-btn">
+            Register
+          </button>
+        </form> */}
+      </div>
+    </div>
   );
-}
+};
 
-export default App;
+export default Login;
