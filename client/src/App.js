@@ -20,7 +20,7 @@ function App() {
     <NextUIProvider>
       <BrowserRouter>
         <div className="relative h-[100%] bg-black flex flex-col">
-          <ToastContainer/>
+      
           <Navigation />
           <Routes>
             <Route path="/" element={<Home />} />
@@ -31,6 +31,7 @@ function App() {
                   <Route path="/canvas" element={<ShopCategory />} category = 'canvas' /> */}{" "}
           </Routes>{" "}
         </div>{" "}
+        <ToastContainer/>
       </BrowserRouter>{" "}
     </NextUIProvider>
   );
