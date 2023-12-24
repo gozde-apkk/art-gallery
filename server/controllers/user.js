@@ -15,16 +15,17 @@ const registerUser = asyncHandler(async (req, res) => {
     res.status(400);
     throw new Error("Please add all fields");
   }
+    //Check if user exists
+  const userExists = await User.findOne({email});
+  if(userExists) {
+    res.status(400)
+    throw new Error("User already exists")
+  }
+
   if (password.length < 6) {
     res.status(400);
     throw new Error("Please add a password with 6 or more characters");
   }
-  //Check if user exists
-//   const userExists = await User.findOne({email});
-//   if (!userExists) {
-//     res.status(400);
-//     throw new Error("Invalid credentials");
-//   }
 
   //Create a new user
   const user = await User.create({
