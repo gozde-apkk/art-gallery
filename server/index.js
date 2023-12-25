@@ -1,20 +1,21 @@
 
 const express = require("express");
+const path = require("path");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 const authRouter = require("./routes/authRouter.js");
-const userRouter = require("./routes/userRouter.js");
-const errorHandler = require("./middleware/errorhandler.js");
+// const userRouter = require("./routes/userRouter.js");
+const userRoutes = require("./routes/userRoutes.js");
+const {notFound, errorHandler} = require("./middleware/errorMiddleware.js");
 
 
 dotenv.config();
 const app = express();
 app.use(express.json());
-app.use(errorHandler);
-app.use(cors({origin : ["http://localhost:3000"] , credentials : true}));
+app.use(cors());
 app.use(bodyParser.json({limit : "30mb" , extended : true}));
 app.use(bodyParser.urlencoded({limit : "30mb" , extended : true}));
 app.use(cookieParser());
@@ -28,19 +29,25 @@ mongoose.connect(process.env.MONGO)
 app.get("/", (req, res) => {
     res.send("Hello")
 })
-app.use("/api/users" , userRouter);
+app.use("/api/users" , userRoutes);
 
-// app.use((err , req, res, next) => {
-//     const statusCode = err.statusCode || 500;
-//     const message = err.message ||  "Invalid request";
-//     return res.status(statusCode).json({
-//         success : false,
-//         statusCode,
-//         message,
-//     });
-// });
+if (process.env.NODE_ENV === 'production') {
+    const __dirname = path.resolve();
+    app.use(express.static(path.join(__dirname, '/frontend/dist')));
+  
+    app.get('*', (req, res) =>
+      res.sendFile(path.resolve(__dirname, 'frontend', 'dist', 'index.html'))
+    );
+  } else {
+    app.get('/', (req, res) => {
+      res.send('API is running....');
+    });
+  }
+  
 
-const PORT = 4000;
+  app.use(notFound);
+  app.use(errorHandler);
+const PORT =5000;
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);

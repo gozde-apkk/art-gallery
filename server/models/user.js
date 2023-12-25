@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt');
 Schema = mongoose.Schema;
 
 const userSchema = new Schema({
-    username : {
+name : {
         type : String,
         required : [true , "Please add username"],
         unique : true,
@@ -47,6 +47,10 @@ const userSchema = new Schema({
     }
 }, {timestamps : true})
 
+// Match user entered password to hashed password in database
+userSchema.methods.matchPassword = async function (enteredPassword) {
+    return await bcrypt.compare(enteredPassword, this.password);
+  };
 //Encrypt pass before saving to database
 userSchema.pre("save", async function(next) {
     if(!this.isModified("password")) {
