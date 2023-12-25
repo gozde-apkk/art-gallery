@@ -8,7 +8,7 @@ import { useState } from 'react'
 import {HiOutlineMenuAlt3} from 'react-icons/hi'
 
 export const logo = (
-  <Link>
+  <Link to="/">
   <img className='w-10 ' src="./icon/whitelogo.png" alt="logo" />
   </Link>
 )
@@ -38,10 +38,10 @@ const Navigation = () => {
     </span>
   )
   return (
-    <div className=' text-lg h-20 p-2 items-center mx-52 justify-between  bg-black text-white flex  mt-4 '>
+    <div className=' text-lg h-20 p-2 items-center mx-32 justify-between  bg-black text-white flex  mt-4 '>
      
         {logo}
-       <nav  ref={navRef} className='flex'  >
+       <nav  ref={navRef} className='flex w-full justify-between'  >
         <ul >
           <li className='mx-4 hover:bg-red-600'>
             <NavLink className="active:relative active:text-rose-500" to="/shop">
@@ -54,7 +54,7 @@ const Navigation = () => {
              <span className=''>
               <NavLink to={"login"} className=" p-2 hover:bg-red-600 mx-4 mr-2 active:relative active:text-rose-500"> Login</NavLink>
               <NavLink to={"register"} className=" p-2 hover:bg-red-600 mx-4 mr-2 active:relative active:text-rose-500"> Register</NavLink>
-              <NavLink to={"myorder"} className="p-2 hover:bg-red-600 mx-4 active:relative active:text-rose-500"> My Order</NavLink>
+              {/* <NavLink to={"myorder"} className="p-2 hover:bg-red-600 mx-4 active:relative active:text-rose-500"> My Order</NavLink> */}
              </span>
              {cart}
         </div>
