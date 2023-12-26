@@ -116,7 +116,7 @@ const loginUser = asyncHandler (async (req, res) => {
         res.status(403);
         throw new Error("Invalid email or password")  
     }
-    res.send("Welcome")
+    
 
 })
 

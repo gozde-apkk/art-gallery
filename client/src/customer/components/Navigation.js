@@ -38,7 +38,7 @@ const Navigation = () => {
     </span>
   )
   return (
-    <div className=' text-lg h-20 p-2 items-center mx-32 justify-between  bg-black text-white flex  mt-4 '>
+    <div className=' text-lg h-20 p-2 items-center mx-32 justify-between  bg-black text-white flex'>
      
         {logo}
        <nav  ref={navRef} className='flex w-full justify-between'  >

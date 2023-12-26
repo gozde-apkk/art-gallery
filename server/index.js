@@ -7,7 +7,7 @@ const cookieParser = require("cookie-parser");
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 const authRouter = require("./routes/authRouter.js");
-// const userRouter = require("./routes/userRouter.js");
+const userRouter = require("./routes/userRouter.js");
 const userRoutes = require("./routes/userRoutes.js");
 const {notFound, errorHandler} = require("./middleware/errorMiddleware.js");
 

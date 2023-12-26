@@ -9,8 +9,8 @@ import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
 import axios from "axios";
-import Spinner from "./spinner.js";
-import { registerUser } from "../../redux/features/auth/authSlice";
+import Loader from "./Loader.js";
+import { RESET_AUTH, registerUser } from "../../redux/features/auth/authSlice";
 
 import { validateEmail } from "../../utils/index.js";
 const Register = () => {
@@ -52,10 +52,21 @@ const Register = () => {
       }
 
   }
+
+  useEffect(() => {
+    if(isSuccess){
+      navigate("/");
+    }else{
+      navigate("/register");
+    }
+
+    dispatch(RESET_AUTH())
+  },[isSuccess, isLoggedIn, navigate, dispatch]);
   return (
     <>
-     {isLoading && <Spinner/>}
+    
     <div className="h-full ">
+    {isLoading && <Loader/>}
       <Card>
         <div className="form-box">
           <div className="button-box">

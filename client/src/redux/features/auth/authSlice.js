@@ -46,6 +46,7 @@ const authSlice = createSlice({
        .addCase(registerUser.fulfilled, (state, action) => {
          state.isLoading = false;
          state.isSuccess = true;
+         state.isLoggedIn = true;
          state.user = action.payload;
          toast.success("Registration Successful");
        })
@@ -58,6 +59,6 @@ const authSlice = createSlice({
   }
 });
 
-export const {} = authSlice.actions
+export const {RESET_AUTH} = authSlice.actions
 
 export default authSlice.reducer

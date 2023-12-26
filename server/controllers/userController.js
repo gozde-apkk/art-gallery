@@ -1,29 +1,53 @@
 const asyncHandler = require( 'express-async-handler' ) ;
 const User = require( '../models/user' ) ;
-const generateToken = require( '../utils/generateToken.js' ) ;
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
+const generateToken = require('../utils/generateToken');
+
+
+
 
 // @desc    Auth user & get token
 // @route   POST /api/users/auth
 // @access  Public
-const authUser = asyncHandler(async (req, res) => {
+const loginUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
 
-  const user = await User.findOne({ email });
-
-  if (user && (await user.matchPassword(password))) {
-    generateToken(res, user._id);
-
-    res.json({
-      _id: user._id,
-      name: user.name,
-      email: user.email,
-    });
-  } else {
-    res.status(401);
-    throw new Error('Invalid email or password');
+  //   Validation
+  if(!email || !password) {
+    res.status(400);
+    throw new Error('Please add email and password')
   }
+    //Check if the user exists
+  const user = await User.findOne({ email });
+  console.log("user", user)
+   //User exists, check if password is correct
+   const passwordIsCorrect = await bcrypt.compare(password, user.password);
+   
+   const generateToken = ( userId) => {
+    const token = jwt.sign({ userId }, process.env.JWT_SECRET, {
+      expiresIn: '30d',
+    });
+  }
+   //generate token
+   const token = generateToken(user._id);
+   console.log(token);
+   if (user && passwordIsCorrect) {
+    const newUser = await User.findById(user._id).select("-password");
+     res.cookie("token", token), {
+       path : "/",
+       httpOnly : true,
+       expires : new Date(Date.now() + 1000 * 86400), // 1 day
+       // secure : true,
+       // sameSite : none,
+     };
+      res.json( newUser);
+   }else{
+    res.status(401);
+    throw new Error('Invalid email or password')
+   }
+ 
+
 });
 const registerUser = async (req, res , next) => {
   const {name , email, password, password2} = req.body;
@@ -39,13 +63,13 @@ const registerUser = async (req, res , next) => {
   try {
       const dataToSave = await data.save();
       res.status(200).json(dataToSave)
-      console.log("User created successfuly", dataToSave)
+      console.log("User created successfuly", d)
   }
   catch (error) {
       next(error);
   }
 }
-// @desc    Register a new user
+
 // @route   POST /api/users
 // @access  Public
 // const registerUser = asyncHandler(async (req, res) => {
@@ -148,10 +172,25 @@ const updateUserProfile = asyncHandler(async (req, res) => {
     throw new Error('User not found');
   }
 });
+const authUser = asyncHandler(async (req, res) => {
+  const { email, password } = req.body;
+  const user = {
+    email: email,
+    password: password,
+  }
+  console.log(email, password);
+  const accessToken = jwt.sign(
+    user,
+   process.env.API_SECRET
+  )
+  res.json({ accessToken : accessToken});
+
+});
 module.exports ={
-  authUser,
+  loginUser,
   registerUser,
   logoutUser,
   getUserProfile,
   updateUserProfile,
+  authUser
 };
