@@ -11,24 +11,25 @@ import Product from "./product/Product";
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
 import axios from "axios";
-import { ToastContainer } from "react-toastify";
+
 import LoginScreen from "./pages/auth/LoginScreen";
 import RegisterScreen from "./pages/auth/RegisterScreen";
 import Header from "./pages/auth/Header";
 import ProfileScreen from "./pages/auth/ProfileScreen";
 import PrivateRoute from "./pages/auth/PrivateRoute";
-import store from "./redux/features/store";
 import { Provider } from "react-redux";
+import { ToastContainer, Zoom, toast } from 'react-toastify';
 
 
-
-
+import 'react-toastify/dist/ReactToastify.css';
+// minified version is also included
+// import 'react-toastify/dist/ReactToastify.min.css';
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <PrivateRoute>
+    element:
       <Home/>
-    </PrivateRoute>,
+
   },
   {
     path : "/login",
@@ -56,16 +57,19 @@ function App() {
   //     dispatch(fetchLoggedInUserAsync());
   //   }
   // }, [dispatch, user]);
-
+  const notify = () => toast("Wow so easy !");
+  axios.defaults.withCredentials = true
   return (
     <>
+ 
+  
       <div className="bg-black">
-       
-          <Provider store={store}>
+        
+        <ToastContainer transition={Zoom} />
             <RouterProvider router={router} />
-          </Provider>
         {/* Link must be inside the Provider */}
       </div>
+ 
     </>
   );
 }

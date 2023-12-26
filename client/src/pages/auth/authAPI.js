@@ -1,18 +1,21 @@
 
 
 
-export function createUser(userData)  {
-    return new Promise(async (resolve) => {
-        const response = await fetch("http://localhost:5000", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"},
-            body: JSON.stringify(userData)
-        })
-        const data = await response.json();
-        resolve({data});
-        })
-}
+export async function createUser(userData)  {
+  const url = 'http://localhost:5000/api/users';
+  const options = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(userData),
+  };
+
+  fetch(url, options)
+  .then(response => {
+    console.log(response.status);
+  });
+  }
 
 export function checkUser(loginInfo)  {
     return new Promise(async (resolve, reject) => {
