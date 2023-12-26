@@ -52,13 +52,13 @@ const verifyToken = (req, res, next) => {
 
 
 const registerUser = async (req, res , next) => {
-  const {username , email, password} = req.body;
+  const {name , email, password, password2} = req.body;
 
-  if(!username || !password || !email) return next(new Error("Please add all fields"));
+  if(!name || !password || !email || !password2) return next(new Error("Please add all fields"));
   
   const hashPassword = bcrypt.hashSync(password, 10);
   const data = new User({
-      username: req.body.username,
+      name: req.body.name,
       email: req.body.email,
       password : hashPassword
   })

@@ -24,12 +24,12 @@ app.use(cookieParser());
 mongoose.connect(process.env.MONGO)
 // app.set("view engine" , "pug");
 // app.set("views" , "./views");
-// app.use("/api/user" , require("./routes/userRouter.js"));
-// app.use("/api/auth" , require("./routes/authRouter.js"));
+app.use("/api/user" , require("./routes/userRouter.js"));
+app.use("/api/auth" , require("./routes/authRouter.js"));
 app.get("/", (req, res) => {
     res.send("Hello")
 })
-app.use("/api/users" , userRoutes);
+app.use("/api/users" , require("./routes/userRoutes.js"));;
 
 if (process.env.NODE_ENV === 'production') {
     const __dirname = path.resolve();
@@ -47,7 +47,7 @@ if (process.env.NODE_ENV === 'production') {
 
   app.use(notFound);
   app.use(errorHandler);
-const PORT =5000;
+const PORT =4000;
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);

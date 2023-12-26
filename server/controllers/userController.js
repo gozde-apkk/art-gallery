@@ -1,6 +1,8 @@
 const asyncHandler = require( 'express-async-handler' ) ;
 const User = require( '../models/user' ) ;
 const generateToken = require( '../utils/generateToken.js' ) ;
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcryptjs");
 
 // @desc    Auth user & get token
 // @route   POST /api/users/auth
@@ -22,56 +24,74 @@ const authUser = asyncHandler(async (req, res) => {
     res.status(401);
     throw new Error('Invalid email or password');
   }
-  res.send("welcome")
 });
+const registerUser = async (req, res , next) => {
+  const {name , email, password, password2} = req.body;
 
+  if(!name || !password || !email || !password2) return next(new Error("Please add all fields"));
+  
+  const hashPassword = bcrypt.hashSync(password, 10);
+  const data = new User({
+      name: req.body.name,
+      email: req.body.email,
+      password : hashPassword
+  })
+  try {
+      const dataToSave = await data.save();
+      res.status(200).json(dataToSave)
+      console.log("User created successfuly", dataToSave)
+  }
+  catch (error) {
+      next(error);
+  }
+}
 // @desc    Register a new user
 // @route   POST /api/users
 // @access  Public
-const registerUser = asyncHandler(async (req, res) => {
-  const { name, email, password , confirmPassword } = req.body;
+// const registerUser = asyncHandler(async (req, res) => {
+//   const { name, email, password , confirmPassword } = req.body;
 
-  const userExists = await User.findOne({ email });
-  const newUser = new User({
-    name,
-    email,
-    password,
-    confirmPassword
-  })
-  await newUser.save();
-  res.status(201).json({
-    message : "user created successfully"
-    
-  })
-  console.log(newUser);
-  if (userExists) {
-    res.status(400);
-    throw new Error('User already exists');
-  }
+//    if(!name || !password || !email || !password2) return next(new Error("Please add all fields"));
+  
 
-  // const user = await User.create({
-  //   name: req.body.name,
-  //   email: req.body.email,
-  //   password: req.body.password,
-  //   confirmPassword: req.body.confirmPassword,
-  // });
+//   const userExists = await User.findOne({ email });
+//   // const newUser = new User({
+//   //   name,
+//   //   email,
+//   //   password,
+//   //   confirmPassword
+//   // })
+//     // const dataToSave=  await newUser.save();
+//     // res.status(201).json(dataToSave);
+//     // console.log("User created successfuly")
 
-  // if (user) {
-  //   generateToken(res, user._id);
+//   if (userExists) {
+//     res.status(400);
+//     throw new Error('User already exists');
+//   }
 
-  //   res.status(201).json({
-  //     _id: user._id,
-  //     name: user.name,
-  //     email: user.email,
-  //     role : user.role,
+//   const user = await User.create({
+//     name: req.body.name,
+//     email: req.body.email,
+//     password: req.body.password,
+//     confirmPassword: req.body.confirmPassword,
+//   });
 
-  //   });
-  //   res.send("welcome")
-  // } else {
-  //   res.status(400);
-  //   throw new Error('Invalid user data');
-  // }
-});
+//   if (user) {
+//     generateToken(res, user._id);
+
+//     res.status(201).json({
+//       _id: user._id,
+//       name: user.name,
+//       email: user.email,
+//       role : user.role,
+
+//     });
+//   } else {
+//     res.status(400);
+//     throw new Error('Invalid user data');
+//   }
+// });
 
 // @desc    Logout user / clear cookie
 // @route   POST /api/users/logout
