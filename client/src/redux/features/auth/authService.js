@@ -1,7 +1,6 @@
-import axios from "axios";
-import { FaFontAwesomeFlag } from "react-icons/fa";
 
-const BASE_URL = "http://localhost:4000/api/users";
+
+const BASE_URL = "http://localhost:5000/api/users";
 
 const LOGIN_URL = `${BASE_URL}/register`;
 
@@ -29,7 +28,7 @@ const register = async (users) => {
 
 const login = async (users) => {
     try {
-      const res = await fetch(`${BASE_URL}/register`, {
+      const res = await fetch(`${BASE_URL}/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -46,6 +45,6 @@ const login = async (users) => {
     }
   };
 
-const authService = { register };
+const authService = { register, login };
 
 export default authService;

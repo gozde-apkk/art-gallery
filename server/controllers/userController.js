@@ -36,6 +36,7 @@ const loginUser = asyncHandler(async (req, res) => {
     res.cookie("access_token", accessToken, {httpOnly: true, sameSite: "none", secure: true})
     .status(200).json({others});
     console.log( "access_token" , accessToken)
+    console.log(  "login succes")
   }else{
     res.status(401);
     throw new Error("Invalid email or password");
