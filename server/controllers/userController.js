@@ -4,9 +4,55 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const generateToken = require('../utils/generateToken');
 
+const getUser = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.user.id).select("-password");
+  if (user) {
+    res.json(user);
+  } else {
+    res.status(404);
+    throw new Error("User not found");
+  }
+})
+const updateUser = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.user.id);
+
+  if(user ) {
+      const {username, phone , address} = user;
+      user.username = req.body.username || username;
+      user.phone = req.body.phone || phone;
+      user.address = req.body.address || address;
+
+      const updateUser = await user.save();
+      res.status(200).json(updateUser);
+  }else {
+      res.status(404);
+      throw new Error("User not found");
+  }
+  res.send("update user");
+})
 
 
+const updatePhoto = asyncHandler(async (req, res) => {
+  const {photo} = req.body;
+  const user = await User.findById(req.user.id);
+  user.photo = photo;
+  const updateUser = await user.save();
+  res.status(200).json(updateUser);
+   res.send("update photo");
+})
+const getLoginStatus = asyncHandler (async (req, res) => {
+  const access_token = req.cookies.token
+  if(!access_token){
+    res.json(false)
+  }
 
+  const verified = jwt.verify(access_token, process.env.ACCESS_TOKEN)
+  if(verified){
+    res.json(true)
+  }else{
+    res.json(false)
+  }
+})
 
 // @desc    Auth user & get token
 // @route   POST /api/users/auth
@@ -221,6 +267,9 @@ const loginUse = asyncHandler(async (req, res) => {
 })
 module.exports ={
   loginUser,
+  getUser,
+  updatePhoto,
+  updateUser,
   loginUse,
   registerUser,
   logoutUser,

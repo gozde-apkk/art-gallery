@@ -24,8 +24,8 @@ app.use(cookieParser());
 mongoose.connect(process.env.MONGO)
 // app.set("view engine" , "pug");
 // app.set("views" , "./views");
-app.use("/api/user" , require("./routes/userRouter.js"));
-app.use("/api/auth" , require("./routes/authRouter.js"));
+// app.use("/api/user" , require("./routes/userRouter.js"));
+// app.use("/api/auth" , require("./routes/authRouter.js"));
 app.get("/", (req, res) => {
     res.send("Hello")
 })
