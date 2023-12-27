@@ -1,4 +1,10 @@
-import { BrowserRouter, Routes, Route, createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
 import Home from "./pages/home/Home";
 
 // import "../src/style/style.css";
@@ -17,32 +23,36 @@ import RegisterScreen from "./pages/auth/RegisterScreen";
 import Header from "./pages/auth/Header";
 import ProfileScreen from "./pages/auth/ProfileScreen";
 import PrivateRoute from "./pages/auth/PrivateRoute";
-import { Provider } from "react-redux";
-import { ToastContainer, Zoom, toast } from 'react-toastify';
+import { Provider, useDispatch } from "react-redux";
+import { ToastContainer, Zoom, toast } from "react-toastify";
 
-
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
+import { getLoginStatus } from "./redux/features/auth/authSlice";
+import { useEffect } from "react";
+import Profile from "./components/profile/Profile";
 // minified version is also included
 // import 'react-toastify/dist/ReactToastify.min.css';
 const router = createBrowserRouter([
   {
     path: "/",
-    element:
-      <Home/>
-
+    element: <Home />,
   },
   {
-    path : "/login",
-    element : <Login/>
+    path: "/login",
+    element: <Login />,
   },
   {
-    path : "/register",
-    element: <Register/>
-  }
-])
+    path: "/register",
+    element: <Register />,
+  },
+  {
+    path: "/profile",
+    element: <Profile />,
+  },
+]);
 
 function App() {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   // const user = useSelector(selectLoggedInUser);
   // const userChecked = useSelector(selectUserChecked);
 
@@ -50,27 +60,23 @@ function App() {
   //   dispatch(checkAuthAsync());
   // }, [dispatch]);
 
-  // useEffect(() => {
-  //   if (user) {
-  //     dispatch(fetchItemsByUserIdAsync());
-  //     // we can get req.user by token on backend so no need to give in front-end
-  //     dispatch(fetchLoggedInUserAsync());
-  //   }
-  // }, [dispatch, user]);
-  const notify = () => toast("Wow so easy !");
-  axios.defaults.withCredentials = true
+  useEffect(() => {
+    dispatch(getLoginStatus());
+  }, [dispatch]);
+
+  axios.defaults.withCredentials = true;
   return (
-    <>
- 
-  
-      <div className="bg-black">
-        
-        <ToastContainer transition={Zoom} />
-            <RouterProvider router={router} />
-        {/* Link must be inside the Provider */}
-      </div>
- 
-    </>
+    <BrowserRouter>
+       <Navigation/>
+      <ToastContainer transition={Zoom} />
+      <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/login" element={<Login />} />
+
+      <Route path="/register" element={<Register />} />
+        <Route path="/profile" element={<Profile />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

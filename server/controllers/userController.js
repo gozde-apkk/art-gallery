@@ -265,6 +265,8 @@ const loginUse = asyncHandler(async (req, res) => {
     console.log(err);
   }
 })
+
+
 module.exports ={
   loginUser,
   getUser,

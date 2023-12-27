@@ -1,7 +1,7 @@
 {
   "name": "art-gallery",
   "version": "0.1.0",
-  "proxy": "http://localhost:4000",
+  "proxy": "http://localhost:5000/",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.11.1",
@@ -23,6 +23,7 @@
     "gsap": "^3.12.2",
     "heroicons": "^2.0.18",
     "hover-effect": "^1.2.1",
+    "http-proxy-middleware": "^2.0.6",
     "mdb-react-ui-kit": "^7.0.0",
     "react": "^18.2.0",
     "react-alice-carousel": "^2.8.0",
