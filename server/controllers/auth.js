@@ -22,13 +22,14 @@ const loginUser = async (req, res, next) => {
         email : user.email,
       },
     },
-    process.env.API_SECRET,
+    process.env.ACCESS_TOKEN,
    
     );
 
     const {password, ...others} = user._doc
     res.cookie("access_token", accessToken, {httpOnly: true, sameSite: "none", secure: true})
     .status(200).json({others});
+    console.log( "access_token" , accessToken)
   }else{
     res.status(401);
     throw new Error("Invalid email or password");

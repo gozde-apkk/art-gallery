@@ -51,14 +51,14 @@ name : {
 userSchema.methods.matchPassword = async function (enteredPassword) {
     return await bcrypt.compare(enteredPassword, this.password);
   };
-//Encrypt pass before saving to database
+// Encrypt pass before saving to database
 userSchema.pre("save", async function(next) {
     if(!this.isModified("password")) {
         next();
     }
     //Hash the password
     const salt = await bcrypt.genSalt(10);
-    const hashedpassword = await bcrypt.hash(this.password, salt);
+    const hashedpassword =  bcrypt.hash(this.password, salt);
     this.password = hashedpassword
     next();
 });

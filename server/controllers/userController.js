@@ -7,47 +7,39 @@ const generateToken = require('../utils/generateToken');
 
 
 
+
 // @desc    Auth user & get token
 // @route   POST /api/users/auth
 // @access  Public
 const loginUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
 
-  //   Validation
   if(!email || !password) {
     res.status(400);
-    throw new Error('Please add email and password')
+    throw new Error("Please add email and password");
   }
-    //Check if the user exists
-  const user = await User.findOne({ email });
-  console.log("user", user)
-   //User exists, check if password is correct
-   const passwordIsCorrect = await bcrypt.compare(password, user.password);
-   
-   const generateToken = ( userId) => {
-    const token = jwt.sign({ userId }, process.env.JWT_SECRET, {
-      expiresIn: '30d',
-    });
-  }
-   //generate token
-   const token = generateToken(user._id);
-   console.log(token);
-   if (user && passwordIsCorrect) {
-    const newUser = await User.findById(user._id).select("-password");
-     res.cookie("token", token), {
-       path : "/",
-       httpOnly : true,
-       expires : new Date(Date.now() + 1000 * 86400), // 1 day
-       // secure : true,
-       // sameSite : none,
-     };
-      res.json( newUser);
-   }else{
-    res.status(401);
-    throw new Error('Invalid email or password')
-   }
- 
 
+  const user = await User.findOne({ email});
+  if( user && (await bcrypt.compare(password, user.password))){
+    const accessToken = jwt.sign({
+      user : {
+        id : user.id,
+        username : user.username,
+        email : user.email,
+      },
+    },
+    process.env.ACCESS_TOKEN,
+   
+    );
+
+    const {password, ...others} = user._doc
+    res.cookie("access_token", accessToken, {httpOnly: true, sameSite: "none", secure: true})
+    .status(200).json({others});
+    console.log( "access_token" , accessToken)
+  }else{
+    res.status(401);
+    throw new Error("Invalid email or password");
+  }
 });
 const registerUser = async (req, res , next) => {
   const {name , email, password, password2} = req.body;
@@ -63,7 +55,7 @@ const registerUser = async (req, res , next) => {
   try {
       const dataToSave = await data.save();
       res.status(200).json(dataToSave)
-      console.log("User created successfuly", d)
+      console.log("User created successfuly")
   }
   catch (error) {
       next(error);
@@ -173,21 +165,62 @@ const updateUserProfile = asyncHandler(async (req, res) => {
   }
 });
 const authUser = asyncHandler(async (req, res) => {
-  const { email, password } = req.body;
-  const user = {
-    email: email,
-    password: password,
-  }
-  console.log(email, password);
-  const accessToken = jwt.sign(
-    user,
-   process.env.API_SECRET
-  )
-  res.json({ accessToken : accessToken});
 
-});
+  const {email, password} = req.body;
+
+    const user = await User.findOne({ email});
+    console.log("user" , user)
+    if(user){
+       const password_valid = await bcrypt.compare(req.body.password,user.password);
+       console.log("password_valid" , password_valid)
+       if(password_valid){
+           token = jwt.sign({ "id" : user.id,"email" : user.email },process.env.JWT_SECRET);
+           res.status(200).json({ token : token });
+       } else {
+         res.status(400).json({ error : "Password Incorrect" });
+       }
+     
+     }else{
+       res.status(404).json({ error : "User does not exist" });
+     }
+     
+     });
+
+
+
+// const generateToken = async (user) => {
+//   const payload = {
+//       id: user.user_id,
+//       name:user.username,
+//       role: user.role_name,
+//   }
+//   const options = {
+//       expiresIn: "3h"
+//   }
+//   const token = jwt.sign(payload, JWT_SECRET, options);
+  
+//   return token;
+// }
+const loginUse = asyncHandler(async (req, res) => {
+  try{
+    const {email , password} = req.body;
+    const registeredUser = await User.findOne({email})
+    console.log(registeredUser);
+    if(registeredUser &&  bcrypt.compareSync(password, registeredUser.password)){
+      const token =generateToken(registeredUser)
+      console.log("token", token);
+     
+      res.json({message: `"Welcome back ${registeredUser.name} `, "token": token})
+    }else{
+      res.status(401).json({status:401, message:"Invalid credentials"})
+    }
+  }catch(err){
+    console.log(err);
+  }
+})
 module.exports ={
   loginUser,
+  loginUse,
   registerUser,
   logoutUser,
   getUserProfile,

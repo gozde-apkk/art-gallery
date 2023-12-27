@@ -73,57 +73,98 @@ const { use } = require("../routes/userRouter.js");
 //   }
 // });
 
-const loginUser = asyncHandler (async (req, res) => {
+// const loginUser = asyncHandler (async (req, res) => {
 
-    const {email, password} = req.body;
+//     const {email, password} = req.body;
 
-    const generateToken = () => {
-        return jwt.sign({ 
-          user : {
-            id : user._id,
-            username : user.username,
-            email : user.email,
+//     const generateToken = () => {
+//         return jwt.sign({ 
+//           user : {
+//             id : user._id,
+//             name : user.name,
+//             email : user.email,
          
-          }
-         }, process.env.JWT_SECRET, {
-          expiresIn: "1d",
-        });
-      };
+//           }
+//          }, process.env.JWT_SECRET, {
+//           expiresIn: "1d",
+//         });
+//       };
 
-    //Validate Request
-    if(!email || !password){
-        res.status(400);
-        throw new Error("Please add email and password")
-    }
+//     //Validate Request
+//     if(!email || !password){
+//         res.status(400);
+//         throw new Error("Please add email and password")
+//     }
 
-    //Check if the user exists
-    const user = await User.findOne({email});
+//     //Check if the user exists
+//     const user = await User.findOne({email});
 
-    //User exists, check if password is correct
-    const passwordIsCorrect = await bcrypt.compare(password, user.password);
+//     //User exists, check if password is correct
+//     const passwordIsCorrect = await bcrypt.compare(password, user.password);
+//   console.log("passwordIsCorrect", passwordIsCorrect)
+//     //Generate Token
+//     const token = generateToken(user);
+//     console.log(token);
+//     if(user && passwordIsCorrect){
+//         const  newUser = await User.findOne({email}).select("-password");
+//        res.cookie("token", token), {
+//         path : "/",
+//         httpOnly : true,
+//         expires : new Date(Date.now() + 1000 * 86400)};
 
-    //Generate Token
-    const token = generateToken(user);
-    if(user && passwordIsCorrect){
-        const  newUser = await User.findOne({email}).select("-password");
-       res.cookie("token", token), {
-        path : "/",
-        httpOnly : true,
-        expires : new Date(Date.now() + 1000 * 86400)};
-
-        res.status(200).json(newUser);
-    }else{
-        res.status(403);
-        throw new Error("Invalid email or password")  
-    }
+//         res.status(200).json(newUser);
+//     }else{
+//         res.status(403);
+//         throw new Error("Invalid email or password")  
+//     }
     
 
-})
+// })
+const loginUser = asyncHandler(async (req, res) => {
+  const { email, password  } = req.body;
+
+  // Validate Request
+  if (!email || !password  ) {
+      res.status(400);
+      throw new Error("Please add email and password");
+  }
+
+  // Check if the user exists
+  const user = await User.findOne({ email });
+ console.log("user", user)
+  if (user) {
+      // User exists, check if password is correct
+      const passwordIsCorrect = await bcrypt.compare(req.body.password, user.password);
+     console.log("passwordIsCorrect", passwordIsCorrect)
+      if (passwordIsCorrect) {
+          // Generate Token
+          const token = generateToken(user);
+          console.log(token);
+
+          const newUser = await User.findOne({ email }).select("-password");
+          
+          // Set cookie with the generated token
+          res.cookie("token", token, {
+              path: "/",
+              httpOnly: true,
+              expires: new Date(Date.now() + 1000 * 86400),
+          });
+
+          res.status(200).json(newUser);
+      } else {
+          res.status(403);
+          throw new Error("user password is not correct");
+      }
+  } else {
+      res.status(403);
+      throw new Error("Invalid email or password");
+  }
+});
 
 const registerUser = async (req, res , next) => {
-    const {username , email, password} = req.body;
+    const {name , email, password} = req.body;
   
-    if(!username || !password || !email) return next(new Error("Please add all fields"));
+    if(!name || !password || !email) return next(new Error("Please add all fields"));
     
     const hashPassword = bcrypt.hashSync(password, 10);
     const data = new User({
