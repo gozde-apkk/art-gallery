@@ -4,14 +4,18 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const generateToken = require('../utils/generateToken');
 
-const getUser = asyncHandler(async (req, res) => {
-  const user = await User.findById(req.user.id).select("-password");
-  if (user) {
-    res.json(user);
-  } else {
-    res.status(404);
-    throw new Error("User not found");
-  }
+const getUser = asyncHandler(async (req, res) => { 
+    try {
+      const user = await User.findOne(req.user._id).select("-password");
+      if (user) {
+        res.json(user);
+      } else {
+        res.status(404);
+        throw new Error("User not found");
+      }
+    } catch (error) {
+      console.log(error)
+    }
 })
 const updateUser = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user.id);
@@ -55,7 +59,7 @@ const getLoginStatus = asyncHandler (async (req, res) => {
 })
 
 // @desc    Auth user & get token
-// @route   POST /api/users/auth
+// @route   POST /api/users/LOGİN
 // @access  Public
 const loginUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
@@ -211,60 +215,10 @@ const updateUserProfile = asyncHandler(async (req, res) => {
     throw new Error('User not found');
   }
 });
-const authUser = asyncHandler(async (req, res) => {
-
-  const {email, password} = req.body;
-
-    const user = await User.findOne({ email});
-    console.log("user" , user)
-    if(user){
-       const password_valid = await bcrypt.compare(req.body.password,user.password);
-       console.log("password_valid" , password_valid)
-       if(password_valid){
-           token = jwt.sign({ "id" : user.id,"email" : user.email },process.env.JWT_SECRET);
-           res.status(200).json({ token : token });
-       } else {
-         res.status(400).json({ error : "Password Incorrect" });
-       }
-     
-     }else{
-       res.status(404).json({ error : "User does not exist" });
-     }
-     
-     });
 
 
 
-// const generateToken = async (user) => {
-//   const payload = {
-//       id: user.user_id,
-//       name:user.username,
-//       role: user.role_name,
-//   }
-//   const options = {
-//       expiresIn: "3h"
-//   }
-//   const token = jwt.sign(payload, JWT_SECRET, options);
-  
-//   return token;
-// }
-const loginUse = asyncHandler(async (req, res) => {
-  try{
-    const {email , password} = req.body;
-    const registeredUser = await User.findOne({email})
-    console.log(registeredUser);
-    if(registeredUser &&  bcrypt.compareSync(password, registeredUser.password)){
-      const token =generateToken(registeredUser)
-      console.log("token", token);
-     
-      res.json({message: `"Welcome back ${registeredUser.name} `, "token": token})
-    }else{
-      res.status(401).json({status:401, message:"Invalid credentials"})
-    }
-  }catch(err){
-    console.log(err);
-  }
-})
+
 
 
 module.exports ={
@@ -272,10 +226,8 @@ module.exports ={
   getUser,
   updatePhoto,
   updateUser,
-  loginUse,
   registerUser,
   logoutUser,
   getUserProfile,
   updateUserProfile,
-  authUser
 };

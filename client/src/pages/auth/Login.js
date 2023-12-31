@@ -10,6 +10,9 @@ import { toast } from "react-toastify";
 import { validateEmail } from "../../utils/index.js";
 import Loader from "./Loader.js";
 import { RESET_AUTH, loginUser } from "../../redux/features/auth/authSlice.js";
+import { constructFrom } from "date-fns";
+import axios from "axios";
+import { login } from "../../redux/features/user/userSlice.js";
 const Login = () => {
        
 
@@ -35,6 +38,8 @@ const Login = () => {
   
    console.log("userdata" , users)
      await dispatch(loginUser(users));
+     localStorage.setItem("users email", users.email)
+     localStorage.setItem("users password", users.password)
   }
 
   useEffect(() => {

@@ -4,7 +4,7 @@ import { FaShoppingCart } from "react-icons/fa";
 import { useState } from "react";
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
 import { RESET_AUTH, logoutUser } from "../../redux/features/auth/authSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   ShowOnLogin,
   ShowOnLogout,
@@ -19,6 +19,8 @@ export const logo = (
 const Navigation = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const isAuth = useSelector((state) => state.user.isAuth)
 
   const logout = async () => {
     await dispatch(logoutUser());
@@ -84,13 +86,15 @@ const Navigation = () => {
               </NavLink>
             </ShowOnLogout>
             <ShowOnLogin>
-              <NavLink
+          {isAuth && (
+                <NavLink
                 to={"myorder"}
                 className="p-2 hover:bg-red-600 mx-4 active:relative active:text-rose-500"
               >
                 {" "}
                 My Order
               </NavLink>
+          )}
             </ShowOnLogin>
             <ShowOnLogin>
               <Link

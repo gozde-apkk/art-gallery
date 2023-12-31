@@ -18,11 +18,12 @@ const loginUser = async (req, res, next) => {
     const accessToken = jwt.sign({
       user : {
         id : user.id,
-        username : user.username,
         email : user.email,
+        password : user.password
       },
     },
     process.env.ACCESS_TOKEN,
+    {expiresIn : "1m"}
    
     );
 

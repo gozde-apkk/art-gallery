@@ -15,12 +15,10 @@ const {notFound, errorHandler} = require("./middleware/errorMiddleware.js");
 dotenv.config();
 const app = express();
 app.use(express.json());
-app.use(cors());
+app.use(cors({origin : "http://localhost:3000", credentials: true}));
 app.use(bodyParser.json({limit : "30mb" , extended : true}));
 app.use(bodyParser.urlencoded({limit : "30mb" , extended : true}));
 app.use(cookieParser());
-
-
 
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
@@ -32,8 +30,8 @@ app.use((req, res, next) => {
 mongoose.connect(process.env.MONGO)
 // app.set("view engine" , "pug");
 // app.set("views" , "./views");
-// app.use("/api/user" , require("./routes/userRouter.js"));
-// app.use("/api/auth" , require("./routes/authRouter.js"));
+app.use("/api/user" , require("./routes/userRouter.js"));
+app.use("/api/auth" , require("./routes/authRouter.js"));
 app.get("/", (req, res) => {
     res.send("Hello")
 })

@@ -1,9 +1,8 @@
 import axios from "axios";
 
 
-const BASE_URL = "http://localhost:5000/api/users";
+const BASE_URL = "http://localhost:5000/api/users/";
 
-const LOGIN_URL = `${BASE_URL}/register`;
 
 //Register User
 
@@ -29,18 +28,15 @@ const register = async (users) => {
 //Login User
 const login = async (users) => {
     try {
-      const res = await fetch(`${BASE_URL}/login`, {
+      const res = await axios(`${BASE_URL}/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(users),
-        withCredentials: true,
       });
       const data = await res.json();
-      if (data.success === false) {
-        return;
-      }
+      return data;
     } catch (error) {
       console.log(error);
     }
@@ -66,7 +62,7 @@ const logout = async (users) => {
 };
 //Get users
 const getUser = async () => {
-  const res = await axios.get(`${BASE_URL}/getUsers`);
+  const res = await axios.get(`${BASE_URL}/getUser`);
   return res.data;
 }
 //Update User

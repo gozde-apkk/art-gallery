@@ -20,6 +20,8 @@ const Profile = () => {
     }
 
     const [profile, setProfile] = useState(initialState);
+    const [profileImage, setProfileImage] = useState(null);
+    const [imagePreview, setImagePreview] = useState(null);
     const dispatch = useDispatch();
  const handleInputChange = (e) => {
     const { name , value} = e.target;
@@ -44,8 +46,9 @@ const Profile = () => {
          })
         }
      }, [dispatch])
-    const handleImageChange = () => {
-
+    const handleImageChange = (e) => {
+        setProfileImage(e.target.files[0]);
+         setImagePreview(URL.createObjectURL(e.target.files[0]))
     }
     const saveProfile =  async (e) => {
       e.preventDefault()
@@ -60,77 +63,80 @@ const Profile = () => {
         }
       }
       console.log(userData)
-      await dispatch(updateUser(userData));
+      dispatch(updateUser(userData));
       
     }
   return (
     <>
       {isLoading && <Loader/>}
-       <div className="h-[100vh] text-white w-full ">
+       <div className=" text-white w-full ">
         <PageMenu/>
-        <h1>Profile</h1>
-        <div>
+        <h1 className='text-2xl mt-7 ml-8' >Profile</h1>
+        <div className='ml-[30px] mt-5 w-[28rem]  border-2'>
             <Card>
                 {!isLoading && (
                     <>
-                    <div className="border-2 text-white">
-                        <h2>Profile img</h2>
+                    <div className="border-2 h-16  text-white">
+                        <div>
+                           <img src={imagePreview === null ? user?.photo : imagePreview} alt='profile'/>
+                           <h3>Role : {profile.role}</h3>
+                        </div>
                     </div>
-                    <form onSubmit={saveProfile}>
-                     <p>
+                    <form  className="flex flex-col mx-6"  onSubmit={saveProfile}>
+                     <p  className='grid h-24 w-[24rem] '>
                         <label>Change Photo</label>
-                        <input type='file'
+                        <input className='w-full' type='file'
                             accept='image/*'
                              name='image'
                              onChange={handleInputChange}
                              disabled/>
                      </p>
-                     <p>
+                     <p className='grid h-24  w-[24rem] '>
                         <label>Name : </label>
-                        <input type='text'
+                        <input  className='w-full' type='text'
                              name='name'
                              value={profile?.name}
                              onChange={handleInputChange}
                              required
                              />
                      </p>
-                     <p>
+                     <p className='grid h-24  w-[24rem] '>
                         <label>Email : </label>
-                        <input type='email'
+                        <input  className='w-full' type='email'
                              name='email'
                              value={profile?.email}
                              onChange={handleInputChange}
                              required
                              />
                      </p>
-                     <p>
+                     <p className='grid h-24  w-[24rem] '>
                         <label>Phone : </label>
-                        <input type='text'
+                        <input  className='w-full' type='text'
                              name='phone'
                              value={profile?.phone}
                              onChange={handleInputChange}
-                             required
+                          
                              />
                      </p>
-                     <p>
+                     <p className='grid h-24   w-[24rem] '>
                         <label>Address : </label>
-                        <input type='text'
+                        <input  className='w-full' type='text'
                              name='phone'
                              value={profile?.address}
                              onChange={handleInputChange}
-                             required
+                     
                              />
                      </p>
-                     <p>
+                     <p className='grid h-24    w-[24rem] '>
                         <label>Country : </label>
-                        <input type='text'
+                        <input  className='w-full' type='text'
                              name='country'
                              value={profile?.address?.country}
                              onChange={handleInputChange}
                              required
                              />
                      </p>
-                     <button>
+                     <button  className='mt-2 justify-center flex h-12'>
                         Update Profile
                      </button>
                     </form>

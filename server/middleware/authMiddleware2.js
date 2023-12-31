@@ -12,14 +12,14 @@ const protect = expressAsyncHandler(async (req, res, next) => {
     
 
     try {
-        const token = req.cookies.token
+        const token = req.cookies.access_token
         console.log(`token: ${token}`)
         if(!token) {
             res.status(404)
             throw new Error("Not authorized, please login")
         }
 
-        const verified = jwt.verify(token, process.env.JWT_SECRET);
+        const verified = jwt.verify(token, process.env.ACCESS_TOKEN);
         const user = await User.findOne(verified.id).select("-password");   
         if (!user) return res.status(400).send("Wrong user");
         // if(!user) {

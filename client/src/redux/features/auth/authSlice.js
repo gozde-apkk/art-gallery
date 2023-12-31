@@ -105,6 +105,7 @@ export const getLoginStatus = createAsyncThunk(
 export const updateUser = createAsyncThunk(
   "auth/updateUser",
   async (userData, thunkAPI) => {
+
     try {
       return await authService.updateUser(userData);
     } catch (error) {
@@ -214,9 +215,6 @@ const authSlice = createSlice({
         state.isLoading = false;
         state.isSuccess = true;
         state.isLoggedIn = action.payload;
-        if (action.payload.message === "İnvalid signature") {
-          state.isLoggedIn = false;
-        }
       })
       .addCase(getLoginStatus.rejected, (state, action) => {
         state.isLoading = false;
