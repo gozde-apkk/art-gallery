@@ -35,7 +35,7 @@ app.use("/api/auth" , require("./routes/authRouter.js"));
 app.get("/", (req, res) => {
     res.send("Hello")
 })
-app.use("/api/users" , require("./routes/userRoutes.js"));;
+app.use("/api/users" , require("./routes/userRoutes.js"));
 
 if (process.env.NODE_ENV === 'production') {
     const __dirname = path.resolve();

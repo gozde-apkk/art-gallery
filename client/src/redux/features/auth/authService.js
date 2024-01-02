@@ -1,8 +1,5 @@
 import axios from "axios";
-
-
-const BASE_URL = "http://localhost:5000/api/users/";
-
+import {BASE_URL} from './base_url'
 
 //Register User
 
@@ -25,33 +22,28 @@ const register = async (users) => {
   }
 };
 
-//Login User
-const login = async (users) => {
-    try {
-      const res = await axios(`${BASE_URL}/login`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(users),
-      });
-      const data = await res.json();
-      return data;
-    } catch (error) {
-      console.log(error);
-    }
-  };
+const login = (userData) => {
+  axios.post(`${BASE_URL}login`, userData)
+    .then((res) => {
+      const data = res.data;
+      console.log(data);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+};
+
 
 
 //Logout User
-const logout = async (users) => {
+const logout = async (userData) => {
   try {
     const res = await fetch(`${BASE_URL}/logout`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(users),
+      body: JSON.stringify(userData),
       withCredentials: true,
     });
     const data = await res.json();
@@ -79,7 +71,7 @@ const updatePhoto = async (userData) => {
 //Get Login Status
 const getLoginStatus = async (users) => {
   try {
-    const res = await fetch(`${BASE_URL}/getLoginStatus`, {
+    const res = await fetch(`${BASE_URL}getLoginStatus`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -88,7 +80,7 @@ const getLoginStatus = async (users) => {
       withCredentials: true,
     });
     const data = await res.json();
-    return  data;
+    return;
   } catch (error) {
     console.log(error);
   }

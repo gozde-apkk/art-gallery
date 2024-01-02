@@ -130,16 +130,16 @@ const createUser = async (req, res, next) => {
 
 const getLoginStatus = asyncHandler(async (req, res) => {
 
-  const token = req.cookies.token;
+  const token = req.cookies.access_token;
+  console.log(token);
   if (!token) {
     res.json(false);
   }
-  const verified = jwt.verify(token, process.env.JWT_SECRET);
+  const verified = jwt.verify(token, process.env.ACCESS_TOKEN);
   if (!verified) {
     res.json(false);
   }
   res.json(true);
-  res.send("Login successful")
 });
 
 const updateUser = asyncHandler(async (req, res) => {

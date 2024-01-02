@@ -6,7 +6,6 @@ import Artist from "../../layout/Artist";
 import HomeNftSection from "../../components/home/HomeNftSection";
 import Footer from "../../components/footer/Footer";
 import HomeInfoBox from "../../customer/components/HomeInfoBox";
-import Navigation from "../../customer/components/Navigation";
 
 const Home = () => {
   return (

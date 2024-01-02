@@ -3,7 +3,6 @@ import {Link} from 'react-router-dom'
 const HomeSectionCard = ({ props }) => {
   return (
     <div className="w-[250px] cursor-pointer h-[350px] flex flex-col items-center  overflow-hidden ">
-     
       <div className="w-full h-full ">
     <Link to={`/product/${props.id}`}>
     <div className=" w-full h-[70%]">

@@ -9,7 +9,7 @@ import {checkUserAsync} from "./authSlices.js"
 import { toast } from "react-toastify";
 import { validateEmail } from "../../utils/index.js";
 import Loader from "./Loader.js";
-import { RESET_AUTH, loginUser } from "../../redux/features/auth/authSlice.js";
+import { RESET_AUTH, loginAsync, loginUser } from "../../redux/features/auth/authSlice.js";
 import { constructFrom } from "date-fns";
 import axios from "axios";
 import { login } from "../../redux/features/user/userSlice.js";
@@ -37,7 +37,7 @@ const Login = () => {
    }
   
    console.log("userdata" , users)
-     await dispatch(loginUser(users));
+      dispatch(loginAsync(users));
      localStorage.setItem("users email", users.email)
      localStorage.setItem("users password", users.password)
   }
@@ -46,8 +46,6 @@ const Login = () => {
     if(isSuccess && isLoggedIn){
       navigate("/");
     }
-
-    dispatch(RESET_AUTH())
   }, [isSuccess, navigate, dispatch, isLoggedIn])
   return (
     <>

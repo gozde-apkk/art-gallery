@@ -5,7 +5,6 @@ const {
   logoutUser,
   getUserProfile,
   updateUserProfile,
-  loginUse,
   loginUser,
   updateUser,
   updatePhoto,

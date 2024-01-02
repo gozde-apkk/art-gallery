@@ -9,10 +9,11 @@ import Home from "./pages/home/Home";
 
 // import "../src/style/style.css";
 
-import { NextUIProvider } from "@nextui-org/react";
+import { NextUIProvider, User } from "@nextui-org/react";
 
 import Navigation from "./customer/components/Navigation";
 import HomePage from "./customer/components/HomePage";
+import ProductDetails from './components/product/ProductDetails'
 import Product from "./product/Product";
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
@@ -23,13 +24,15 @@ import RegisterScreen from "./pages/auth/RegisterScreen";
 import Header from "./pages/auth/Header";
 import ProfileScreen from "./pages/auth/ProfileScreen";
 import PrivateRoute from "./pages/auth/PrivateRoute";
-import { Provider, useDispatch } from "react-redux";
+import { Provider, useDispatch, useSelector } from "react-redux";
 import { ToastContainer, Zoom, toast } from "react-toastify";
 
 import "react-toastify/dist/ReactToastify.css";
 import { getLoginStatus } from "./redux/features/auth/authSlice";
 import { useEffect } from "react";
 import Profile from "./components/profile/Profile";
+import { selectLoggedInUser } from "./pages/auth/authSlices";
+import Store from "./pages/store/Store";
 // minified version is also included
 // import 'react-toastify/dist/ReactToastify.min.css';
 const router = createBrowserRouter([
@@ -53,16 +56,11 @@ const router = createBrowserRouter([
 
 function App() {
   const dispatch = useDispatch();
-  // const user = useSelector(selectLoggedInUser);
-  // const userChecked = useSelector(selectUserChecked);
-
-  // useEffect(() => {
-  //   dispatch(checkAuthAsync());
-  // }, [dispatch]);
+  const user = useSelector(selectLoggedInUser);
 
   useEffect(() => {
     dispatch(getLoginStatus());
-  }, [dispatch]);
+  }, [dispatch, user]);
 
   axios.defaults.withCredentials = true;
   return (
@@ -75,6 +73,8 @@ function App() {
 
       <Route path="/register" element={<Register />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/store" element={<Store />} />
+        <Route path="/product-details" element={<ProductDetails />} />
       </Routes>
     </BrowserRouter>
   );

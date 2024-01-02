@@ -6,9 +6,19 @@ import {
 import authService from "./authService";
 import { toast } from "react-toastify";
 
+
+const userDefaultState = {
+  _id: null,
+  username : null,
+  email:null,
+  phone: null,
+  token: null,
+
+}
 const initialState = {
+ 
+  user: userDefaultState,
   isLoggedIn: false,
-  user: null,
   isError: false,
   isSuccess: false,
   isLoading: false,
@@ -32,7 +42,7 @@ export const registerUser = createAsyncThunk(
   }
 );
 //Login
-export const loginUser = createAsyncThunk(
+export const loginAsync = createAsyncThunk(
   "auth/login",
   async (user, thunkAPI) => {
     try {
@@ -172,17 +182,17 @@ const authSlice = createSlice({
         toast.error("Registration Failed!");
       })
       //Login User
-      .addCase(loginUser.pending, (state) => {
+      .addCase(loginAsync.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(loginUser.fulfilled, (state, action) => {
+      .addCase(loginAsync.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
         state.isLoggedIn = true;
         state.user = action.payload;
         toast.success("Login Successful");
       })
-      .addCase(loginUser.rejected, (state, action) => {
+      .addCase(loginAsync.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;
