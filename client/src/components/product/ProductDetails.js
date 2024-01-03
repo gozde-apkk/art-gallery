@@ -47,7 +47,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function ProductDetails() {
+export default function ProductDetails({product}) {
   return (
     <div className="p-2  text-white">
       <div className="h-[100vh]">
