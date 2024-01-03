@@ -10,7 +10,7 @@ const {
   updatePhoto,
   getUser,
 } = require("../controllers/userController.js");
-const { protect } = require("../middleware/authMiddleware2.js");
+const { protect, requireSignin } = require("../middleware/authMiddleware2.js");
 const { getLoginStatus } = require("../controllers/user.js");
 
 const router = express.Router();
@@ -25,7 +25,9 @@ router.patch("/updateUser", protect, updateUser);
 router.patch("/updatePhoto", protect, updatePhoto);
 router
   .route("/profile")
-  .get(protect, getUserProfile)
+  .post(requireSignin, (req,res) => {
+    res.status(200).json({user : 'profile'})
+  })
   .put(protect, updateUserProfile);
 
 module.exports = router;

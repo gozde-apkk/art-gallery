@@ -2,6 +2,7 @@ const asyncHandler = require("express-async-handler");
 const User = require("../models/user.js");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const { use } = require("../routes/authRouter.js");
 
 const loginUser = asyncHandler(async (req, res) => {
   const {
@@ -57,23 +58,30 @@ const registerUser = async (req, res, next) => {
     email,
     password
   } = req.body;
-
   if (!name || !password || !email) return next(new Error("Please add all fields"));
-
-  const hashPassword = bcrypt.hashSync(password, 10);
-  const data = new User({
-    username: req.body.username,
+   const userExist = await User.findOne({email});
+   if(userExist){
+    res.status(400);
+    throw new Error("User already exist")
+   }
+    
+   const user = await User.create({
+    name: req.body.name,
     email: req.body.email,
-    password: hashPassword
-  })
-  try {
-    const dataToSave = await data.save();
-    res.status(200).json(dataToSave)
-    console.log("User created successfuly")
-  } catch (error) {
-    next(error);
-  }
+    password: req.body.password
+   })
+   if(user){
+    res.status(201).json({
+      _id : user.id,
+      name : user.name,
+      email : user.email  
+    })
+   }else {
+    res.status(400);
+    throw new Error("invalid user data")
+   }
 }
+
 const logout = asyncHandler(async (req, res) => {
   res.cookie("token", "", {
     path: "/",

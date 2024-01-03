@@ -10,7 +10,8 @@ const authRouter = require("./routes/authRouter.js");
 const userRouter = require("./routes/userRouter.js");
 const userRoutes = require("./routes/userRoutes.js");
 const {notFound, errorHandler} = require("./middleware/errorMiddleware.js");
-
+const connectDB = require("./config/db.js")
+const products = require('./data/fakedata.js')
 
 dotenv.config();
 const app = express();
@@ -19,7 +20,7 @@ app.use(cors({origin : "http://localhost:3000", credentials: true}));
 app.use(bodyParser.json({limit : "30mb" , extended : true}));
 app.use(bodyParser.urlencoded({limit : "30mb" , extended : true}));
 app.use(cookieParser());
-
+connectDB();
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
   res.header('Access-Control-Allow-Credentials', true);
@@ -27,15 +28,17 @@ app.use((req, res, next) => {
   res.header('Access-Control-Allow-Headers', 'Content-Type');
   next();
 });
-mongoose.connect(process.env.MONGO)
-// app.set("view engine" , "pug");
-// app.set("views" , "./views");
-app.use("/api/user" , require("./routes/userRouter.js"));
-app.use("/api/auth" , require("./routes/authRouter.js"));
-app.get("/", (req, res) => {
-    res.send("Hello")
-})
+
+  // app.set("view engine" , "pug");
+  // app.set("views" , "./views");
+// app.get("/api/products", require("./routes/productRouter.js"));
 app.use("/api/users" , require("./routes/userRoutes.js"));
+// app.use("/api/admin" , require("./routes/adminRoute.js"));
+
+
+app.use("/api/deneme", require("./routes/userRouter.js"))
+
+
 
 if (process.env.NODE_ENV === 'production') {
     const __dirname = path.resolve();
@@ -49,7 +52,6 @@ if (process.env.NODE_ENV === 'production') {
       res.send('API is running....');
     });
   }
-  
 
   app.use(notFound);
   app.use(errorHandler);

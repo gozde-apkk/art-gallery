@@ -5,8 +5,16 @@ const express = require("express");
 const expressAsyncHandler = require("express-async-handler");
 const User = require("../models/user");
 const  jwt = require("jsonwebtoken");
+const user = require("../models/user");
 
 
+
+const requireSignin = (req,res,next) => {
+    const token = req.headers.authorization.split(' ')[1];
+    jwt.verify(token, process.env.ACCESS_TOKEN);
+    req.user = user;
+    next()
+}
 
 const protect = expressAsyncHandler(async (req, res, next) => {
     
@@ -26,7 +34,7 @@ const protect = expressAsyncHandler(async (req, res, next) => {
         //     res.status(401)
         //     throw new Error("User not found")
         // }
-        req.user = user
+        req.user = user 
         next();
     }catch (e) {
         res.status(401);
@@ -35,4 +43,4 @@ const protect = expressAsyncHandler(async (req, res, next) => {
 })
 
 
-module.exports = {protect}
+module.exports = {protect, requireSignin}
