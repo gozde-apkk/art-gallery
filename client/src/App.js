@@ -67,9 +67,13 @@ function App() {
       <Route path="/login" element={<Login />} />
 
       <Route path="/register" element={<Register />} />
-        <Route path="/profile" element={<Profile />} />
+
         <Route path="/store" element={<Store />} />
         <Route path="/product-details" element={<ProductDetails />} />
+        <Route path="" element={<PrivateRoute/> }>
+        <Route path="/profile" element={<Profile />} />
+        </Route>
+       
       </Routes>
     </BrowserRouter>
   );

@@ -1,8 +1,10 @@
-import React from "react";
-import { fake_data } from "../data/fakedata";
+import React, { useState } from "react";
+
 
 const Product = () => {
-  const data = fake_data;
+
+
+   const [data, setData] = useState("")
   return (
     <div className="text-white  mx-32 h-full ">
       <h1 className="text-3xl h-[7rem] p-5 font-medium">Product List</h1>

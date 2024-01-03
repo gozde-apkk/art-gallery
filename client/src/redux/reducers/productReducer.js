@@ -1,50 +1,24 @@
+import { ActionTypes } from "../constants/action-types";
+const intialState = {
+  products: [],
+};
 
-
-
-import * as actionTypes from "../constants/productConstants";
-
-export const getProductsReducer = (state = { products: [] }, action) => {
-  switch (action.type) {
-    case actionTypes.GET_PRODUCTS_REQUEST:
-      return {
-        loading: true,
-        products: [],
-      };
-    case actionTypes.GET_PRODUCTS_SUCCESS:
-      return {
-        products: action.payload,
-        loading: false,
-      };
-    case actionTypes.GET_PRODUCTS_FAIL:
-      return {
-        loading: false,
-        error: action.payload,
-      };
+export const productsReducer = (state = intialState, { type, payload }) => {
+  switch (type) {
+    case ActionTypes.SET_PRODUCTS:
+      return { ...state, products: payload };
     default:
       return state;
   }
 };
 
-export const getProductDetailsReducer = (state = { product: {} }, action) => {
-  switch (action.type) {
-    case actionTypes.GET_PRODUCT_DETAILS_REQUEST:
-      return {
-        loading: true,
-      };
-    case actionTypes.GET_PRODUCT_DETAILS_SUCCESS:
-      return {
-        loading: false,
-        product: action.payload,
-      };
-    case actionTypes.GET_PRODUCT_DETAILS_FAIL:
-      return {
-        loading: false,
-        error: action.payload,
-      };
-    case actionTypes.GET_PRODUCT_DETAILS_RESET:
-      return {
-        product: {},
-      };
+export const selectedProductsReducer = (state = {}, { type, payload }) => {
+  console.log(type);
+  switch (type) {
+    case ActionTypes.SELECTED_PRODUCT:
+      return { ...state, ...payload };
+    case ActionTypes.REMOVE_SELECTED_PRODUCT:
+      return {};
     default:
       return state;
   }

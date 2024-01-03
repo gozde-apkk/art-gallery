@@ -1,8 +1,22 @@
 
 
-import * as actionTypes from "../constants/productConstants";
+import  {ActionTypes} from "../constants/productConstants";
 import axios from "axios";
 
+
+
+export const setProducts = (products) => {
+  return {
+    type: ActionTypes.SET_PRODUCTS,
+    payload: products,
+  };
+} 
+export const selectedProducts = (products) => {
+  return {
+    type: ActionTypes.SELECTED_PRODUCT,
+    payload: products,
+  };
+} 
 export const getProducts = () => async (dispatch) => {
   try {
     dispatch({ type: actionTypes.GET_PRODUCTS_REQUEST });
