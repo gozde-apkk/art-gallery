@@ -36,8 +36,6 @@ app.use("/api/users" , require("./routes/userRoutes.js"));
 // app.use("/api/admin" , require("./routes/adminRoute.js"));
 
 
-app.use("/api/deneme", require("./routes/userRouter.js"))
-
 
 
 if (process.env.NODE_ENV === 'production') {

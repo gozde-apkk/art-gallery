@@ -9,49 +9,40 @@ import {checkUserAsync} from "./authSlices.js"
 import { toast } from "react-toastify";
 import { validateEmail } from "../../utils/index.js";
 import Loader from "./Loader.js";
-import { RESET_AUTH, loginAsync, loginUser } from "../../redux/features/auth/authSlice.js";
-import { constructFrom } from "date-fns";
-import axios from "axios";
-import { login } from "../../redux/features/user/userSlice.js";
+import {useFormik} from 'formik'
+import * as Yup from "yup"
+import { useLoginMutation } from "../../redux/features/auth/userApiSlice.js";
+import { setCredentials } from "../../redux/features/auth/authSlice.js";
 const Login = () => {
-       
-
-    const [users, setUsers] = useState({})
-    const {isLoading , isLoggedIn, isSuccess} = useSelector((state) => state.auth);
-    const navigate = useNavigate();
-    const dispatch = useDispatch();
-   const {register, watch, formState: {errors}} =  useForm();
-
-   const handleChange = (e) => {
-    setUsers({...users , [e.target.id] : e.target.value});
-  };
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    if(!users.email || !users.password ){
-      toast.error("Please fill all the fields");
-      return;
-    }
-   if(!validateEmail( users.email)){
-      return toast.error("Please enter a valid email address");
-   }
   
-   console.log("userdata" , users)
-      dispatch(loginAsync(users));
-     localStorage.setItem("users email", users.email)
-     localStorage.setItem("users password", users.password)
-  }
+  const [email , setEmail] = useState("");
+  const [password , setPassword] = useState("");
 
-  useEffect(() => {
-    if(isSuccess && isLoggedIn){
-      navigate("/");
+  const navigate = useNavigate();
+  const dispatch = useDispatch();   
+  const[login, {isLoading}] = useLoginMutation();
+  const {userInfo} = useSelector((state) => state.auth)
+   const sumbitHandler = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await login({email, password}).unwrap()
+      
+      if(dispatch(setCredentials({...res}))){
+        navigate('/');
+        toast.success("Login Successfuly")
+      }else{
+        navigate("/login")
+      }
+    } catch (err) {
+      console.log(err?.data?.message || err.error);
+      toast.error(err.data.message);
     }
-  }, [isSuccess, navigate, dispatch, isLoggedIn])
+   }
+
   return (
     <>
-     {isLoading && <Loader/>}
+    
     <div className="h-full text-white ">
-      <Card>
         <div className="form-box">
           <div className="button-box">
             <div id="btn"></div>
@@ -60,36 +51,28 @@ const Login = () => {
             </button>
           </div>
           <div className="social-icons">{/* Lottie animations */}</div>
-          <form    onSubmit={handleSubmit}  noValidate className="input-group" id="Login">
+          <form  onSubmit={sumbitHandler}   noValidate className="input-group" id="Login">
             <input
               id="email"
-              {...register("email" , {
-                required : 'email is required',
-                pattern : {
-                  value : /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                  message : 'invalid email address'
-                }
-              })}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+      
               className="input-field"
               type="email"
               placeholder="Enter Email"
-              onChange={handleChange}
+     
             />
-             {errors.email &&  <p className="text-red-50">{errors.email.message}</p>}
             <input
              id="password"
-             {...register("password" , {
-               pattern : {
-                 value : /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/,
-                 message : 'password must be at least 8 characters and contain at least one uppercase letter, one lowercase letter, and one number'
-               }
-             })}
+            value={password}
+              onChange={(e) => setPassword(e.target.value)}
+          
               className="input-field"
               type="password"
               placeholder="Enter Password"
-              onChange={handleChange}
+  
             />
-            {errors.passord &&  <p className="text-red-50">{errors.passord.message}</p>}
+             {isLoading && <Loader/>}
             <a href="">Lost Your Password</a>
             <button type="submit" className="submit-btn">
               Log In
@@ -99,7 +82,6 @@ const Login = () => {
             </span>
           </form>
         </div>
-      </Card>
     </div>
     </>
   );

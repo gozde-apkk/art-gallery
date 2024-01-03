@@ -55,12 +55,7 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  const dispatch = useDispatch();
-  const user = useSelector(selectLoggedInUser);
 
-  useEffect(() => {
-    dispatch(getLoginStatus());
-  }, [dispatch, user]);
 
   axios.defaults.withCredentials = true;
   return (

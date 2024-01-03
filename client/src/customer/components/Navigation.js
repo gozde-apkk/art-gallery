@@ -3,12 +3,14 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import { FaShoppingCart } from "react-icons/fa";
 import { useState } from "react";
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
-import { RESET_AUTH, logoutUser } from "../../redux/features/auth/authSlice";
+import { RESET_AUTH, logout, logoutUser } from "../../redux/features/auth/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 import {
   ShowOnLogin,
   ShowOnLogout,
 } from "../../components/hiddenLink/hiddenLink";
+import { NavDropdown } from "react-bootstrap";
+import { useLogoutMutation } from "../../redux/features/auth/userApiSlice";
 
 export const logo = (
   <Link to="/">
@@ -20,13 +22,17 @@ const Navigation = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const isAuth = useSelector((state) => state.user.isAuth)
-
-  const logout = async () => {
-    await dispatch(logoutUser());
-    await dispatch(RESET_AUTH());
-    navigate("/login");
-  };
+  const {userInfo} = useSelector(state => state.auth )
+        const [logoutApiCall] = useLogoutMutation();
+  const handleLogout = async () => {
+    try {
+         await logoutApiCall().unwrap();
+         dispatch(logout());
+         navigate('/')
+    } catch (error) {   
+      console.log(error)
+    }
+  }
   const navRef = useRef();
   const showNavbar = () => {
     navRef.current.classList.toggle("responsive_nav");
@@ -59,7 +65,7 @@ const Navigation = () => {
           <li className="mx-4 hover:bg-red-600">
             <NavLink
               className="active:relative active:text-rose-500"
-              to="/shop"
+              to="/store"
             >
               Shop
             </NavLink>
@@ -67,26 +73,40 @@ const Navigation = () => {
         </ul>
         <div className="flex">
           <span className="">
-            <ShowOnLogout>
-              <NavLink
-                to={"login"}
-                className=" p-2 hover:bg-red-600 mx-4 mr-2 active:relative active:text-rose-500"
+         {userInfo ? (
+         <> 
+
+              <Link onClick={handleLogout}
+                to={"/"}
+                className="p-2 hover:bg-red-600 mx-4 active:relative active:text-rose-500"
               >
                 {" "}
-                Login
-              </NavLink>
-            </ShowOnLogout>
-            <ShowOnLogout>
-              <NavLink
-                to={"register"}
-                className=" p-2 hover:bg-red-600 mx-4 mr-2 active:relative active:text-rose-500"
-              >
-                {" "}
-                Register
-              </NavLink>
-            </ShowOnLogout>
+                Logout
+              </Link>
+         
+         </>) : (
+          <>
+          <ShowOnLogout>
+          <NavLink
+            to="/login"
+            className=" p-2 hover:bg-red-600 mx-4 mr-2 active:relative active:text-rose-500"
+          >
+            {" "}
+            Login
+          </NavLink>
+        </ShowOnLogout>
+          <ShowOnLogout>
+          <NavLink
+            to={"register"}
+            className=" p-2 hover:bg-red-600 mx-4 mr-2 active:relative active:text-rose-500"
+          >
+            {" "}
+            Register
+          </NavLink>
+        </ShowOnLogout></>
+         )}
             <ShowOnLogin>
-          {isAuth && (
+          {  (
                 <NavLink
                 to={"myorder"}
                 className="p-2 hover:bg-red-600 mx-4 active:relative active:text-rose-500"
@@ -96,27 +116,20 @@ const Navigation = () => {
               </NavLink>
           )}
             </ShowOnLogin>
-            <ShowOnLogin>
-              <Link
-                to={"/"}
-                onClick={logout}
-                className="p-2 hover:bg-red-600 mx-4 active:relative active:text-rose-500"
-              >
-                {" "}
-                Logout
-              </Link>
-            </ShowOnLogin>
+            
           </span>
           {cart}
         </div>
       </nav>
       <div className="menu-icon">
-        <HiOutlineMenuAlt3
+      <Link to='/cart'>
+      <HiOutlineMenuAlt3
           style={{ display: "inline", cursor: "pointer", marginLeft: "1rem" }}
           className="nav-btn"
           size={30}
           onClick={showNavbar}
         />
+      </Link>
       </div>
     </div>
   );

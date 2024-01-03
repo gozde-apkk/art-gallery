@@ -1,73 +1,56 @@
 import React, { useEffect, useState } from "react";
 import "./authstyle.css";
+
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { useRegisterMutation } from "../../redux/features/auth/userApiSlice";
+import { setCredentials } from "../../redux/features/auth/authSlice.js";
 import { toast } from "react-toastify";
-import Card from "../../../src/components/card/Card.js";
-import { Link } from "react-router-dom";
+import Loader from "./Loader";
 
-import { useNavigate } from "react-router-dom";
-import { useForm } from "react-hook-form";
-
-import axios from "axios";
-import Loader from "./Loader.js";
-import { RESET_AUTH, registerUser } from "../../redux/features/auth/authSlice";
-
-import { validateEmail } from "../../utils/index.js";
 const Register = () => {
-  const [formType, setFormType] = useState("login");
-   const [users, setUsers] = useState([]);
-   const [error, setError] = useState({});
-   const [loading, setLoading] = useState(false);
-   const {isLoading , isLoggedIn, isSuccess} = useSelector((state) => state.auth);
-  const {
-    register,
-    watch,
-    formState: { errors },
-  } = useForm();
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const handleChange = (e) => {
-    setUsers({...users , [e.target.id] : e.target.value});
-    
-  };
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [password2, setPassword2] = useState("");
 
-  const handleSubmit = async (e) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [register, { isLoading }] = useRegisterMutation();
+  const { userInfo } = useSelector((state) => state.auth);
+  const sumbitHandler = async (e) => {
     e.preventDefault();
 
-    if(!users.email || !users.password || !users.name || !users.password2){
-      toast.error("Please fill all the fields");
-      return;
-    }
+    if (password !== password2) {
+      toast.error("Passwords do not match");
+    } else {
+      try {
+        const res = await register({
+          name,
+          email,
+          password,
+          password2,
+        }).unwrap();
 
-    if( users.password.length < 6){
-      return toast.error("Password must be at least 6 characters");
-    }
-   if(!validateEmail( users.email)){
-      return toast.error("Please enter a valid email address");
-   }
-
-     dispatch(registerUser(users));
-      if(users) {
-        navigate("/");
+        if (dispatch(setCredentials({ ...res }))) {
+          navigate("/");
+          toast.success("Register Successfuly");
+        } else {
+          navigate("/login");
+        }
+      } catch (err) {
+        toast.error(err.data.message);
       }
-
-  }
-
-  useEffect(() => {
-    if(isSuccess){
-      navigate("/");
-    }else{
-      navigate("/register");
     }
-
-    dispatch(RESET_AUTH())
-  },[isSuccess, isLoggedIn, navigate, dispatch]);
+  };
+  useEffect(() => {
+    if (userInfo) {
+      navigate("/");
+    }
+  }, [navigate, userInfo]);
   return (
     <>
-    
-    <div className="h-full ">
-    {isLoading && <Loader/>}
-      <Card>
+      <div className="h-full ">
         <div className="form-box">
           <div className="button-box">
             <div id="btn"> </div>{" "}
@@ -77,59 +60,49 @@ const Register = () => {
           </div>{" "}
           <div className="social-icons"> {/* Lottie animations */} </div>{" "}
           <form
-            onSubmit={handleSubmit}
+            onSubmit={sumbitHandler}
             className="input-group text-white"
             noValidate
             style={{
-              left: formType === "register" ? "450px" : "50px",
+              left: "50px",
             }}
           >
             <input
               id="name"
+              value={name}
               className="input-field"
               type="text"
               placeholder="Enter Username"
               required
-              onChange={handleChange}
+              onChange={(e) => setName(e.target.value)}
             />{" "}
-            {errors.name && (
-              <p className="text-red-50">{errors.name.message}</p>
-            )}
             <input
               id="email"
-            
+              value={email}
               className="input-field"
               type="email"
-              onChange={handleChange}
+              onChange={(e) => setEmail(e.target.value)}
               placeholder="Enter Email"
             />
-            {errors.email && (
-              <p className="text-red-50">{errors.email.message}</p>
-            )}
             <input
               id="password"
-            
+              value={password}
               className="input-field"
               type="password"
               placeholder="Enter Password"
               required
-              onChange={handleChange}
+              onChange={(e) => setPassword(e.target.value)}
             />{" "}
-            {errors.password && (
-              <p className="text-red-50">{errors.password?.message}</p>
-            )}
             <input
               id="password2"
-             
+              value={password2}
               className="input-field"
               type="password2"
-              placeholder="Enter Password"
+              placeholder="Enter Password2"
               required
-              onChange={handleChange}
+              onChange={(e) => setPassword2(e.target.value)}
             />
-            {errors.password2 && (
-              <p className="text-red-50">{errors.password2?.message}</p>
-            )}
+            {isLoading && <Loader/>}
             <a href="">
               By registering, you agree to the Terms, Data Policy and Cookies
               Policy{" "}
@@ -142,8 +115,7 @@ const Register = () => {
             </span>{" "}
           </form>{" "}
         </div>{" "}
-      </Card>{" "}
-    </div>
+      </div>
     </>
   );
 };

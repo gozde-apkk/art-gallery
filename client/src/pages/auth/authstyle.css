@@ -15,7 +15,7 @@
 
 .form-box{
     width: 380px;
-    height: 522px;
+    height: 555px;
     position: relative;
     background-color: rgb(177 30 30 / 0%);
     box-shadow: 0 0 20px -4px #fbf1f266;
@@ -27,7 +27,7 @@
 
 .button-box{
     width: 336px;
-    margin: 35px auto;
+    margin: 11px auto;
     height: 55px;
     color: wheat;
     position: relative;
@@ -73,7 +73,7 @@
 
 .input-group{
     position: absolute;
-    top: 180px;
+    top: 107px;
     width: 280px;
     transition: .5s;
 }
