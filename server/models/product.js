@@ -26,7 +26,7 @@ const productSchema = new mongoose.Schema({
     },
     description: {
         type: String,
-        required: true
+        
     },
     images: {
         type: String,
@@ -36,10 +36,7 @@ const productSchema = new mongoose.Schema({
         type : String,
         required : true
     },
-    createTime: {
-        type: Date,
-        
-    },
+
 },{timestamps : true})
 
 
