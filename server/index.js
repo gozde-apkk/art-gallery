@@ -31,7 +31,7 @@ app.use((req, res, next) => {
 
   // app.set("view engine" , "pug");
   // app.set("views" , "./views");
-// app.get("/api/products", require("./routes/productRouter.js"));
+app.use("/api/products", require("./routes/productRouter.js"));
 app.use("/api/users" , require("./routes/userRoutes.js"));
 // app.use("/api/admin" , require("./routes/adminRoute.js"));
 

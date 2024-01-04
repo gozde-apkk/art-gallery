@@ -3,16 +3,12 @@
 
 
 const express = require("express");
+const { getAllProducts,createProduct, getProductById, getProductsByID, deleteProduct, updateProduct } = require("../controllers/products");
 const router = express.Router();
-const {
-  getProducts,
-  getProductById,
-} = require("../controllers/products");
-const { fake_data } = require("../data/fakedata");
 
-router.get("/", (req, res) => {
-    res.send(fake_data)
-});
-router.get("/:id", getProductById);
+
+
+router.route("/").get(getAllProducts).post(createProduct)
+router.route("/:id").get(getProductsByID).delete(deleteProduct).patch(updateProduct)
 
 module.exports = router;
