@@ -7,7 +7,8 @@ module.exports = {
       center: true,
       padding: "2rem",
       screens: {
-        'sm': {'min': '140px', 'max': '500px'},
+        'xs': {'min': '100px', 'max': '300px'},
+        'sm': {'min': '0px', 'max': '500px'},
       // => @media (min-width: 640px and max-width: 767px) { ... }
 
       'md': {'min': '768px', 'max': '1023px'},

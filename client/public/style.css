@@ -5,7 +5,7 @@ body{
  
   background-size: cover;
   font-family: "poppins";
-  background-color: black;
+  background-color: rgb(168, 91, 91);
 }
 
 #light {
@@ -23,7 +23,6 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,
 html,body {
   margin:0;
   padding:0;
-height: 300vh;
 background-color: bisque;
 }
 table {

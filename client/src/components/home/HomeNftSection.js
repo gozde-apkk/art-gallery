@@ -68,46 +68,6 @@ const HomeNftSection = () => {
               />
             </div>
 
-            {/* {activeIndex < items.length - 1  && (
-              <div className="w-full h-8 relative flex justify-around bottom-60">
-                <Button
-                 onClick={slidePrev}
-                  variant="contained"
-                  className=" bg-black  hover:bg-white"
-                  sx={{
-                    right : '20rem',
-                    backgroundColor: "black",
-                    transform: "translateX(-50%) rotate(90deg)",
-                    ":hover": { backgroundColor: "white" ,  },
-                  }}
-                >
-                  <KeyboardArrowRightIcon
-                    sx={{ transform: "rotate(90deg)", color: "white" , ":hover": { color: "black" } }}
-                  />
-                </Button>
-
-                <Button
-                  variant="contained"
-                  onClick={slideNext}
-                  className=" bg-black hover:bg-white"
-                  sx={{
-                     left: '18rem',
-                    backgroundColor: "black",
-                    ":hover": { backgroundColor: "white" },
-                    transform: "translateX(50%) rotate(90deg)",
-                  }}
-                >
-                  <KeyboardArrowLeftIcon
-                    sx={{
-                      transform: "rotate(90deg)",
-                      color: "white",
-                      ":hover": { color: "black" },
-                     
-                    }}
-                  />
-                </Button>
-              </div>
-            )} */}
           </div>
         ))}
       </div>

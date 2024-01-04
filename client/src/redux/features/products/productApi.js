@@ -20,3 +20,25 @@ export function fetchProductById(id) {
       resolve({ data });
     });
   }
+
+
+
+  export function fetchProductsByFilters(category) {
+   
+    return new Promise(async (resolve) => {
+      const response = await fetch(
+        `http://localhost:5000/api/products/${category}` 
+      );
+      const data = await response.json();
+      resolve({ data });
+    })};
+
+
+    export function fetchCategories() {
+      return new Promise(async (resolve) => {
+        const response = await fetch('http://localhost:5000/categories');
+        const data = await response.json();
+        console.log(data);
+        resolve({ data });
+      });
+    }

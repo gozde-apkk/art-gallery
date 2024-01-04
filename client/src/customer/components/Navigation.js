@@ -14,7 +14,7 @@ import { useLogoutMutation } from "../../redux/features/auth/userApiSlice";
 
 export const logo = (
   <Link to="/">
-    <img className="w-10 " src="./icon/whitelogo.png" alt="logo" />
+    <img className="w-10 " src="../icon/whitelogo.png" alt="logo" />
   </Link>
 );
 
@@ -47,7 +47,7 @@ const Navigation = () => {
     setShowMenu(false);
   };
   const cart = (
-    <span className=" w-20  flex relative text-white hover:text-red-600 active:text-red-500">
+    <span className=" w-20   flex relative text-white hover:text-red-600 active:text-red-500">
       <Link className="" to="/cart">
         Cart
         <FaShoppingCart size={20} className="inline ml-2" />
@@ -58,13 +58,13 @@ const Navigation = () => {
     </span>
   );
   return (
-    <div className=" text-lg h-20 p-2 items-center mx-32 justify-between  bg-black text-white flex">
+    <div className=" text-lg  sm:mx-2 h-20 p-2 items-center lg:mx-44 justify-between  bg-black text-white flex">
       {logo}
       <nav ref={navRef} className="flex w-full justify-between">
         <ul>
           <li className="mx-4 hover:bg-red-600">
             <NavLink
-              className="active:relative active:text-rose-500"
+              className="active:relative sm:mx-1 active:text-rose-500"
               to="/store"
             >
               Shop

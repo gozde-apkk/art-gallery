@@ -2,7 +2,7 @@ import React from "react";
 import {Link} from 'react-router-dom'
 const HomeSectionCard = ({ props }) => {
   return (
-    <div className="w-[250px] cursor-pointer h-[350px] flex flex-col items-center  overflow-hidden ">
+    <div className="lg:w-[90%] sm:w-[60%] sm:m-0 cursor-pointer h-[350px] flex flex-col items-center  overflow-hidden ">
       <div className="w-full h-full ">
     <Link to={`/product/${props.id}`}>
     <div className=" w-full h-[70%]">

@@ -34,6 +34,7 @@ import Profile from "./components/profile/Profile";
 import Store from "./pages/store/Store";
 import { fetchAllProductAsync, selectAllProducts } from "./redux/features/products/productsSlice";
 import ProductComponent from "./components/product/ProductComponent";
+import ProductDetailPage from "./components/product/ProductDetailPage";
 // minified version is also included
 // import 'react-toastify/dist/ReactToastify.min.css';
 const router = createBrowserRouter([
@@ -78,7 +79,7 @@ function App() {
         <Route path="/store" element={<Store/>} />
         
         <Route path="/store" element={<ProductComponent products={products} />} />
-        <Route path="/product-details/:id" element={<ProductDetails products={products}  />} />
+        <Route path="/product-details/:id" element={<ProductDetailPage products={products}  />} />
         <Route path="" element={<PrivateRoute/> }>
         <Route path="/profile" element={<Profile />} />
         </Route>

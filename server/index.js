@@ -24,7 +24,7 @@ connectDB();
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
   res.header('Access-Control-Allow-Credentials', true);
-  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE');
   res.header('Access-Control-Allow-Headers', 'Content-Type');
   next();
 });
@@ -34,7 +34,7 @@ app.use((req, res, next) => {
 app.use("/api/products", require("./routes/productRouter.js"));
 app.use("/api/users" , require("./routes/userRoutes.js"));
 // app.use("/api/admin" , require("./routes/adminRoute.js"));
-
+app.use('/categories', require("./routes/categoryRoute.js"));
 
 
 
