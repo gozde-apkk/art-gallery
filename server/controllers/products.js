@@ -1,5 +1,5 @@
 
-const Product = require("../models/product");
+const Product = require("../models/product.js");
 
 const product  = [
     {name : 'Freedom',
@@ -30,42 +30,79 @@ const product  = [
 ]
 
 
-
+//the passed
 const getAllProducts = async (req , res) => {
   try {
-      const products = await ProductModel.find({});
-      res.json ({products});
+      const products = await Product.find();
+      res.status(200).json ({products});
   } catch (error) {
       res.status(500).json({message : error.message});
   }
   }
 
+//thr passed
+  const createProduct = async (req , res) => {
+    try {
+        const product = await Product.create(req.body);
+        res.json ({product});
+        console.log("Product: " , product)
+    } catch (error) {
+        res.status(500).json({message : error.message});
+    }
+    }
+  
 
 
-
-
-const getProducts = async (req, res) => {
+  //the passed        
+const getProductsByID = async (req, res) => {
   try {
-    const products = await Product.find({});
-    res.json(products);
+    const {id : productId} = req.params
+    const product = await Product.findOne({_id : productId});
+    if(!product){
+      return res.status(404).json({msg : `No product with id: ${productId }`})
+    }
+    res.status(200).json(product);
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Server Error" });
   }
 };
 
-const getProductById = async (req, res) => {
+//THE PASED
+const deleteProduct = async (req, res) => {
   try {
-    const product = await Product.findById(req.params.id);
-
-    res.json(product);
+    const {id : productId} = req.params;
+    const product = await Product.findByIdAndDelete({_id : productId});
+    if(!product){
+      return res.status(404).json({msg : `No product with id: ${productId }`})
+    }
+    res.status(200).json(product)
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Server Error" });
   }
 };
-
+//the passed  
+const updateProduct = async (req, res) => {
+  try {
+    const {id : productId} = req.params;
+    const product = await Product.findByIdAndUpdate({_id : productId}, req.body, {
+      new : true,
+      runValidators : true
+    });
+    if(!product){
+      return res.status(404).json({msg : `No product with id: ${productId }`})
+    }
+    res.status(200).json(product)
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Server Error" });
+  }
+};
 module.exports = {
-  getProducts,
-  getProductById,
+  getProductsByID,
+  getAllProducts,
+  deleteProduct,
+  createProduct,
+  updateProduct
 };
