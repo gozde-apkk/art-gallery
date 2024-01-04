@@ -2,7 +2,7 @@
 {
     "products" :  [
         {
-            "id":"5666566621386",
+            "id":"65967c15aa5d08f57882f4ea",
             "creater" : "Arties Mint",
             "name" :  "ByteLife",
             "reviews" : 142,
@@ -15,7 +15,7 @@
     
         },
         {
-            "id":"668645551351354",
+            "id":"65967cb4aa5d08f57882f4ee",
             "creater" : "Revart Gök",
             "name" :  "Blood-qtx",
             "reviews" : 682,
@@ -28,7 +28,7 @@
     
         },
         {
-            "id":"67826321152",
+            "id":"65967d6f97c50840cece96da",
             "creater" : "Addimkca Flow",
             "name" :  "DKJUUD",
             "reviews" : 21656,
@@ -41,7 +41,7 @@
     
         },
         {
-            "id":"1235564565",
+            "id":"65967d9497c50840cece96dc",
             "creater" : "gREEKOZA",
             "name" :  "fÖRSENT",
             "reviews" : 2354,
@@ -54,7 +54,7 @@
     
         },
         {
-            "id":"985611646",
+            "id":"65967dd597c50840cece96de",
             "creater" : "Aerro",
             "name" :  "ByteLife",
             "reviews" : 446,
@@ -80,7 +80,7 @@
     
         },
         {
-            "id":"5646",
+            "_id": "65967df397c50840cece96e0",
             "creater" : "Phoebe",
             "name" :  "Collage",
             "reviews" : 42,
@@ -92,7 +92,7 @@
             "category" : "digital art"
         },
         {
-            "id":"21315",
+            "_id": "65967e1197c50840cece96e2",
             "creater" : "Rebecca All",
             "name" :  "Humanship",
             "reviews" : 87775,
@@ -104,7 +104,7 @@
             "category" : "digital art"
         },
         {
-            "id":"78954",
+            "_id": "65967e2897c50840cece96e4",
             "creater" : "Vicky",
             "name" :  "Holographic",
             "reviews" : 452,
@@ -117,7 +117,7 @@
         },
         
         {
-            "id":"467975",
+            "_id": "65967e3b97c50840cece96e6",
             "creater" : "Aslı Şah",
             "name" :  "The Floral Queen",
             "reviews" : 425,
@@ -129,7 +129,7 @@
             "category" : "digital art"
         },
         {
-            "id":"75458",
+            "_id": "65967e4f97c50840cece96e8",
             "creater" : "Christopher Davis ",
             "name" :  "Red sky",
             "reviews" : 75,
@@ -141,7 +141,7 @@
             "category" : "digital art"
         },
         {
-            "id":"79663522",
+            "_id": "65967e6697c50840cece96ea",
             "creater" : "Jude Monday ",
             "name" :  "Black Tiger",
             "reviews" : 754,
@@ -153,7 +153,7 @@
             "category" : "digital art"
         },
         {
-            "id":"4525784",
+            "_id": "65967e8e97c50840cece96ec",
             "creater" : "Mahesh Sabaliya ",
             "name" :  "Blooded Butterfly",
             "reviews" : 145,
@@ -165,7 +165,7 @@
             "category" : "digital art"
         },
         {
-            "id":"95654",
+            "_id": "65967ea297c50840cece96ee",
             "creater" : "Hasnain shah",
             "name" :  "Green Vegetable",
             "reviews" : 124,
@@ -177,7 +177,7 @@
             "category" : "digital art"
         },
         {
-            "id":"6798516",
+            "_id": "65967eb497c50840cece96f0",
             "creater" : "Fiaan Demha",
             "name" :  "Price on Request",
             "reviews" : 2354,
@@ -189,7 +189,7 @@
             "category" : "digital art"
         },
         {
-            "id":"98254",
+            "_id": "65967eca97c50840cece96f2",
             "creater" : "Bela Balog",
             "name" :  "Stormy sea",
             "reviews" : 321,
@@ -200,7 +200,7 @@
             "description" : "",
             "category" : "digital art"
         }, {
-            "id":"56458464",
+            "_id": "65967edb97c50840cece96f4",
             "creater" : "Temper",
             "name" :  "Deathtap",
             "reviews" : 75,
@@ -213,7 +213,7 @@
     
         },
         {
-            "id":"7895446",
+            "_id": "65967ef597c50840cece96f6",
             "creater" : "HellyCon",
             "name" :  "Breathe",
             "reviews" : 65,
@@ -227,7 +227,7 @@
     
         },
         {
-            "id":"264652",
+            "_id": "65967f0697c50840cece96f8",
             "creater" : "Yaqoob Khan",
             "name" :  "Magical World",
             "reviews" : 568,
@@ -240,7 +240,7 @@
     
         },
         {
-            "id":"4552165",
+            "_id": "65967f2397c50840cece96fa",
             "creater" : "Jora Askari",
             "name" :  "Framsiswork",
             "reviews" : 75,
@@ -253,7 +253,7 @@
     
         },
         {
-            "id":"585",
+            "_id": "65967f3397c50840cece96fc",
             "creater" : "Absent",
             "name" :  "Beltansiotra",
             "reviews" : 765,
@@ -265,7 +265,7 @@
             "category" : "canvas"
         },
         {
-            "id":"7895",
+            "_id": "65967f4697c50840cece96fe",
             "creater" : "Miraslav Andrict",
             "name" :  "Act",
             "reviews" : 586,
@@ -277,7 +277,7 @@
             "category" : "canvas"
         },
         {
-            "id":"79965",
+            "_id": "65967f7c97c50840cece9702",
             "creater" : "Billy-Bon",
             "name" :  "Shachwiowspider",
             "reviews" : 89,
@@ -285,9 +285,10 @@
             "price" : 324,
             "createTime" : "Date.now()",
             "images" : "https://firebasestorage.googleapis.com/v0/b/mern-artgallery.appspot.com/o/canvas%2FHigh%20Quality%20oil%20painting%20Hand%20painted%20Modern%20Girl%20art%20On%20Canvas%20RA141A.jpeg?alt=media&token=211198d2-89b8-4f55-895b-c2df004780f3",
-            "description" : "Oh! for fox sake"
+            "description" : "Oh! for fox sake",
+            "category":"canvas"
         },    {
-            "id":"85621",
+            "_id": "65967f9597c50840cece9704",
             "creater" : "Kingdom",
             "name" :  "Shackwow",
             "reviews" : 75,
@@ -300,7 +301,7 @@
     
         },
         {
-            "id":"897856526",
+            "_id": "65967fa397c50840cece9706",
             "creater" : "Miraslav Andrict",
             "name" :  "Gorgeous Lady",
             "reviews" : 562,
@@ -313,7 +314,7 @@
     
         },
         {
-            "id":"7289784",
+            "_id": "65967fd197c50840cece9708",
             "creater" : "Thomson",
             "name" :  "Color Face",
             "reviews" : 682,
@@ -326,7 +327,7 @@
     
         },
         {
-            "id":"2898456",
+            "_id": "65967ff397c50840cece970a",
             "creater" : "BoomLandPix",
             "name" :  "Death Men",
             "reviews" : 3556,
@@ -334,11 +335,12 @@
             "price" : 7577,
             "createTime" : "Date.now()",
             "images" : "https://firebasestorage.googleapis.com/v0/b/mern-artgallery.appspot.com/o/canvas%2FSurreal%20Digital%20Paintings%20by%20Elena%20Masci%20_%20Inspiration%20Grid.jpeg?alt=media&token=0efa7e71-f202-489c-800a-c5cb4bdff7b7",
-            "description" : "Death!"
+            "description" : "Death!",
+            "category" : "canvas"
         }
         ,
         {
-            "id":"8795661",
+            "_id": "6596800e97c50840cece970c",
             "creater" : "LoudPunck",
             "name" :  "Realistically Bird",
             "reviews" : 4563,
@@ -350,7 +352,7 @@
             "category" : "canvas"
         } ,
         {
-            "id":"98921521",
+            "_id": "6596801b97c50840cece970e",
             "creater" : "STORMIE",
             "name" :  "Girl Playing The Violin",
             "reviews" : 79896,
@@ -358,10 +360,11 @@
             "price" : 6562,
             "createTime" : "Date.now()",
             "images" : "'https://firebasestorage.googleapis.com/v0/b/mern-artgallery.appspot.com/o/canvas%2FWallpaper.jpeg?alt=media&token=47e633c5-1c50-4876-990c-d7c9d99b7820",
-            "description" : "Violin"
+            "description" : "Violin",
+            "category" : "canvas"
         },
         {
-            "id":"684652",
+            "_id": "6596803097c50840cece9710",
             "creater" : "AlignDRAW",
             "name" :  "Ballerina",
             "reviews" : 2345,
@@ -373,7 +376,7 @@
             "category" : "canvas"
         },
         {
-            "id":"982984",
+            "_id": "6596803f97c50840cece9712",
             "creater" : "Rare Bob",
             "name" :  "Gradient",
             "reviews" : 6254,
@@ -386,7 +389,7 @@
         },
    
         {
-            "id":"56481",
+            "_id": "6596807097c50840cece9714",
             "creater" : "Mpkozilla",
             "name" :  "Chimera",
             "reviews" : 52,
@@ -399,7 +402,7 @@
     
         },
         {
-            "id":"45641641",
+            "_id": "6596808097c50840cece9716",
             "creater" : "Vanilla",
             "name" :  "Glass",
             "reviews" : 75,
@@ -412,7 +415,7 @@
     
         },
         {
-            "id":"16541",
+            "_id": "6596809397c50840cece9718",
             "creater" : "Quartan.io",
             "name" :  "Fusionist",
             "reviews" : 86,
@@ -424,7 +427,7 @@
             "category" : "nft"
         },
         {
-            "id":"14852",
+            "_id": "659680a297c50840cece971a",
             "creater" : "byteGaN",
             "name" :  "radiating octoGAN",
             "reviews" : 56,
@@ -436,7 +439,7 @@
             "category" : "nft"
         },
         {
-            "id":"88546",
+            "_id": "659680b797c50840cece971c",
             "creater" : "Azuki",
             "name" :  "Polygon",
             "reviews" : 46,
@@ -448,7 +451,7 @@
             "category" : "nft"
         },
         {
-            "id":"659524",
+            "_id": "659680cb97c50840cece971e",
             "creater" : "PixGods",
             "name" :  "yoots",
             "reviews" : 30,
@@ -460,7 +463,7 @@
             "category" : "nft"
         },
         {
-            "id":"26564",
+            "_id": "659680d997c50840cece9720",
             "creater" : "Poglin",
             "name" :  "Nycra",
             "reviews" : 76,
@@ -472,7 +475,7 @@
             "category" : "nft"
         },
         {
-            "id":"65452",
+            "_id": "659680e797c50840cece9722",
             "creater" : "LoudPunx",
             "name" :  "Web Six",
             "reviews" : 96,
@@ -483,7 +486,7 @@
             "description" : "",
             "category" : "nft"
         },    {
-            "id":"54622",
+            "_id": "659680f897c50840cece9724",
             "creater" : "KINGSHIP",
             "name" :  "Styles P",
             "reviews" : 46,
