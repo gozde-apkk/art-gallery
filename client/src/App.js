@@ -28,11 +28,12 @@ import { Provider, useDispatch, useSelector } from "react-redux";
 import { ToastContainer, Zoom, toast } from "react-toastify";
 
 import "react-toastify/dist/ReactToastify.css";
-import { getLoginStatus } from "./redux/features/auth/authSlice";
+
 import { useEffect } from "react";
 import Profile from "./components/profile/Profile";
-import { selectLoggedInUser } from "./pages/auth/authSlices";
 import Store from "./pages/store/Store";
+import { fetchAllProductAsync, selectAllProducts } from "./redux/features/products/productsSlice";
+import ProductComponent from "./components/product/ProductComponent";
 // minified version is also included
 // import 'react-toastify/dist/ReactToastify.min.css';
 const router = createBrowserRouter([
@@ -56,6 +57,12 @@ const router = createBrowserRouter([
 
 function App() {
 
+  const products = useSelector(selectAllProducts)
+  const dispatch = useDispatch();
+   useEffect(() => {
+    dispatch(fetchAllProductAsync())
+    console.log("APP",products);
+   },[dispatch])
 
   axios.defaults.withCredentials = true;
   return (
@@ -68,8 +75,10 @@ function App() {
 
       <Route path="/register" element={<Register />} />
 
-        <Route path="/store" element={<Store />} />
-        <Route path="/product-details" element={<ProductDetails />} />
+        <Route path="/store" element={<Store/>} />
+        
+        <Route path="/store" element={<ProductComponent products={products} />} />
+        <Route path="/product-details/:id" element={<ProductDetails products={products}  />} />
         <Route path="" element={<PrivateRoute/> }>
         <Route path="/profile" element={<Profile />} />
         </Route>
