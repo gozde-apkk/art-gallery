@@ -12,7 +12,7 @@ const ProductPage = () => {
   const dispatch = useDispatch();
    useEffect(() => {
     dispatch(fetchAllProductAsync())
-    console.log("PRODUCT-PAGEEE",products);
+    console.log("PRODUCT-PAGEEE",products.products);
    },[dispatch])
 
 

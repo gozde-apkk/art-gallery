@@ -3,11 +3,13 @@
 
 import React from 'react'
 import ProductDetails from './ProductDetails'
-import { fake_data } from '../../data/fakedata'
-const ProductDetailPage = () => {
+
+const ProductDetailPage = ({products}) => {
   return (
     <div>
-       <ProductDetails product={fake_data}/>
+     
+   <ProductDetails products={products} />
+ 
     </div>
   )
 }
