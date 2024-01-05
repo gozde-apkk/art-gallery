@@ -1,5 +1,6 @@
 
 const Product = require("../models/product.js");
+const ApiFeatures = require("../utils/apifeatures.js");
 
 
 
@@ -16,10 +17,15 @@ const getProductsByCategory = async (req,res) =>{
 //the passed
 const getAllProducts = async (req , res) => {
   try {
+    // const resultPerPage = 5;
+    const productsCount = await Product.countDocuments();
+    //  const apiFeature = new ApiFeatures(Product.find(), req.query).search( ).filter().pagination(resultPerPage);
 
-      const products = await Product.find();
+    //   const products = await apiFeature.query;
+
+    const products = await Product.find({});
       
-      res.status(200).json ({products});
+      res.status(200).json (products);
   } catch (error) {
       res.status(500).json({message : error.message});
   }

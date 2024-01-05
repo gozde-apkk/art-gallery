@@ -28,7 +28,10 @@ const Store = () => {
   const dispatch = useDispatch()
   const params = useParams();
   const handleFilter = (e, section, option) => {
-
+       e.preventDefault();
+       setFilter(option.value);
+       console.log(filter);
+       
   };
   return (
     <div className="w-full px-12 h-full text-white ">
@@ -60,21 +63,23 @@ const Store = () => {
                               <div className="space-y-6">
                                 {section.options.map((option, optionIdx) => (
                                   <div key={option.value} className="flex items-center">
-                                    <input
+                                 
+                                 <input
                                       id={`filter-mobile-${section.id}-${optionIdx}`}
                                       name={`${section.id}[]`}
-                                      defaultValue={option.value}
                                       type="checkbox"
                                       defaultChecked={option.checked}
-                                      onChange={(e)=>dispatch(fetchProductsByFiltersAsync(section))}
+                                      onChange={(e)=> dispatch(fetchProductsByFiltersAsync(option.value))}
                                       className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
                                     />
+                             
                                     <label
                                       htmlFor={`filter-mobile-${section.id}-${optionIdx}`}
                                       className="ml-3 min-w-0 flex-1 text-gray-500"
                                     >
                                       {option.label}
                                     </label>
+                                  
                                   </div>
                                 ))}
                               </div>

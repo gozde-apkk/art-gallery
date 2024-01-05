@@ -5,12 +5,13 @@ const initialState = {
   products: null,
   status: "idle",
   selectedProduct: null,
-  categories:[]
+  categories:[],
+  totalItems:null
 };
 export const fetchProductsByFiltersAsync = createAsyncThunk(
   'product/fetchProductsByFilters',
-  async (category) => {
-    const response = await fetchProductsByFilters(category);
+  async (filter) => {
+    const response = await fetchProductsByFilters(filter);
     // The value we return becomes the `fulfilled` action payload
     return response.data;
   }
@@ -72,9 +73,9 @@ const productsSlice = createSlice({
         state.status = 'loading';
       })
       .addCase(fetchProductsByFiltersAsync.fulfilled, (state, action) => {
-        state.status = 'idle';
-        state.products = action.payload.products;
-        state.totalItems = action.payload.totalItems;
+        state.status = 'success';
+        state.products = action.payload;
+        state.totalItems = action.payload;
       });
   },
 });

@@ -23,11 +23,14 @@ export function fetchProductById(id) {
 
 
 
-  export function fetchProductsByFilters(category) {
-   
+  export function fetchProductsByFilters(filter) {
+  //  let queryString= '';
+  //  for(let key in filter){
+  //   queryString = `${key}=${filter[key]}&`;
+  //  }
     return new Promise(async (resolve) => {
       const response = await fetch(
-        `http://localhost:5000/api/products/${category}` 
+        `http://localhost:5000/api/products/${filter}` 
       );
       const data = await response.json();
       resolve({ data });
