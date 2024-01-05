@@ -8,7 +8,7 @@ import { fake_data } from "../../data/fakedata";
 import { canvas_data } from "../../data/canvas_data";
 import { digital_data } from "../../data/digital_data";
 import "./style.css"
-
+import {Link} from  'react-router-dom';
 const HomeNftSection = () => {
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -39,7 +39,10 @@ const HomeNftSection = () => {
     {
       id: 2,
       title: "CANVAS",
-      items: canvas_data.map((item) => <HomeSectionCard props={item} />),
+      items: canvas_data.map((item) =>  (
+
+         <HomeSectionCard props={item} />
+      ))
     },
   ];
 
@@ -58,7 +61,12 @@ const HomeNftSection = () => {
            <p>Show All</p>
          </div>
             <div className="w-full h-full text-center text-white">
-              <AliceCarousel
+
+
+
+              
+        
+        <AliceCarousel
                 className="relative w-1"
                 items={item.items}
                 
@@ -66,6 +74,8 @@ const HomeNftSection = () => {
                 disableDotsControls
               
               />
+         
+              
             </div>
 
           </div>

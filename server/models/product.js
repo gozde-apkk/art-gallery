@@ -40,5 +40,14 @@ const productSchema = new mongoose.Schema({
 },{timestamps : true})
 
 
+const virtual = productSchema.virtual("id")
+virtual.get(function(){
+    return this._id
+})
 
+productSchema.set('toJSON',{
+    virtuals : true,
+    versionKey : false,
+    transform: function(dot , ret) {delete ret._id}
+})
 module.exports = mongoose.model('Product', productSchema);
