@@ -4,7 +4,7 @@ const HomeSectionCard = ({ props }) => {
   return (
     <div className="lg:w-[90%] sm:w-[60%] sm:m-0 cursor-pointer h-[350px] flex flex-col items-center  overflow-hidden ">
       <div className="w-full h-full ">
-    <Link to={`/product/${props.id}`}>
+    <Link to={`/product-details/${props.id}`}>
     <div className=" w-full h-[70%]">
           <img className=" object-cover  h-full w-full" src={props.img} />
         </div>

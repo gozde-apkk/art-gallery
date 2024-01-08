@@ -25,11 +25,11 @@ const Home = () => {
             .{" "}
           </h1>{" "}
           <div className="flex flex-col text-white sm:flex-row gap-4 mt-6">
-            <Link href="/products" className="p-9 hover:text-crimson">
+            <Link to="/store" className="hover:text-crimson">
               Browse Trending{" "}
             </Link>{" "}
-         <Link to='/quality'>
-         <button> Our quality promise  </button>{" "}
+         <Link  className="hover:text-crimson" to='/quality'>
+         <button>  Our quality promise  </button>{" "}
          </Link>
           </div>{" "}
         </div>{" "}

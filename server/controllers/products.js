@@ -45,20 +45,22 @@ const getAllProducts = async (req , res) => {
 
 
   //the passed        
-const getProductsByID = async (req, res) => {
-  try {
-
-    const {id : productId} = req.params;
-    const product = await Product.findOne({_id : productId});
-    if(!product){
-      return res.status(404).json({msg : `No product with id: ${productId }`})
+  const getProductsByID = async (req, res) => {
+    try {
+    
+      const product = await Product.findById(req.params.id);
+      console.log(req.params.id)
+      
+      if (!product) {
+        return res.status(404).json({ msg: `No product with id: ${req.params.id}` });
+      }
+  
+      res.status(200).json(product);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Server Error" });
     }
-    res.status(200).json(product);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Server Error" });
-  }
-};
+  };
 
 //THE PASED
 const deleteProduct = async (req, res) => {

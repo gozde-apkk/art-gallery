@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const shortid = require("shortid");
 
-const signup = (req, res) => {
+const siguup = (req, res) => {
   User.findOne({ email: req.body.email }).then((error, user) => {
     if (user)
       return res.status(400).json({

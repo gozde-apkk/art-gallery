@@ -35,6 +35,7 @@ app.use("/api/products", require("./routes/productRouter.js"));
 app.use("/api/users" , require("./routes/userRoutes.js"));
 // app.use("/api/admin" , require("./routes/adminRoute.js"));
 app.use('/categories', require("./routes/categoryRoute.js"));
+app.use('/cart', require("./routes/cartRoute.js").router);
 
 
 
