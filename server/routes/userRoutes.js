@@ -11,7 +11,7 @@ const {
   getUser,
 } = require("../controllers/userController.js");
 const { protect, requireSignin } = require("../middleware/authMiddleware2.js");
-const { getLoginStatus } = require("../controllers/user.js");
+const { getLoginStatus, getUserById } = require("../controllers/user.js");
 
 const router = express.Router();
 
@@ -19,7 +19,7 @@ router.post("/register", registerUser);
 router.post("/login", loginUser);
 router.post("/logout", logoutUser);
 router.get("/getLoginStatus", getLoginStatus);
-router.get("/getUser", protect, getUser);
+router.get("/:id", getUserById);
 
 router.patch("/updateUser", protect, updateUser);
 router.patch("/updatePhoto", protect, updatePhoto);

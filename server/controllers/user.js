@@ -93,15 +93,15 @@ const logout = asyncHandler(async (req, res) => {
   });
 });
 
-const getUser = asyncHandler(async (req, res) => {
-  res.send("get user")
-  // const user = await User.findById(req.user.id).select("-password");
-  // if (user) {
-  //   res.json(user);
-  // } else {
-  //   res.status(404);
-  //   throw new Error("User not found");
-  // }
+const getUserById = asyncHandler(async (req, res) => {
+
+  const user = await User.findById(req.params.id).select("-password");
+  if (user) {
+    res.json(user);
+  } else {
+    res.status(404);
+    throw new Error("User not found");
+  }
 })
 
 // router.get('/getAll', async (req, res) => {
@@ -188,7 +188,7 @@ module.exports = {
   registerUser,
   logout,
   createUser,
-  getUser,
+  getUserById,
   loginUser,
   getLoginStatus,
   updateUser,

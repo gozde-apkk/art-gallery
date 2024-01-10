@@ -1,6 +1,6 @@
 
-{
-    "products" :  [
+
+  export const products = [
         {
             "id":"65967c15aa5d08f57882f4ea",
             "creater" : "Arties Mint",
@@ -501,4 +501,5 @@
     
     
     ]
-}
+
+

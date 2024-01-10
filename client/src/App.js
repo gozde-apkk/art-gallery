@@ -13,7 +13,7 @@ import { NextUIProvider, User } from "@nextui-org/react";
 
 import Navigation from "./customer/components/Navigation";
 import HomePage from "./customer/components/HomePage";
-import ProductDetails from './components/product/ProductDetails'
+import ProductDetails from "./components/product/ProductDetails";
 import Product from "./product/Product";
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
@@ -32,61 +32,57 @@ import "react-toastify/dist/ReactToastify.css";
 import { useEffect } from "react";
 import Profile from "./components/profile/Profile";
 import Store from "./pages/store/Store";
-import { fetchAllProductAsync, selectAllProducts } from "./redux/features/products/productsSlice";
+import {
+  fetchAllProductAsync,
+  selectAllProducts,
+} from "./redux/features/products/productsSlice";
 import ProductComponent from "./components/product/ProductComponent";
 import ProductDetailPage from "./components/product/ProductDetailPage";
 import QualityPromise from "./components/quality/QualityPromise";
+import {CartProvider} from "./context/cart/CartContext";
+
+import CardPage from "./components/card/CardPage";
 // minified version is also included
 // import 'react-toastify/dist/ReactToastify.min.css';
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Home />,
-  },
-  {
-    path: "/login",
-    element: <Login />,
-  },
-  {
-    path: "/register",
-    element: <Register />,
-  },
-  {
-    path: "/profile",
-    element: <Profile />,
-  },
-]);
+;
 
 function App() {
 
-  const products = useSelector(selectAllProducts)
+
+  const products = useSelector(selectAllProducts);
   const dispatch = useDispatch();
-   useEffect(() => {
-    dispatch(fetchAllProductAsync())
-    console.log("APP",products);
-   },[dispatch])
+  useEffect(() => {
+    dispatch(fetchAllProductAsync());
+    console.log("APP", products);
+  }, [dispatch]);
 
   axios.defaults.withCredentials = true;
   return (
     <BrowserRouter>
-       <Navigation/>
-      <ToastContainer transition={Zoom} />
-      <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/login" element={<Login />} />
+      <CartProvider>
+        <Navigation />
+        <ToastContainer transition={Zoom} />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
 
-      <Route path="/register" element={<Register />} />
+          <Route path="/register" element={<Register />} />
 
-        <Route path="/store" element={<Store/>} />
-        
-        <Route path="/store" element={<ProductComponent products={products} />} />
-        <Route path="/product-details/:id" element={<ProductDetailPage products={products}  />} />
-        <Route path="" element={<PrivateRoute/> }>
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/quality" element={<QualityPromise />} />
-        </Route>
-       
-      </Routes>
+          <Route path="/store" element={<Store />} />
+          <Route path="/cart" element={<CardPage />} />
+          
+
+          <Route
+            path="/store"
+            element={<ProductComponent products={products} />}
+          />
+          <Route path="/product-details/:id" element={<ProductDetailPage />} />
+          <Route path="" element={<PrivateRoute />}>
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/quality" element={<QualityPromise />} />
+          </Route>
+        </Routes>
+      </CartProvider>
     </BrowserRouter>
   );
 }

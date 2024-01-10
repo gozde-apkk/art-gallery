@@ -70,7 +70,7 @@ const deleteProduct = async (req, res) => {
     if(!product){
       return res.status(404).json({msg : `No product with id: ${productId }`})
     }
-    res.status(200).json(product)
+    res.status(200).json(product);
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Server Error" });

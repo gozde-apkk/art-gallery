@@ -1,14 +1,11 @@
 
 
-import { useEffect, useState } from "react";
-import { StarIcon } from "@heroicons/react/20/solid";
-import { RadioGroup } from "@headlessui/react";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchAllProductAsync, fetchProductByIdAsync, selectAllProducts, selectProductById } from "../../redux/features/products/productsSlice";
-import { useParams } from "react-router-dom";
 import { FaEye, FaHeart } from "react-icons/fa";
-import  addToCart from "../../redux/features/cart/cartSlice.js";
-import { selectItems } from "../../redux/features/cart/cartSlice";
+import { selectProductById } from "../../redux/features/products/productsSlice.js";
+import { useParams } from "react-router-dom";
+import { useContext } from "react";
+import {CartContext} from "../../context/cart/CartContext.js";
+import { useSelector } from "react-redux";
 
 
 const reviews = { href: "#", average: 4, totalCount: 117 };
@@ -17,17 +14,18 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function ProductDetails({product}) {
-  console.log(product)
-  const dispatch = useDispatch();;
-  const {carts} = useSelector((state)=>state.allCart);
-  const [cartData, setCartData] = useState();
-  const send = (e) => {
-dispatch(addToCart(e))
-  }
+export default function ProductDetails({cart}) {
+ 
+  const product = useSelector(selectProductById)
+const {addToCart} = useContext(CartContext);
+  const {id} = useParams();
+  console.log("id:",id)
+  console.log("ProductDetails cart", cart)
+
   return (
     <div className="p-2 h-full  text-white">
-      {product && (
+      {product &&  (
+        <>
          <div   className="h-full px-24">
          <div className="grid grid-cols-1 md:grid-cols-2">
            <div className="w-50  flex justify-center h-[36rem] border-gray-50">
@@ -48,13 +46,14 @@ dispatch(addToCart(e))
                   <p className="text-3xl p-12 ">Current price: <span>${product.price}</span></p>
               
                   <div>
-                   <button onClick={(e) => send(product)} className=" hover:bg-red-950 p-2 ">Add to cart</button>
+                   <button onClick={()=> addToCart(product)}  className=" hover:bg-red-950 p-2 ">Add to cart</button>
                   </div>
                </div>
              </div>
            </div>
          </div>
        </div>
+       </>
       )}
     </div>
   );

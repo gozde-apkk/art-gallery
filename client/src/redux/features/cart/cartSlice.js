@@ -1,28 +1,42 @@
 import { createSlice } from "@reduxjs/toolkit"
 
 const initialState = {
-    carts: []
+    carts: [],
+    amount : 0,
+    totalAmount : 0,
+    totalPrice: 0
 }
 
 // card slice
 const cartSlice = createSlice({
-    name: "cartslice",
+    name: "cart",
     initialState,
     reducers: {
 
         // add to cart
         addToCart: (state, action) => {
-
-            const IteamIndex = state.carts.findIndex((iteam) => iteam.id === action.payload.id);
-
-            if (IteamIndex >= 0) {
-                state.carts[IteamIndex].qnty += 1
-            } else {
-                const temp = { ...action.payload, qnty: 1 }
-                state.carts = [...state.carts, temp]
-
-            }
+          const productId = action.payload;
+               try{
+                const exist = state.card.find((product) => product.id === productId.id )
+                if(exist){
+                    exist.amount++;
+                    exist.totalPrice += productId.price;
+                    state.totalAmount++;
+                    state.totalPrice += productId.price;
+                }else {
+                    state.carts.push({
+                        id:productId.id,
+                        price : productId.price,
+                        amount : 1,
+                        totalPrice : productId.price,
+                    });
+                    state.totalAmount++;
+                    state.totalPrice += productId.price;
+                }}catch(err){
+                    return err;
+                }
         },
+
 
         // remove perticular iteams
         removeToCart:(state,action)=>{

@@ -5,7 +5,7 @@ const {
   registerUser,
   loginUser,
   logout,
-  getUser,
+  getUserById,
   getLoginStatus,
   updateUser,
   updatePhoto,
@@ -15,7 +15,7 @@ const { protect } = require("../middleware/authMiddleware2.js");
 router.post("/register", registerUser);
 router.post("/login", loginUser);
 router.get("/logout", logout);
-router.get("/getUser", protect, getUser);
+router.get("/:id",  getUserById);
 router.get("/getLoginStatus", getLoginStatus);
 router.patch("/updateUser", protect, updateUser);
 router.patch("/updatePhoto", protect, updatePhoto);

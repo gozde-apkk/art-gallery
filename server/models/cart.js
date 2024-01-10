@@ -5,9 +5,6 @@ const {Schema} = mongoose;
 const cartSchema = new Schema({
     quantity: { type : Number, required: true},
     product: { type: Schema.Types.ObjectId, ref: 'product', required: true},
-    user:{ type: Schema.Types.ObjectId, ref: 'user', required: true},
-    size: { type : Schema.Types.Mixed},
-    color: { type : Schema.Types.Mixed},
 })
 
 const virtual  = cartSchema.virtual('id');

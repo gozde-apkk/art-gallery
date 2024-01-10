@@ -1,29 +1,35 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { fetchProductByIdAsync, selectProductById } from "../../redux/features/products/productsSlice";
 
+import {toast} from "react-toastify";
+import { CartContext } from "../../context/cart/CartContext";
 
 
-const ProductComponent = ({product}) => {
 
 
+const ProductComponent = ({product}) => { 
+  const { addToCart} = useContext(CartContext)
+  
 
-    console.log(product)
   return (
     <div className="w-48  text-white border-2 m-4 h-68">
         <Link to={`/product-details/${product.id}`}>
     
-          <>
-           <div className="w-full h-[70%]">
-           <img className="w-full h-full object-cover " 
-           src={product.images} />
-                     </div>
-           <p className="justify-center flex">{product.name} </p>
-           <p className="flex justify-center mt-1"> ${product.price} </p>
-            <button className="hover:bg-red-500 flex justify-center mt-2 w-full ">Add to cart</button>
-            </>
+    {product &&  (
+       <>
+       <div className="w-full h-[70%]">
+       <img className="w-full h-full object-cover " 
+       src={product.images} />
+                 </div>
+       <p className="justify-center flex">{product.name} </p>
+       <p className="flex justify-center mt-1"> ${product.price} </p>
+        <button onClick={() =>{ addToCart(product)
+                                toast.success("Added to Cart")}}>Add to Cart</button>
+        </>
 
+    )}    
         </Link>
       </div>
   );

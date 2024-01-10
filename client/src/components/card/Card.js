@@ -1,155 +1,167 @@
-import React, { useEffect, useState } from 'react'
-import "./cartstyle.css"
+import React, { useContext, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { addToCart,removeToCart ,removeSingleIteams,emptycartIteam} from '../redux/features/cartSlice';
-import toast from 'react-toastify';
+import { addToCart,removeToCart ,removeSingleIteams,emptycartIteam} from '../../redux/features/cart/cartSlice';
+import toast from 'react-hot-toast';
+import { Link } from 'react-router-dom';
+import CartContext from '../../context/cart/CartContext';
 
-const Cart = () => {
-  const {carts} = useSelector((state)=>state.allCart);
-    
-  const [totalprice,setPrice] = useState(0);
-  const [totalquantity,setTotalQuantity] = useState(0);
+import './Card.css'
 
-  const dispatch = useDispatch();
+const Card = ({items}) => {
 
- // add to cart
- const handleIncrement = (e)=>{
-  dispatch(addToCart(e))
-}
+  console.log("card", items);
+//   const [totalprice,setPrice] = useState(0);
+//   const [totalquantity,setTotalQuantity] = useState(0);
 
-// remove to cart
-const handleDecrement = (e)=>{
-  dispatch(removeToCart(e));
-  toast.success("Item Remove From Your Cart")
-}
+//   const dispatch = useDispatch();
 
-// remove single item 
-const handleSingleDecrement = (e)=>{
-  dispatch(removeSingleIteams(e))
-}
+//  // add to cart
+//  const handleIncrement = (e)=>{
+//   dispatch(addToCart(e))
+// }
 
-// empty cart
-const emptycart = ()=>{
-  dispatch(emptycartIteam())
-  toast.success("Your Cart is Empty")
+// // remove to cart
+// const handleDecrement = (e)=>{
+//   dispatch(removeToCart(e));
+//   toast.success("Item Remove From Your Cart")
+// }
 
-}
- // count total price
- const total = ()=>{
-  let totalprice = 0
-  carts.map((ele,ind)=>{
-      totalprice = ele.price * ele.qnty + totalprice
-  });
-  setPrice(totalprice)
-}  
+// // remove single item 
+// const handleSingleDecrement = (e)=>{
+//   dispatch(removeSingleIteams(e))
+// }
+
+// // empty cart
+// const emptycart = ()=>{
+//   dispatch(emptycartIteam())
+//   toast.success("Your Cart is Empty")
+
+// }
+//  // count total price
+//  const total = ()=>{
+//   let totalprice = 0
+//   cart.map((ele,ind)=>{
+//       totalprice = ele.price * ele.qnty + totalprice
+//   });
+//   setPrice(totalprice)
+// }  
 
 
 // count total quantity
-const countquantity = ()=>{
-  let totalquantity = 0
-  carts.map((ele,ind)=>{
-      totalquantity = ele.qnty + totalquantity
-  });
-  setTotalQuantity(totalquantity)
-}  
+// const countquantity = ()=>{
+//   let totalquantity = 0
+//   carts.map((ele,ind)=>{
+//       totalquantity = ele.qnty + totalquantity
+//   });
+//   setTotalQuantity(totalquantity)
+// }  
 
-useEffect(()=>{
-  total()
-},[total])
+// useEffect(()=>{
+//   total()
+// },[total])
 
-useEffect(()=>{
-  countquantity()
-},[countquantity])
+// useEffect(()=>{
+//   countquantity()
+// },[countquantity])
 return (
-      <div className='row justify-content-center m-0'>
-          <div className='col-md-8 mt-5 mb-5 cardsdetails'>
-              <div className="card">
-                  <div className="card-header bg-dark p-3">
-                      <div className='card-header-flex'>
-                          <h5 className='text-white m-0'>Cart Calculation{carts.length >0 ? `(${carts.length})`:""}</h5>
-                          {
-                              carts.length > 0 ? <button className='btn btn-danger mt-0 btn-sm'
-                              onClick={emptycart}
-                              ><i className='fa fa-trash-alt mr-2'></i><span>EmptyCart</span></button>
-                                  : ""
-                          }
-                      </div>
+//  <div className="cart-container">
+//       <h2 className='cart-empty'>Shopping Cart</h2>
+//       {items=== 0 ? (
+//         <div className="cart-empty">
+//           <p>Your cart is currently empty</p>
+//           <div className="start-shopping">
+//             <Link to="/">
+//               <svg
+//                 xmlns="http://www.w3.org/2000/svg"
+//                 width="20"
+//                 height="20"
+//                 fill="currentColor"
+//                 className="bi bi-arrow-left"
+//                 viewBox="0 0 16 16"
+//               >
+//                 <path
+//                   fillRule="evenodd"
+//                   d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"
+//                 />
+//               </svg>
+//               <span>Start Shopping</span>
+//             </Link>
+//           </div>
+//         </div>
+//       ) : (
+//         <div>
+//           <div className="titles">
+//             <h3 className="product-title">Product</h3>
+//             <h3 className="price">Price</h3>
+//             <h3 className="quantity">Quantity</h3>
+//             <h3 className="total">Total</h3>
+//           </div>
+//           <div className="cart-item">
+//             {items.length >0 &&
+//               items.map((cartItem) => (
+//                 <div className="cart-item" key={cartItem.id}>
+//                   <div className="cart-product">
+//                     <img src={cartItem.images} alt={cartItem.name} />
+//                     <div>
+//                       <h3>{cartItem.name}</h3>
+//                       {/* <p>{cartItem.desc}</p> */}
+//                       <button onClick={() => items.removeOneFromCart(cartItem.id)}>
+//                         Remove
+//                       </button>
+//                     </div>
+//                   </div>
+//                   <div className="cart-product-price">${cartItem.price}</div>
+//                   <div className="cart-product-quantity">
+//                         <button onClick={() => items.deleteFromCart(cartItem)}>
+//                           -
+//                         </button>
+//                     {/* <div className="count">{cartItem}</div> */}
+//                     <button onClick={() => items.add(cartItem)}>+</button>
+//                   </div>
+//                   {/* <div className="cart-product-total-price">
+//                     ${cartItem.price * cartItem.cartQuantity}
+//                   </div> */}
+//                 </div>
+//               ))}
+//           </div>
+//           <div className="cart-summary">
+//             <button className="clear-btn" onClick={() => items.deleteFromCart(items.id)}>
+//               Clear Cart
+//             </button>
+//             <div className="cart-checkout">
+//               <div className="subtotal">
+//                 <span>Subtotal</span>
+//                 <span className="amount">${items}</span>
+//               </div>
+//               <p>Taxes and shipping calculated at checkout</p>
+//               <button>Check out</button>
+//               <div className="continue-shopping">
+//                 <Link to="/">
+//                   <svg
+//                     xmlns="http://www.w3.org/2000/svg"
+//                     width="20"
+//                     height="20"
+//                     fill="currentColor"
+//                     className="bi bi-arrow-left"
+//                     viewBox="0 0 16 16"
+//                   >
+//                     <path
+//                       fillRule="evenodd"
+//                       d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"
+//                     />
+//                   </svg>
+//                   <span>Continue Shopping</span>
+//                 </Link>
+//               </div>
+//             </div>
+//           </div>
+//         </div>
+//       )}
+//     </div> 
+<></>
+  );
+};
 
-                  </div>
-                  <div className="card-body p-0">
-                          {
-                              carts.length === 0 ? <table className='table cart-table mb-0'>
-                                  <tbody>
-                                      <tr>
-                                          <td colSpan={6}>
-                                              <div className='cart-empty'>
-                                                  <i className='fa fa-shopping-cart'></i>
-                                                  <p>Your Cart Is Empty</p>
-                                              </div>
-                                          </td>
-                                      </tr>
-                                  </tbody>
-                              </table> :
-                              <table className='table cart-table mb-0 table-responsive-sm'>
-                                  <thead>
-                                      <tr>
-                                          <th>Action</th>
-                                          <th>Product</th>
-                                          <th>Name</th>
-                                          <th>Price</th>
-                                          <th>Qty</th>
-                                          <th className='text-right'> <span id="amount" className='amount'>Total Amount</span></th>
-                                      </tr>
-                                  </thead>
-                                  <tbody>
-                                      {
-                                          carts.map((data,index)=>{
-                                              return (
-                                                  <>
-                                                      <tr>
-                                                          <td>
-                                                              <button className='prdct-delete'
-                                                              onClick={()=>handleDecrement(data.id)}
-                                                              ><i className='fa fa-trash-alt'></i></button>
-                                                          </td>
-                                                          <td><div className='product-img'><img src={data.imgdata} alt="" /></div></td>
-                                                          <td><div className='product-name'><p>{data.dish}</p></div></td>
-                                                          <td>{data.price}</td>
-                                                          <td>
-                                                              <div className="prdct-qty-container">
-                                                                  <button className='prdct-qty-btn' type='button' 
-                                                                  onClick={data.qnty <=1 ?()=>handleDecrement(data.id) :()=>handleSingleDecrement(data)}
-                                                                  >
-                                                                      <i className='fa fa-minus'></i>
-                                                                  </button>
-                                                                  <input type="text" className='qty-input-box' value={data.qnty} disabled name="" id="" />
-                                                                  <button className='prdct-qty-btn' type='button' onClick={()=>handleIncrement(data)}>
-                                                                      <i className='fa fa-plus'></i>
-                                                                  </button>
-                                                              </div>
-                                                          </td>
-                                                          <td className='text-right'>₹ {data.qnty * data.price}</td>
-                                                      </tr>
-                                                  </>
-                                              )
-                                          })
-                                      }
-                                  </tbody>
-                                  <tfoot>
-                                      <tr>
-                                          <th>&nbsp;</th>
-                                          <th colSpan={3}>&nbsp;</th>
-                                          <th>Items In Cart <span className='ml-2 mr-2'>:</span><span className='text-danger'>{totalquantity}</span></th>
-                                          <th className='text-right'>Total Price<span className='ml-2 mr-2'>:</span><span className='text-danger'>₹ {totalprice}</span></th>
-                                      </tr>
-                                  </tfoot>
-                              </table>
-                          }
-                  </div>
-              </div>
-          </div>
-      </div>
-)
-                        }
-export default Cart;
+                        
+export default Card;
 
