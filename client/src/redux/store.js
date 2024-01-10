@@ -5,6 +5,7 @@ import authReducer from './features/auth/authSlice'
 import { apiSlice } from "./features/auth/apiSlice";
 import productReducer from './features/products/productsSlice'
 import cartReducer from './features/cart/cartSlice'
+import cartSlice from "./features/cart/cartSlice";
 
 
 export const store = configureStore({
@@ -12,7 +13,7 @@ export const store = configureStore({
         [apiSlice.reducerPath] : apiSlice.reducer, 
          auth : authReducer,
          product :  productReducer,
-         cart : cartReducer
+         allCart: cartSlice
           
     },
     middleware : (getDefaultMiddleware)   => getDefaultMiddleware().concat(apiSlice.middleware),

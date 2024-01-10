@@ -21,7 +21,7 @@ export const logo = (
 const Navigation = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const carts = useSelector(selectItems);
+  const carts = useSelector(state => state.cart);
   console.log(carts);
   const { userInfo } = useSelector((state) => state.auth);
   const [logoutApiCall] = useLogoutMutation();

@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchAllProductAsync, fetchProductByIdAsync, selectAllProducts, selectProductById } from "../../redux/features/products/productsSlice";
 import { useParams } from "react-router-dom";
 import { FaEye, FaHeart } from "react-icons/fa";
-import  addToCart, { addcart } from "../../redux/features/cart/cartSlice.js";
+import  addToCart from "../../redux/features/cart/cartSlice.js";
 import { selectItems } from "../../redux/features/cart/cartSlice";
 
 
@@ -20,7 +20,7 @@ function classNames(...classes) {
 export default function ProductDetails({product}) {
   console.log(product)
   const dispatch = useDispatch();;
-  const carts = useSelector(selectItems);
+  const {carts} = useSelector((state)=>state.allCart);
   const [cartData, setCartData] = useState();
   const send = (e) => {
 dispatch(addToCart(e))
