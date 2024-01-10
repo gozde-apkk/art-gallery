@@ -58,13 +58,8 @@ const HomeNftSection = () => {
             >
               {item.title}
             </h1>
-           <p>Show All</p>
          </div>
             <div className="w-full h-full text-center text-white">
-
-
-
-              
         
         <AliceCarousel
                 className="relative w-1"

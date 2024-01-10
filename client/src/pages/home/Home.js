@@ -6,8 +6,13 @@ import Artist from "../../layout/Artist";
 import HomeNftSection from "../../components/home/HomeNftSection";
 import Footer from "../../components/footer/Footer";
 import HomeInfoBox from "../../customer/components/HomeInfoBox";
+import { useSelector } from "react-redux";
+import { selectAllProducts } from "../../redux/features/products/productsSlice";
+import Section from "../../components/section/Section";
 
 const Home = () => {
+
+    const products = useSelector(selectAllProducts);
   return (
     <div className="w-full h-full text-white bg-black">
       <div className="flex-grow flex-1 mx-auto  my-5 w-full max-w-screen-xl ">
@@ -35,7 +40,9 @@ const Home = () => {
         </div>{" "}
       </div>{" "}
       <div className=" h-full w-full justify-center flex flex-col">
-        <HomeNftSection />
+
+        <Section products={products}/>
+
 
         <Artist />
         <HomeInfoBox />
