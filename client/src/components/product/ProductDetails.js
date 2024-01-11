@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import { useContext } from "react";
 import {CartContext} from "../../context/cart/CartContext.js";
 import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
 
 
 const reviews = { href: "#", average: 4, totalCount: 117 };
@@ -46,7 +47,8 @@ const {addToCart} = useContext(CartContext);
                   <p className="text-3xl p-12 ">Current price: <span>${product.price}</span></p>
               
                   <div>
-                   <button onClick={()=> addToCart(product)}  className=" hover:bg-red-950 p-2 ">Add to cart</button>
+                   <button onClick={()=> {addToCart(product) 
+                                toast.success("Added to Cart")}}  className=" hover:bg-red-950 p-2 ">Add to cart</button>
                   </div>
                </div>
              </div>

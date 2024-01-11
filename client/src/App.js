@@ -42,6 +42,8 @@ import QualityPromise from "./components/quality/QualityPromise";
 import {CartProvider} from "./context/cart/CartContext";
 
 import CardPage from "./components/card/CardPage";
+import Checkout from "./pages/checkout/Checkout";
+import PageNotFound from "./pages/notfound/PageNotFound";
 // minified version is also included
 // import 'react-toastify/dist/ReactToastify.min.css';
 ;
@@ -70,7 +72,8 @@ function App() {
 
           <Route path="/store" element={<Store />} />
           <Route path="/cart" element={<CardPage />} />
-          
+           <Route path="/checkout" element={<Checkout/>}/>
+           <Route path="/*" element={<PageNotFound/>}/>
 
           <Route
             path="/store"

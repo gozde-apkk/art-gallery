@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 
 import "swiper/css";
 import "../../../src/style/style.css";
 import { Link } from "react-router-dom";
+import { CartContext } from "../../context/cart/CartContext";
+import { toast } from "react-toastify";
 const Section = ({ products }) => {
   console.log(products);
+  const {addToCart} = useContext(CartContext);
   return (
     <div
       style={{
@@ -39,7 +42,7 @@ const Section = ({ products }) => {
         {products &&
           products.map((product, idx) => (
             <SwiperSlide className=" backdrop-blur-3xl" key={idx}>
-            <Link  to="/product-details/`${product.id}`">
+            <Link to={`/product-details/${product.id}`}>
             <div className="border-2 w-[16rem] h-[23rem]">
                 <div className="flex  flex-col border-2 w-full h-full items-end">
                  <div className="h-[15.75rem] w-full border-2">
@@ -50,7 +53,8 @@ const Section = ({ products }) => {
                     <span> ${product.price}</span>
                  </div>
                  <div className="flex hover:bg-red-500 items-center w-full justify-center p-1">
-                    <button>Add to cart</button>
+                    <button onClick={() => {addToCart(product) 
+                         toast.success("Added to Cart")}}>Add to cart</button>
                  </div>
 
                 </div>
