@@ -1,6 +1,7 @@
 
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
+const { FALSE } = require('node-sass');
 
 Schema = mongoose.Schema;
 
@@ -32,10 +33,10 @@ name : {
         required : [true, "Please add photo"],
         default : 'https://i.ibb.co/4pDNDk1/avatar.jpg',
     },
-    role : {
-        type : String,
+    roles : {
+        type : Array,
         default : 'customer',
-        enum : ["admin", "customer"],
+  
     },
     phone : {
         type : String,
@@ -44,8 +45,31 @@ name : {
     address : {
         type : Object,
         //addres, state , country
-    }
-}, {timestamps : true})
+    },
+    isAdmin : {
+        type : Boolean,
+        default : false
+    },
+    cart : {
+        type: Object,
+        default : {
+            total: 0,
+            count : 0
+        }
+    },
+    notification : {
+        type : Array,
+        default : []
+    },
+    orders : [
+        {
+            type : mongoose.Schema.Types.ObjectId, ref : 'Order'
+        }
+    ]
+
+
+}, {timestamps : true, 
+   minimize : false})
 
 // Match user entered password to hashed password in database
 userSchema.methods.matchPassword = async function (enteredPassword) {

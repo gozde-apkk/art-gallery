@@ -9,6 +9,7 @@ const {
   updateUser,
   updatePhoto,
   getUser,
+  getAllUsers,
 } = require("../controllers/userController.js");
 const { protect, requireSignin } = require("../middleware/authMiddleware2.js");
 const { getLoginStatus, getUserById } = require("../controllers/user.js");
@@ -20,8 +21,8 @@ router.post("/login", loginUser);
 router.post("/logout", logoutUser);
 router.get("/getLoginStatus", getLoginStatus);
 router.get("/:id", getUserById);
-
-router.patch("/updateUser", protect, updateUser);
+router.get("/", getAllUsers);
+router.patch("/update-user", updateUser);
 router.patch("/updatePhoto", protect, updatePhoto);
 router
   .route("/profile")

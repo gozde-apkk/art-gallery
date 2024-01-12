@@ -14,7 +14,7 @@ const Artist = () => {
      color:"white",
 
     }
-    } className='flex h-full bg-black flex-col'>
+    } className='flex h-full  flex-col'>
         <div className='text-aliceblue  text-4xl flex justify-center m-10'>
         <h1>THE ARTIST</h1>
         </div>

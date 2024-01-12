@@ -8,7 +8,7 @@ import './footer.css'
 
 const Footer = () => {
   return (
-    <div className='text-white w-full h-full bg-black'>
+    <div className='text-white w-full h-full '>
   <footer className="footer h-[400px] flex flex-row justify-around items-center p-10 bg-base-200 ">
   <nav >
     <header className="text-2xl mb-5 w-10">Services</header> 

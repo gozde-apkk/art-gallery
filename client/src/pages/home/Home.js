@@ -14,7 +14,7 @@ const Home = () => {
 
     const products = useSelector(selectAllProducts);
   return (
-    <div className="w-full h-full text-white bg-black">
+    <div className="w-full h-full text-white">
       <div className="flex-grow flex-1 mx-auto  my-5 w-full max-w-screen-xl ">
         <div className="py-20 md:px-20 mx-auto text-center flex flex-col items-center max-w-3xl">
           <h1 className="text-4xl font-bold px-2.5  tracking-tight text-gray-300 sm:text-6xl">
