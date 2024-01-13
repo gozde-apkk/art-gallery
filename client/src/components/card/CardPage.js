@@ -4,6 +4,7 @@
 import React, { useContext } from 'react'
 import { CartContext } from '../../context/cart/CartContext'
 import {Link} from 'react-router-dom'
+import './Card.css'
 
 const CardPage = () => {
     const { cartItems, addToCart, removeFromCart, clearCart, getCartTotal , deleteFromCart } = useContext(CartContext)
@@ -47,7 +48,7 @@ const CardPage = () => {
             cartItems.map((item) => (
               <div className="cart-item" key={item.id}>
                 <div className="cart-product">
-                  <img src={item.images} alt={item.name} />
+                  <img style={{width : '30px'}} src={item.images} alt={item.name} />
                   <div>
                     <h3>{item.name}</h3>
                     <button onClick={() => deleteFromCart(item.id)}>

@@ -3,8 +3,6 @@ import "./authstyle.css";
 
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { useRegisterMutation } from "../../redux/features/auth/userApiSlice";
-import { setCredentials } from "../../redux/features/auth/authSlice.js";
 import { toast } from "react-toastify";
 import Loader from "./Loader";
 
@@ -16,38 +14,9 @@ const Register = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [register, { isLoading }] = useRegisterMutation();
   const { userInfo } = useSelector((state) => state.auth);
   const sumbitHandler = async (e) => {
-    e.preventDefault();
-
-    if (password !== password2) {
-      toast.error("Passwords do not match");
-    } else {
-      try {
-        const res = await register({
-          name,
-          email,
-          password,
-          password2,
-        }).unwrap();
-
-        if (dispatch(setCredentials({ ...res }))) {
-          navigate("/");
-          toast.success("Register Successfuly");
-        } else {
-          navigate("/login");
-        }
-      } catch (err) {
-        toast.error(err.data.message);
-      }
     }
-  };
-  useEffect(() => {
-    if (userInfo) {
-      navigate("/");
-    }
-  }, [navigate, userInfo]);
   return (
     <>
       <div className="h-full ">
@@ -102,7 +71,6 @@ const Register = () => {
               required
               onChange={(e) => setPassword2(e.target.value)}
             />
-            {isLoading && <Loader/>}
             <a href="">
               By registering, you agree to the Terms, Data Policy and Cookies
               Policy{" "}
