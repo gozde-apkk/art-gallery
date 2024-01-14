@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./authstyle.css";
 import { Link } from "react-router-dom";
 
@@ -22,22 +22,23 @@ const Login = () => {
   const [login, { isLoading }] = useLoginMutation();
   const { userInfo } = useSelector((state) => state.auth);
   const sumbitHandler = async (e) => {
-    e.preventDefault();
+    e.preventDefault(); 
     try {
-      const res = await login({ email, password }).unwrap();
-
-      if (dispatch(setCredentials({ ...res }))) {
-        navigate("/");
-        toast.success("Login Successfuly");
-      } else {
-        navigate("/login");
-      }
-    } catch (err) {
-      console.log(err?.data?.message || err.error);
-      toast.error(err?.data?.message);
+      const res = await login({email, password}).unwrap();
+      dispatch(setCredentials({...res}))
+      navigate("/");
+      toast.success("Login Successfully");
+    } catch (error) {
+      toast.error(error?.data?.message || error.error);
     }
+
   };
 
+  useEffect(()=> {
+    if(userInfo){
+      navigate("/");
+    }
+  },[navigate, userInfo]);
   const { signUpWithGmail } = useContext(AuthContext);
   const handleGoogle = () => {
     signUpWithGmail()

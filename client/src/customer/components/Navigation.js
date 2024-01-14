@@ -3,7 +3,7 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import { FaShoppingCart } from "react-icons/fa";
 import { useState } from "react";
 import { logout } from "../../redux/features/auth/authSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import {
   LightModeOutlined,
@@ -31,18 +31,13 @@ const Navigation = () => {
   const handleShow = () => setShow(true);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  const {userInfo} = useSelector((state) => state.auth)
+  console.log(userInfo);
   const { user } = useContext(AuthContext);
   console.log(user);
   const [logoutApiCall] = useLogoutMutation();
   const handleLogout = async () => {
-    try {
-      await logoutApiCall().unwrap();
-      dispatch(logout());
-      navigate("/");
-    } catch (error) {
-      console.log(error);
-    }
+ 
   };
   const navRef = useRef();
   const showNavbar = () => {
@@ -96,60 +91,22 @@ const Navigation = () => {
       {logo}
       <div className="menu">
         <nav ref={navRef} className="flex w-full  justify-around items-center">
-          {/* <ul className="h-7">
-            <li className="mx-4  hover:bg-red-600">
-              <NavLink
-                className="active:relative sm:mx-1 active:text-rose-500"
-                to="/store"
-              >
-                Shop
-              </NavLink>
-            </li>
-          </ul> */}
-          <div className="flex items-center">
-            {/* <span className="">
-              {user ? (
-                <>
-                  <Link
-                    onClick={handleLogout}
-                    to={"/"}
-                    className="p-2 hover:bg-red-600 mx-4 active:relative active:text-rose-500"
-                  >
-                    {" "}
-                    Logout
-                  </Link>
-                </>
-              ) : (
-                <>
-                  <ShowOnLogout></ShowOnLogout>
-                  <ShowOnLogout>
-                    <NavLink
-                      to={"register"}
-                      className=" p-2 hover:bg-red-600 mx-4 mr-2 active:relative active:text-rose-500"
-                    >
-                      {" "}
-                      Register
-                    </NavLink>
-                  </ShowOnLogout>
-                </>
-              )}
-              <ShowOnLogin>
-                {
-                  <NavLink
-                    to={"myorder"}
-                    className="p-2 hover:bg-red-600 mx-4 active:relative active:text-rose-500"
-                  >
-                    {" "}
-                    My Order
-                  </NavLink>
-                }
-              </ShowOnLogin>
-            </span> */}
-          </div>
+      {userInfo && 
+          <ul className="h-7">
+          <li className="mx-4  hover:bg-red-600">
+            <NavLink
+              className="active:relative sm:mx-1 active:text-rose-500"
+              to="/store"
+            >
+              Shop
+            </NavLink>
+          </li>
+        </ul>}
+     
         </nav>
       </div>
       <FlexBetween>
-       {user ? <>{carts} </>: ""}
+       {user || userInfo ? <>{carts} </>: ""}
         <IconButton onClick={() => dispatch(setMode())}>
           {theme.palette.mode === "dark" ? (
             <DarkModeOutlined sx={{ fontSize: "25px" }} />
@@ -161,7 +118,7 @@ const Navigation = () => {
           <SettingsOutlined />
         </IconButton>
       
-        {user ? <ProfileImage user={user} /> :  <IconButton>
+        { user || userInfo ? <ProfileImage user={userInfo} /> :  <IconButton>
           <NavLink
             to="/login"
             className=" p-2 mx-4 mr-2 active:relative active:text-rose-500"

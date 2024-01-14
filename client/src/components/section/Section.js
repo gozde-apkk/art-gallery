@@ -29,7 +29,7 @@ const Section = ({ products }) => {
         spaceBetween={10}
         centeredSlides={true}
         autoplay={{
-          delay: 10000,
+          delay: 1000000,
           pauseOnMouseEnter: true,
         }}
         pagination={{
@@ -41,11 +41,11 @@ const Section = ({ products }) => {
       >
         {products &&
           products.map((product, idx) => (
-            <SwiperSlide className=" backdrop-blur-3xl grid grid-cols-5 " key={idx}>
+            <SwiperSlide className="  border-2 " key={idx}>
               <Link to={`/product-details/${product.id}`}>
-                <div className=" w-[16rem] h-[23rem]">
-                  <div className="flex  flex-col w-full h-full px-36 items-end">
-                    <div className="h-[15.75rem] w-full border-2">
+                <div className=" w-[16rem]  h-[25rem]">
+                  <div className="flex  flex-col w-full h-full items-end">
+                    <div className="h-[15.75rem] w-full">
                       <img className="object-contain" src={product.images} />{" "}
                     </div>{" "}
                     <div className="h-12 w-full flex items-center justify-around">

@@ -42,3 +42,16 @@ export function fetchProductById(id) {
         resolve({ data });
       });
     }
+
+
+    export function createProduct(product) {
+      return new Promise(async (resolve) => {
+        const response = await fetch('/products/', {
+          method: 'POST',
+          body: JSON.stringify(product),
+          headers: { 'content-type': 'application/json' },
+        });
+        const data = await response.json();
+        resolve({ data });
+      });
+    }

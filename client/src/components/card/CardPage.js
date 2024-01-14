@@ -61,7 +61,7 @@ const CardPage = () => {
                   <button onClick={() => removeFromCart(item)}>
                     -
                   </button>
-                  <div className="count">{getCartTotal()}</div>
+                  <div className="count">{item.quantity}</div>
 
                   <button onClick={() =>  addToCart(item)}>+</button>
                 </div>
