@@ -1,6 +1,24 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { CartContext } from "../../context/cart/CartContext";
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import Modal from '@mui/material/Modal';
+import {  useTheme } from "@mui/material";
+
+
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
 
 const products = [
   {
@@ -49,9 +67,14 @@ const addresses = [
   },
 ];
 const Checkout = () => {
+  const { cartItems, addToCart, removeFromCart, clearCart, getCartTotal , deleteFromCart } = useContext(CartContext)
 
-    const {cartItems} = useContext(CartContext);
-    console.log("Checkout", cartItems)
+  const theme = useTheme();
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
+  console.log("Checkout", cartItems);
   return (
     <div className="mx-auto max-w-7xl  px-16 sm:px-6 lg:px-12">
       <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-5">
@@ -216,19 +239,19 @@ const Checkout = () => {
                 </div>
               </div>
               <div className="mt-6 flex items-center justify-end gap-x-6">
-              <button
-                type="button"
-                className="text-sm font-semibold leading-6 text-gray-900"
-              >
-                Reset
-              </button>
-              <button
-                type="submit"
-                className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-              >
-                Add Address
-              </button>
-            </div>
+                <button
+                  type="button"
+                  className="text-sm font-semibold leading-6 text-gray-900"
+                >
+                  Reset
+                </button>
+                <button
+                  type="submit"
+                  className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                >
+                  Add Address
+                </button>
+              </div>
               <div className="border-b border-gray-900/10 pb-12">
                 <h2 className="text-base font-semibold leading-7 text-gray-900">
                   Existing Address
@@ -236,7 +259,7 @@ const Checkout = () => {
                 <p className="mt-1 text-sm leading-6 text-gray-600">
                   Choose from Exiting address
                 </p>
-                <ul role="list" >
+                <ul role="list">
                   {addresses.map((address) => (
                     <li
                       key={address.email}
@@ -315,18 +338,14 @@ const Checkout = () => {
                 </div>
               </div>
             </div>
-
-   
           </form>
         </div>
-        <div className="lg:col-span-2 text-white" >
+        <div className="lg:col-span-2 ">
           <div className="mx-auto mt-12 max-w-7xl px-0 sm:px-0 lg:px-0">
-            <h1 className="text-4xl my-5 font-bold tracking-tight ">
-              Cart
-            </h1>
+            <h1 className="text-4xl my-5 font-bold tracking-tight ">Cart</h1>
             <div className="border-t px-4 py-6 sm:px-6">
               <div className="flow-root">
-                <ul role="list" className="-my-6 divide-y divide-gray-50">
+                <ul role="list" className="-my-6 divide-y ">
                   {cartItems.map((product) => (
                     <li key={product.id} className="flex py-6">
                       <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border">
@@ -339,7 +358,7 @@ const Checkout = () => {
 
                       <div className="ml-4 flex flex-1 flex-col">
                         <div>
-                          <div className="flex justify-between text-base font-medium text-gray-50">
+                          <div className="flex justify-between text-base font-medium ">
                             <h3>
                               <a href={product.href}>{product.name}</a>
                             </h3>
@@ -348,12 +367,11 @@ const Checkout = () => {
                           <p className="mt-1 text-sm text-gray-500">
                             {product.color}
                           </p>
-                        </div>
-                        <div className="flex flex-1 items-end justify-between text-sm">
+                          <div className="flex flex-1 items-end justify-between text-sm">
                           <div className="text-gray-500">
                             <label
                               htmlFor="quantity"
-                              className="block inline mr-5 text-sm font-medium text-gray-50"
+                              className="block inline mr-5 text-sm font-medium "
                             >
                               Qty
                             </label>
@@ -366,6 +384,7 @@ const Checkout = () => {
 
                           <div className="flex">
                             <button
+                            onClick={() => deleteFromCart(product.id)}
                               type="button"
                               className="font-medium text-red-600 "
                             >
@@ -373,30 +392,45 @@ const Checkout = () => {
                             </button>
                           </div>
                         </div>
-                      </div>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-            <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
-              <div className="flex justify-between my-2 text-base font-medium text-gray-50">
+                        </div>
+                        <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
+              <div className="flex justify-between my-2 text-base font-medium">
                 <p>Subtotal</p>
-                {/* <p>$ {totalAmount}</p> */}
+               <span>${getCartTotal()}</span>
               </div>
-              <div className="flex justify-between my-2 text-base font-medium text-gray-50">
+              <div className="flex justify-between my-2 text-base font-medium">
                 <p>Total Items in Cart</p>
-                {/* <p>{totalItems} items</p> */}
+               <p>{product.quantity}</p>
               </div>
-              <p className="mt-0.5 text-sm text-gray-500">
+              <p className="mt-0.5 text-sm">
                 Shipping and taxes calculated at checkout.
               </p>
               <div className="mt-6">
                 <Link
-                  to="/pay"
+                  to=""
                   className="flex items-center justify-center rounded-md border border-transparent bg-red-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-red-700"
                 >
-                  Pay and Order
+                  <Button onClick={handleOpen}>Payment</Button>
+                  <Modal
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby="modal-modal-title"
+                    aria-describedby="modal-modal-description"
+                  >
+                    <Box sx={style}>
+                      <Typography
+                        id="modal-modal-title"
+                        variant="h6"
+                        component="h2"
+                      >
+                        Text in a modal
+                      </Typography>
+                      <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                        Duis mollis, est non commodo luctus, nisi erat porttitor
+                        ligula.
+                      </Typography>
+                    </Box>
+                  </Modal>
                 </Link>
               </div>
               <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
@@ -414,6 +448,13 @@ const Checkout = () => {
                 </p>
               </div>
             </div>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+         
           </div>
         </div>
       </div>

@@ -25,7 +25,7 @@ const ProductComponent = ({product}) => {
                  </div>
        <p className="justify-center flex">{product.name} </p>
        <p className="flex justify-center mt-1"> ${product.price} </p>
-        <button onClick={() =>{ addToCart(product)
+        <button  onClick={() =>{ addToCart(product)
                                 toast.success("Added to Cart")}}>Add to Cart</button>
         </>
 

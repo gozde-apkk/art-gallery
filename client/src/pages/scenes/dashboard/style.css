@@ -1,0 +1,31 @@
+.ant-Layout-sider-collapse 
+main{
+    overflow-y: scroll !important;
+}
+.ant-Layout-sider-collapse {
+    flex : 0 0 250px !important;
+    max-width: 250px !important;
+    min-width: 250px !important;
+    width: 250px !important;
+    margin-top: 5rem !important;
+    background-color: black !important;
+}
+.ant-Layout {
+    flex : 0 0 250px !important;
+    max-width: 250px !important;
+    min-width: 250px !important;
+    width: 250px !important;
+}
+
+.ant-layout-slider-children {
+    background-color: black;
+}
+
+.ant-menu {
+ background-color: black !important;
+ margin-top: 4rem !important;
+}
+
+.ant-layout-header {
+    background-color: black !important;
+}

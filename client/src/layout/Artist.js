@@ -6,7 +6,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import {artists} from '../data/artist'
 import 'swiper/css';
-import '../style/style.css'
+import './style.css'
 const Artist = () => {
 
   return (
@@ -19,7 +19,7 @@ const Artist = () => {
         <h1>THE ARTIST</h1>
         </div>
         <Swiper style={{
-          width: "100%",
+          width: "90%",
           height:"23rem"
         }}
         slidesPerView={5}
@@ -37,11 +37,11 @@ const Artist = () => {
         className="mySwiper"
       >
        {artists.map((artist) => (
-         <SwiperSlide  className=' backdrop-blur-3xl' key={artist.id}>
-          <div  style={{border: "40px solid #1a181861"}} className='w-full h-full '>
+         <SwiperSlide  className=' ' key={artist.id}>
+          <div  className='w-full h-full '>
           <div className='flex items-end'>
-          <img  className='w-[300px] mr-3 blur sticky shadow-lg shadow-red-500/50 ' src={artist.img} alt={artist.name} />
-          <img  style={{width:"90px", height:"90px", left:"105px"}} className='w-3 absolute  h-5 mr-3 p-2 shadow-lg shadow-red-500/50 ' src={artist.img} alt={artist.name} />
+          <img  className='w-[300px] mr-5 blur sticky shadow-lg shadow-red-500/50 ' src={artist.img} alt={artist.name} />
+          <img  style={{width:"90px", height:"90px", left:"87px"}} className='w-3 absolute  h-5 mr-3 p-2 shadow-lg shadow-red-500/50 ' src={artist.img} alt={artist.name} />
           </div>
           <div style={{fontSize:"large", height:"58px" , transition: "background-color 0.5s", marginRight:"5px"}}>
           <p className='h-full mt-7'>{artist.name}</p>

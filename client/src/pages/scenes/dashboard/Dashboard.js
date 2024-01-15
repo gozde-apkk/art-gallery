@@ -11,7 +11,11 @@ import { SiBrandfolder } from "react-icons/si";
 import { BiCategoryAlt } from "react-icons/bi";
 
 import { useTheme } from "@mui/material";
-import { FaBloggerB, FaClipboard, FaClipboardList } from "react-icons/fa";
+import { FaBloggerB,FaClipboardList } from "react-icons/fa";
+
+import "./style.css"
+import { useNavigate } from "react-router-dom";
+
 const { Header, Content, Footer, Sider } = Layout;
 function getItem(label, key, icon, children) {
   return {
@@ -22,7 +26,7 @@ function getItem(label, key, icon, children) {
   };
 }
 const items = [
-  getItem("Dashboard", "dashboard", <AiOutlineDashboard />),
+  getItem("Dashboard", "", <AiOutlineDashboard />),
   getItem("Customers", "customers", <AiOutlineUser />),
   getItem("Catalog", "cataalog", <AiOutlineShoppingCart />, [
     getItem("Add Product", "add-product", <AiOutlineShoppingCart />),
@@ -49,7 +53,7 @@ const items = [
 const Dashboard = () => {
   const theme = useTheme();
   const [collapsed, setCollapsed] = useState(false);
-
+   const navigate = useNavigate();
   return (
     <Layout
       style={{
@@ -63,8 +67,9 @@ const Dashboard = () => {
       >
         <div className="demo-logo-vertical" />
         <Menu
-          theme="dark"
-          defaultSelectedKeys={["1"]}
+    theme="dark"
+    onClick={({key}) => navigate(`${key}`)}
+          defaultSelectedKeys={[""]}
           mode="inline"
           items={items}
         />
@@ -85,7 +90,7 @@ const Dashboard = () => {
               margin: "16px 0",
             }}
           >
-            <Breadcrumb.Item>User</Breadcrumb.Item>
+            <Breadcrumb.Item></Breadcrumb.Item>
             <Breadcrumb.Item>Bill</Breadcrumb.Item>
           </Breadcrumb>
           <div
@@ -98,7 +103,8 @@ const Dashboard = () => {
             Bill is a cat.
           </div>
         </Content>
-        <Footer
+
+        <Footer   
           style={{
             textAlign: "center",
           }}

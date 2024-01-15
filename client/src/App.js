@@ -34,10 +34,9 @@ import QualityPromise from "./components/quality/QualityPromise";
 import { CartProvider } from "./context/cart/CartContext";
 
 import CardPage from "./components/card/CardPage";
-import Checkout from "./pages/checkout/Checkout";
+import Checkout from "./components/checkout/Checkout";
 import PageNotFound from "./pages/notfound/PageNotFound";
 import { themeSettings } from "./theme";
-import Dashboard from "./pages/scenes/dashboard/Dashboard";
 import AuthProvider from "./context/auth/AuthContext";
 import NewProduct from "./components/product/NewProduct";
 // minified version is also included
@@ -69,20 +68,18 @@ function App() {
                 <Route path="/cart" element={<CardPage />} />{" "}
                 <Route path="/checkout" element={<Checkout />} />{" "}
                 <Route path="/*" element={<PageNotFound />} />{" "}
-                <Route path="/dashboard" element={<Dashboard />} />{" "}
-                <Route path="/new-product" element={<NewProduct />} />
+                <Route path="/new-product" element={<NewProduct />} />{" "}
+                <Route path="/profile" element={<Profile />} />{" "}
                 <Route
                   path="/store"
                   element={<ProductComponent products={products} />}
                 />
-           
                 <Route path="" element={<PrivateRoute />}>
-                  <Route path="/profile" element={<Profile />} />{" "}
                   <Route path="/quality" element={<QualityPromise />} />{" "}
                   <Route
-                  path="/product-details/:id"
-                  element={<ProductDetailPage />}
-                />{" "}
+                    path="/product-details/:id"
+                    element={<ProductDetailPage />}
+                  />{" "}
                 </Route>{" "}
               </Routes>{" "}
             </CartProvider>{" "}

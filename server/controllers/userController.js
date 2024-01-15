@@ -169,9 +169,9 @@ const getLoginStatus = asyncHandler (async (req, res) => {
 
 //th pass
 const registerUser = async (req, res , next) => {
-  const {name , email, password, password2, } = req.body;
+  const {name , email, password, password2, roles } = req.body;
 
-  if(!name || !password || !email || !password2 ) return next(new Error("Please add all fields"));
+  if(!name || !password || !email || !password2 || !roles ) return next(new Error("Please add all fields"));
   
 
   if(password !== password2) return next(new Error("Passwords do not match"));
@@ -186,6 +186,7 @@ const registerUser = async (req, res , next) => {
       name: req.body.name,
       email: req.body.email,
       password : hashPassword,
+      roles : req.body.roles
   })
   try {
       const dataToSave = await data.save();

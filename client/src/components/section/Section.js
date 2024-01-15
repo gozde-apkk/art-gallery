@@ -3,7 +3,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 
 import "swiper/css";
-import "../../../src/style/style.css";
+import './style.css'
 import { Link } from "react-router-dom";
 import { CartContext } from "../../context/cart/CartContext";
 import { toast } from "react-toastify";
@@ -37,11 +37,11 @@ const Section = ({ products }) => {
         }}
         navigation={true}
         modules={[Autoplay, Pagination, Navigation]}
-        className="mySwiper"
+        className=""
       >
         {products &&
           products.map((product, idx) => (
-            <SwiperSlide className="  border-2 " key={idx}>
+            <SwiperSlide className="w-[20rem] " key={idx}>
               <Link to={`/product-details/${product.id}`}>
                 <div className=" w-[16rem]  h-[25rem]">
                   <div className="flex  flex-col w-full h-full items-end">

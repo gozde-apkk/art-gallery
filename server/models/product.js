@@ -14,11 +14,9 @@ const productSchema = new mongoose.Schema({
     },
     reviews: {
         type: Number,
-        required: true
     },
     favorite: {
         type: Number,
-        required: true
     },
     price: {
         type: Number,
