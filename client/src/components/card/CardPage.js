@@ -5,11 +5,38 @@ import React, { useContext } from 'react'
 import { CartContext } from '../../context/cart/CartContext'
 import {Link} from 'react-router-dom'
 import './Card.css'
-
+import {loadStripe} from '@stripe/stripe-js';
 const CardPage = () => {
     const { cartItems, addToCart, removeFromCart, clearCart, getCartTotal , deleteFromCart } = useContext(CartContext)
 
     console.log("CartPage", cartItems);
+       // payment integration
+       const makePayment = async()=>{
+        const stripe = await loadStripe("ENTER YOUR PUBLISHABLE KEY");
+
+        const body = {
+            products:cartItems
+        }
+        const headers = {
+            "Content-Type":"application/json"
+        }
+        const response = await fetch("http://localhost:7000/api/create-checkout-session",{
+            method:"POST",
+            headers:headers,
+            body:JSON.stringify(body)
+        });
+
+        const session = await response.json();
+
+        const result = stripe.redirectToCheckout({
+            sessionId:session.id
+        });
+        
+        if(result.error){
+            console.log(result.error);
+        }
+    }
+
   return (
     <div style={{color:"white"}} className="cart-container">
     <h2>Shopping Cart</h2>

@@ -8,7 +8,7 @@ const DeliveryAddressForm = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        const data = new FormData(e.currentTarget);
+        const data = new FormData(e);
         const address = {
             firstName : data.get("firstName"),
             lastName : data.get("lastName"),
@@ -54,7 +54,7 @@ const DeliveryAddressForm = () => {
               <Grid item xs={12} sm={6}>
                 <TextField
                   required
-                  label="last name"
+                  label="lastName"
                   fullWidth
                   autoComplete="Enter Lastname"
                   id="lastName"
@@ -99,7 +99,7 @@ const DeliveryAddressForm = () => {
                   label="Zip/Postal Code"
                   fullWidth
                   autoComplete="shipping postal-code"
-                  id="zip   "
+                  id="zip"
                   name="zip "
                 />
               </Grid>
