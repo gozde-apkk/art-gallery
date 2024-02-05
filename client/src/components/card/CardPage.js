@@ -6,21 +6,22 @@ import { CartContext } from '../../context/cart/CartContext'
 import {Link} from 'react-router-dom'
 import './Card.css'
 import {loadStripe} from '@stripe/stripe-js';
+import PayButton from './PayButton';
+import { IconButton, useTheme } from "@mui/material";
 const CardPage = () => {
     const { cartItems, addToCart, removeFromCart, clearCart, getCartTotal , deleteFromCart } = useContext(CartContext)
-
-    console.log("CartPage", cartItems);
+    const theme = useTheme();
        // payment integration
        const makePayment = async()=>{
-        const stripe = await loadStripe("ENTER YOUR PUBLISHABLE KEY");
+        const stripe = await loadStripe("pk_test_51OZAL0HBjQiY78XbxjAH7bW522kdhe50LOR6Nr3YlVsE0VtKTFb3BrxQkHokaThXShiI773gGVTlJ7YdPjSQHqQG00fiVt2GNw");
 
         const body = {
-            products:cartItems
+            products:cartItems,
         }
         const headers = {
             "Content-Type":"application/json"
         }
-        const response = await fetch("http://localhost:7000/api/create-checkout-session",{
+        const response = await fetch("http://localhost:5000/api/create-checkout-session",{
             method:"POST",
             headers:headers,
             body:JSON.stringify(body)
@@ -38,7 +39,7 @@ const CardPage = () => {
     }
 
   return (
-    <div style={{color:"white"}} className="cart-container">
+    <div  className="cart-container">
     <h2>Shopping Cart</h2>
     {cartItems.length === 0 ? (
       <div className="cart-empty">
@@ -63,7 +64,7 @@ const CardPage = () => {
         </div>
       </div>
     ) : (
-      <div>
+      <div >
         <div className="titles">
           <h3 className="product-title">Product</h3>
           <h3 className="price">Price</h3>
@@ -75,7 +76,7 @@ const CardPage = () => {
             cartItems.map((item) => (
               <div className="cart-item" key={item.id}>
                 <div className="cart-product">
-                  <img style={{width : '30px'}} src={item.images} alt={item.name} />
+                  <img style={{width : '150px'}} src={item.images} alt={item.name} />
                   <div>
                     <h3>{item.name}</h3>
                     <button onClick={() => deleteFromCart(item.id)}>
@@ -108,8 +109,8 @@ const CardPage = () => {
               <span className="amount">${getCartTotal()}</span>
             </div>
             <p>Taxes and shipping calculated at checkout</p>
-            <Link to="/checkout">
-            <button>Check out</button>
+            <Link to="">
+            <PayButton cartItems={cartItems}/>
             </Link>
             <div className="continue-shopping">
               <Link to="/">

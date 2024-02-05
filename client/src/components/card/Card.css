@@ -1,7 +1,7 @@
 /* Cart */
 .cart-container {
     padding: 3rem 4rem;
-    color: #f9f9f9;
+   
     width: 100%;
     height: 100vh;
   }
@@ -53,11 +53,9 @@
     margin-top: 0.7rem;
     cursor: pointer;
     background: none;
-    color: gray;
+
   }
-  .cart-item .cart-product button:hover {
-    color: black;
-  }
+
   
   .cart-item .cart-product-quantity {
     display: flex;
@@ -99,7 +97,6 @@
     font-weight: 400;
     letter-spacing: 1.15px;
     border: 0.5px solid rgb(177, 177, 177);
-    color: gray;
     background: none;
     outline: none;
     cursor: pointer;
@@ -128,7 +125,7 @@
     font-weight: 400;
     letter-spacing: 1.15px;
     background-color: #4b70e2;
-    color: #f9f9f9;
+   
     border: none;
     outline: none;
     cursor: pointer;
@@ -139,7 +136,7 @@
   }
   .continue-shopping a,
   .start-shopping a {
-    color: gray;
+  
     text-decoration: none;
     display: flex;
     align-items: center;
