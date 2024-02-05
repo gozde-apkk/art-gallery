@@ -10,12 +10,8 @@ import './style.css'
 const Artist = () => {
 
   return (
-    <div style={{
-     color:"white",
-
-    }
-    } className='flex h-full  flex-col'>
-        <div className='text-aliceblue  text-4xl flex justify-center m-10'>
+    <div className='flex h-full gap-4   flex-col'>
+        <div className=' text-4xl flex justify-center m-10'>
         <h1>THE ARTIST</h1>
         </div>
         <Swiper style={{
@@ -45,7 +41,7 @@ const Artist = () => {
           </div>
           <div style={{fontSize:"large", height:"58px" , transition: "background-color 0.5s", marginRight:"5px"}}>
           <p className='h-full mt-7'>{artist.name}</p>
-          <button id='btn-1' className='w-40 text-white font-bold py-2 px-4 rounded'>+Follow</button>
+          <button id='btn-1' className='w-40  font-bold py-2 px-4 rounded'>+Follow</button>
           </div>
           </div>
          </SwiperSlide>
