@@ -9,14 +9,9 @@ import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 
 
-const reviews = { href: "#", average: 4, totalCount: 117 };
-
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
-
 export default function ProductDetails({cart}) {
- 
+  const { userInfo } = useSelector((state) => state.auth);
+  console.log(userInfo);
   const product = useSelector(selectProductById)
 const {addToCart} = useContext(CartContext);
   const {id} = useParams();
@@ -46,10 +41,12 @@ const {addToCart} = useContext(CartContext);
                <div className="flex justify-center items-center flex-col">
                   <p className="text-3xl p-12 ">Current price: <span>${product.price}</span></p>
               
-                  <div>
-                   <button onClick={()=> {addToCart(product) 
-                                toast.success("Added to Cart")}}  className=" hover:bg-red-950 p-2 ">Add to cart</button>
-                  </div>
+                  {userInfo && (
+                       <div>
+                       <button onClick={()=> {addToCart(product) 
+                                    toast.success("Added to Cart")}}  className=" hover:bg-red-950 p-2 ">Add to cart</button>
+                      </div>
+                  )}
                </div>
              </div>
            </div>
