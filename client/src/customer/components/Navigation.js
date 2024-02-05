@@ -1,5 +1,5 @@
 import React, { useContext, useRef } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { FaShoppingCart } from "react-icons/fa";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,9 +13,10 @@ import {
 import { CartContext } from "../../context/cart/CartContext";
 import { IconButton, useTheme } from "@mui/material";
 import { setMode } from "../../redux/features/theme";
-import FlexBetween from "../../components/flex/FlexBetween";
+import FlexBetween from "../../components/FlexBetween";
 import { AuthContext } from "../../context/auth/AuthContext";
-import ProfileImage from "../../components/profile/ProfileImage";
+import { useLogoutMutation } from "../../redux/features/auth/userApiSlice";
+import { logout } from "../../redux/features/auth/authSlice";
 
 const Navigation = () => {
   const cart = useContext(CartContext);
@@ -28,9 +29,20 @@ const Navigation = () => {
   const { userInfo } = useSelector((state) => state.auth);
   console.log(userInfo);
   const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
   console.log(user);
   const navRef = useRef();
+     const [logoutApiCall] = useLogoutMutation();
 
+  const logoutHandler = async () => {
+    try {
+      await logoutApiCall().unwrap();
+      dispatch(logout());
+      navigate('/login');
+    } catch (err) {
+      console.error(err);
+    }
+  };
   const logo = (
     <div>
       {" "}
@@ -106,11 +118,16 @@ const Navigation = () => {
             />
           )}{" "}
         </IconButton>{" "}
-        <IconButton>
-          <SettingsOutlined />
-        </IconButton>
         {user || userInfo ? (
-          <ProfileImage user={userInfo} />
+          <IconButton onClick={logoutHandler}>
+          {" "}
+          <NavLink
+            to="/logout"
+            className=" p-2 mx-4 mr-2 active:relative active:text-rose-500"
+          >
+            Logout{" "}
+          </NavLink>{" "}
+        </IconButton>
         ) : (
           <IconButton>
             {" "}

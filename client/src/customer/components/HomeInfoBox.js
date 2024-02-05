@@ -1,3 +1,5 @@
+
+
 import React from "react";
 import {
   BsCartCheck,
@@ -32,7 +34,7 @@ const data = [
 
 const HomeInfoBox = ({ icon, heading, text }) => {
   return (
-    <div className="flex w-full mt-20 h-[19rem] mx-28 px-32 flex-wrap">
+    <div className="flex w-full mt-20 h-[19rem] mx-28 pr-32 flex-wrap">
       {data.map((item, index) => {
         return (
           <div className="w-6/12 h-36" key={index}>
