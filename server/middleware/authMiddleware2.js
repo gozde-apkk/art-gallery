@@ -17,8 +17,6 @@ const requireSignin = (req,res,next) => {
 }
 
 const protect = expressAsyncHandler(async (req, res, next) => {
-    
-
     try {
         const token = req.cookies.access_token
         console.log(`token: ${token}`)

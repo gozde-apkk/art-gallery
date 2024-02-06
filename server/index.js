@@ -6,8 +6,7 @@ const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
-const authRouter = require("./routes/authRouter.js");
-const userRouter = require("./routes/userRouter.js");
+
 const userRoutes = require("./routes/userRoutes.js");
 const {notFound, errorHandler} = require("./middleware/errorMiddleware.js");
 const connectDB = require("./config/db.js");
@@ -16,7 +15,7 @@ const helmet = require('helmet');
 const morgan = require('morgan');
 const {logger} = require("./middleware/logger.js")
 const {errorLog} = require("./middleware/errorLog.js");
-
+const stripe = require("./routes/strip.js")
 
 dotenv.config();
 const app = express();
@@ -39,15 +38,36 @@ app.use((req, res, next) => {
   next();
 });
 
+app.post("/api/create-checkout-session",async(req,res)=>{
+  const {products} = req.body;
+  const lineItems = products.map((product)=>({
+      price_data:{
+          currency:"inr",
+          product_data:{
+              name:product.dish,
+              images:[product.imgdata]
+          },
+          unit_amount:product.price * 100,
+      },
+      quantity:product.qnty
+  }));
 
-//USER ROUTES
-  // app.set("view engine" , "pug");
-  // app.set("views" , "./views");
+  const session = await stripe.checkout.sessions.create({
+      payment_method_types:["card"],
+      line_items:lineItems,
+      mode:"payment",
+      success_url:"http://localhost:3000/sucess",
+      cancel_url:"http://localhost:3000/cancel",
+  });
+
+  res.json({id:session.id})
+
+})
+
 app.use("/api/products", require("./routes/productRouter.js"));
 app.use("/api/users" , require("./routes/userRoutes.js"));
-// app.use("/api/admin" , require("./routes/adminRoute.js"));
 app.use('/categories', require("./routes/categoryRoute.js"));
-app.use('/api/cart', require("./routes/cartRoute.js").router);
+app.use('/api/stripe', stripe );
 
 
 if (process.env.NODE_ENV === 'production') {

@@ -33,43 +33,12 @@ name : {
         required : [true, "Please add photo"],
         default : 'https://i.ibb.co/4pDNDk1/avatar.jpg',
     },
-    roles : {
-        type : Array,
-        default : 'customer',
-  
-    },
-    phone : {
-        type : String,
-        default : '+950',
-    },
-    address : {
-        type : Object,
-        //addres, state , country
-    },
+   
     isAdmin : {
         type : Boolean,
         default : false
     },
-    cart : {
-        type: Object,
-        default : {
-            total: 0,
-            count : 0
-        }
-    },
-    notification : {
-        type : Array,
-        default : []
-    },
-    orders : [
-        {
-            type : mongoose.Schema.Types.ObjectId, ref : 'Order'
-        }
-    ]
-
-
-}, {timestamps : true, 
-   minimize : false})
+}, {timestamps : true})
 
 // Match user entered password to hashed password in database
 userSchema.methods.matchPassword = async function (enteredPassword) {
