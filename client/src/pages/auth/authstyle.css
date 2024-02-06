@@ -1,4 +1,4 @@
-*{
+        *{
     margin: 0;
     padding: 0;
 }
@@ -29,7 +29,7 @@
     width: 336px;
     margin: 11px auto;
     height: 55px;
-    color: wheat;
+    color: white;
     position: relative;
 
     border-radius: 35px;

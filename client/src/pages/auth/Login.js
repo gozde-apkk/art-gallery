@@ -54,7 +54,7 @@ const Login = () => {
 
   return (
     <>
-      <div className="h-full text-white ">
+      <div className="h-full ">
         <div className="form-box">
           <div className="button-box">
             <div id="btn"></div>
@@ -90,9 +90,9 @@ const Login = () => {
             <button type="submit" className="submit-btn">
               Log In
             </button>
-            <div>
-              <button onClick={handleGoogle}>
-                <FaGoogle />
+            <div className="mt-4">
+              <button id="login-btn"  className="w-[17rem]  flex items-center justify-center" onClick={handleGoogle}>
+               <FaGoogle className="mr-1" /> <span>Continue with Google</span>
               </button>
             </div>
             <span>

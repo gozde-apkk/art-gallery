@@ -49,7 +49,7 @@ const Register = () => {
           <div className="social-icons"> {/* Lottie animations */} </div>{" "}
           <form
            onSubmit={submitForm}
-            className="input-group text-white"
+            className="input-group "
             noValidate
             style={{
               left: "50px",
@@ -90,13 +90,6 @@ const Register = () => {
               required
               onChange={(e) => setPassword2(e.target.value)}
             />
-                   Roles 
-                   <br/>
-                   <label>Customer</label>
-                    <input id="customer" type="checkbox" name="customer"/>
-                    <label>Artist</label>
-                    < input id="artist" type="checkbox" name="artist"/>
-                
             <a href="">
               By registering, you agree to the Terms, Data Policy and Cookies
               Policy{" "}
@@ -104,6 +97,7 @@ const Register = () => {
             <button type="submit" className="submit-btn">
               Register{" "}
             </button>{" "}
+            
             <span>
               Already have an account ? <Link to="/login"> Login </Link>{" "}
             </span>{" "}
