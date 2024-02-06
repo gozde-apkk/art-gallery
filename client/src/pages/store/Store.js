@@ -1,12 +1,11 @@
-import React, { useState } from "react";
-import BreadCrumb from "../../components/breadCrumb/BreadCrumb";
+import React from "react";
+import BreadCrumb from "../../components/BreadCrumb";
 
-import ProductPage from "../../components/product/ProductPage";
-import { ChevronDownIcon, FunnelIcon, MinusIcon, PlusIcon, Squares2X2Icon } from '@heroicons/react/20/solid'
-import { Dialog, Disclosure, Menu, Transition } from '@headlessui/react'
+import ProductPage from "../../components/ProductPage";
+import { MinusIcon, PlusIcon } from '@heroicons/react/20/solid'
+import {  Disclosure } from '@headlessui/react'
 import { useDispatch } from "react-redux";
-import { fetchCategoriesAsync, fetchProductsByFiltersAsync } from "../../redux/features/products/productsSlice";
-import { useParams } from "react-router-dom";
+import { fetchProductsByFiltersAsync } from "../../redux/features/products/productsSlice";
 const filters = [
 
   {
@@ -22,34 +21,24 @@ const filters = [
 
 ]
 const Store = () => {
-  
-
-  const [filter, setFilter] = useState("");
   const dispatch = useDispatch()
-  const params = useParams();
-  const handleFilter = (e, section, option) => {
-       e.preventDefault();
-       setFilter(option.value);
-       console.log(filter);
-       
-  };
   return (
-    <div className="w-full px-12 h-full text-white ">
+    <div className="w-full px-12 h-[100%] ">
       <BreadCrumb title="Our Store" />
       <div className="w-full h-full">
         <div className=" w-full flex h-full">
           <div className=" col-3 w-[20%]">
-            <div className=" h-60  flex flex-col item-center text-white">
+            <div className=" h-60  flex flex-col item-center">
               <h1 className="text-2xl flex items-center justify-center">
                 Shop By Category
               </h1>
               {filters.map((section) => (
-                      <Disclosure as="div" key={section.id} className="border-t border-gray-200 px-4 py-6">
+                      <Disclosure as="div" key={section.id} className="border-t px-4 py-6">
                         {({ open }) => (
                           <>
                             <h3 className="-mx-2 -my-3 flow-root">
-                              <Disclosure.Button className="flex w-full items-center justify-between bg-white px-2 py-3 text-gray-400 hover:text-gray-500">
-                                <span className="font-medium text-gray-900">{section.name}</span>
+                              <Disclosure.Button className="flex w-full items-center justify-between px-2 py-3 text-gray-400 hover:text-gray-500">
+                                <span className="font-medium ">{section.name}</span>
                                 <span className="ml-6 flex items-center">
                                   {open ? (
                                     <MinusIcon className="h-5 w-5" aria-hidden="true" />
@@ -75,7 +64,7 @@ const Store = () => {
                              
                                     <label
                                       htmlFor={`filter-mobile-${section.id}-${optionIdx}`}
-                                      className="ml-3 min-w-0 flex-1 text-gray-500"
+                                      className="ml-3 min-w-0 flex-1"
                                     >
                                       {option.label}
                                     </label>

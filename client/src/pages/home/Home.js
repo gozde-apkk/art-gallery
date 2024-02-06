@@ -2,22 +2,21 @@ import React from "react";
 
 import { Link } from "react-router-dom";
 import "../../style/style.css";
-import Artist from "../../layout/Artist";
-import HomeNftSection from "../../components/home/HomeNftSection";
-import Footer from "../../components/footer/Footer";
-import HomeInfoBox from "../../customer/components/HomeInfoBox";
+import Artist from "../../layout/Artist"; 
+import Footer from "../../components/Footer";
 import { useSelector } from "react-redux";
 import { selectAllProducts } from "../../redux/features/products/productsSlice";
-import Section from "../../components/section/Section";
+import Section from "../../components/Section";
+import HomeInfoBox from "../../customer/components/HomeInfoBox";
 
 const Home = () => {
 
     const products = useSelector(selectAllProducts);
   return (
-    <div className="w-full h-full text-white">
+    <div className="w-full h-full">
       <div className="flex-grow flex-1 mx-auto  my-5 w-full max-w-screen-xl ">
         <div className="py-20 md:px-20 mx-auto text-center flex flex-col items-center max-w-3xl">
-          <h1 className="text-4xl font-bold px-2.5  tracking-tight text-gray-300 sm:text-6xl">
+          <h1 className="text-4xl font-bold px-2.5  tracking-tight  sm:text-6xl">
           Digital presence is the inner expression  
             <span
               style={{
@@ -29,7 +28,7 @@ const Home = () => {
             </span>
             .{" "}
           </h1>{" "}
-          <div className="flex flex-col text-white sm:flex-row gap-4 mt-6">
+          <div className="flex flex-col  sm:flex-row gap-4 mt-6">
             <Link to="/store" className="hover:text-crimson">
               Browse Trending{" "}
             </Link>{" "}
