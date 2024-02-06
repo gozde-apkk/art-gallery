@@ -7,8 +7,6 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   LightModeOutlined,
   DarkModeOutlined,
-  Menu ,
-  SettingsOutlined,
 } from "@mui/icons-material";
 import { CartContext } from "../../context/cart/CartContext";
 import { IconButton, useTheme } from "@mui/material";
@@ -68,9 +66,9 @@ const Navigation = () => {
           </button>{" "}
           <p className="absolute top-0 right-1 bg-red-500  text-xs px-1 rounded-full">
             {" "}
-            {cart.cartItems.length > 0 && (
+            {cart.items.length > 0 && (
               <div>
-                <span> {cart.cartItems.length} </span>{" "}
+                <span> {cart.items.length} </span>{" "}
               </div>
             )}{" "}
           </p>{" "}
