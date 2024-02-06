@@ -8,7 +8,8 @@ import {
 import Home from "./pages/home/Home";
 import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
 // import "../src/style/style.css";
-
+import Success from "./components/Success";
+import Cancel from "./components/Cancel";
 import Navigation from "./customer/components/Navigation";
 
 import Login from "./pages/auth/Login";
@@ -22,29 +23,29 @@ import { ToastContainer, Zoom, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import { useEffect, useMemo } from "react";
-import Profile from "./components/profile/Profile";
+
 import Store from "./pages/store/Store";
 import {
   fetchAllProductAsync,
   selectAllProducts,
 } from "./redux/features/products/productsSlice";
-import ProductComponent from "./components/product/ProductComponent";
-import ProductDetailPage from "./components/product/ProductDetailPage";
-import QualityPromise from "./components/quality/QualityPromise";
+import ProductComponent from "./components/ProductComponent";
+import ProductDetailPage from "./components/ProductDetailPage";
+import QualityPromise from "./components/QualityPromise";
 import { CartProvider } from "./context/cart/CartContext";
 
-import CardPage from "./components/card/CardPage";
-import Checkout from "./components/checkout/Checkout";
+import CardPage from "./components/CardPage";
 import PageNotFound from "./pages/notfound/PageNotFound";
 import { themeSettings } from "./theme";
 import AuthProvider from "./context/auth/AuthContext";
-import NewProduct from "./components/product/NewProduct";
+
 // minified version is also included
 // import 'react-toastify/dist/ReactToastify.min.css';
 function App() {
   const mode = useSelector((state) => state.global.mode);
   const theme = useMemo(() => createTheme(themeSettings(mode), []));
   const products = useSelector(selectAllProducts);
+
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchAllProductAsync());
@@ -57,7 +58,7 @@ function App() {
       <ThemeProvider theme={theme}>
         <CssBaseline>
           <AuthProvider>
-            <CartProvider>
+            <CartProvider >
               <Navigation />
               <ToastContainer transition={Zoom} />{" "}
               <Routes>
@@ -66,20 +67,19 @@ function App() {
                 <Route path="/register" element={<Register />} />{" "}
                 <Route path="/store" element={<Store />} />{" "}
                 <Route path="/cart" element={<CardPage />} />{" "}
-                <Route path="/checkout" element={<Checkout />} />{" "}
                 <Route path="/*" element={<PageNotFound />} />{" "}
-                <Route path="/new-product" element={<NewProduct />} />{" "}
-                <Route path="/profile" element={<Profile />} />{" "}
+                <Route path="/success" element={<Success />} />{" "}
+                <Route path="/cancel" element={<Cancel />} />{" "}
                 <Route
                   path="/store"
                   element={<ProductComponent products={products} />}
                 />
+                <Route
+                  path="/product-details/:id"
+                  element={<ProductDetailPage />}
+                />{" "}
                 <Route path="" element={<PrivateRoute />}>
                   <Route path="/quality" element={<QualityPromise />} />{" "}
-                  <Route
-                    path="/product-details/:id"
-                    element={<ProductDetailPage />}
-                  />{" "}
                 </Route>{" "}
               </Routes>{" "}
             </CartProvider>{" "}
