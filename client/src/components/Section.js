@@ -1,13 +1,13 @@
 import React, { useContext } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
-
-import "swiper/css";
-import './style.css'
 import { Link } from "react-router-dom";
 import { CartContext } from "../context/cart/CartContext";
 import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
+
+import "swiper/css";
+import './style.css';
 const Section = ({ products }) => {
   console.log(products);
   const cart = useContext(CartContext);

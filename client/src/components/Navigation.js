@@ -8,13 +8,13 @@ import {
   LightModeOutlined,
   DarkModeOutlined,
 } from "@mui/icons-material";
-import { CartContext } from "../../context/cart/CartContext";
+import { CartContext } from "../context/cart/CartContext";
 import { IconButton, useTheme } from "@mui/material";
-import { setMode } from "../../redux/features/theme";
-import FlexBetween from "../../components/FlexBetween";
-import { AuthContext } from "../../context/auth/AuthContext";
-import { useLogoutMutation } from "../../redux/features/auth/userApiSlice";
-import { logout } from "../../redux/features/auth/authSlice";
+import { setMode } from "../redux/features/theme";
+import FlexBetween from "./FlexBetween";
+import { AuthContext } from "../context/auth/AuthContext";
+import { useLogoutMutation } from "../redux/features/auth/userApiSlice";
+import { logout } from "../redux/features/auth/authSlice";
 
 const Navigation = () => {
   const cart = useContext(CartContext);

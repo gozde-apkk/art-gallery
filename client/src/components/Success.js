@@ -2,17 +2,6 @@
 import styled from "styled-components";
 
 const Success = () => {
-  // const dispatch = useDispatch();
-  // const cart = useSelector((state) => state.cart);
-
-  // useEffect(() => {
-  //   dispatch(clearCart());
-  // }, [dispatch]);
-
-  // useEffect(() => {
-  //   dispatch(getTotals());
-  // }, [cart, dispatch]);
-
   return (
     <Container>
       <h2>Checkout Successful</h2>

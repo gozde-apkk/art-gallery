@@ -6,8 +6,6 @@ import { useSelector } from "react-redux";
 
 const ProductComponent = ({ product }) => {
   const cart = useContext(CartContext);
-  const productQuantity = cart.getProductQuantity(product.id);
-  console.log(cart.items);
   const { userInfo } = useSelector((state) => state.auth);
 
   return (

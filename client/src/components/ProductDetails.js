@@ -8,12 +8,9 @@ import { toast } from "react-toastify";
 
 export default function ProductDetails() {
   const { userInfo } = useSelector((state) => state.auth);
-  console.log(userInfo);
   const product = useSelector(selectProductById);
   const cart= useContext(CartContext);
   const { id } = useParams();
-  console.log("id:", id);
-  console.log("ProductDetails cart", cart);
 
   return (
     <div className="p-2 h-full  text-white">

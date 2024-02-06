@@ -1,13 +1,13 @@
 import React from "react";
 
 import { Link } from "react-router-dom";
-import "../../style/style.css";
 import Artist from "../../layout/Artist"; 
 import Footer from "../../components/Footer";
 import { useSelector } from "react-redux";
 import { selectAllProducts } from "../../redux/features/products/productsSlice";
 import Section from "../../components/Section";
-import HomeInfoBox from "../../customer/components/HomeInfoBox";
+import HomeInfoBox from "../../components/HomeInfoBox";
+import "../../style/style.css";
 
 const Home = () => {
 

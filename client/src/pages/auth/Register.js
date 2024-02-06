@@ -1,14 +1,10 @@
-import React, { useEffect, useState } from "react";
-import "./authstyle.css";
-import { useForm } from 'react-hook-form'
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-
-import { registerUser } from "../../redux/features/auth/authActions";
 import { useRegisterMutation } from "../../redux/features/auth/userApiSlice";
 import { toast } from "react-toastify";
 import { setCredentials } from "../../redux/features/auth/authSlice";
-
+import "./authstyle.css";
 const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");

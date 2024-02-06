@@ -1,10 +1,11 @@
 import React, { useContext } from "react";
 import { CartContext } from "../context/cart/CartContext";
 import { Link } from "react-router-dom";
-import "./Card.css";
 import { loadStripe } from "@stripe/stripe-js";
 import PayButton from "./PayButton";
-import { IconButton, useTheme } from "@mui/material";
+import {  useTheme } from "@mui/material";
+import "./Card.css";
+
 const CardPage = () => {
   const cart = useContext(CartContext);
   console.log(cart.items);

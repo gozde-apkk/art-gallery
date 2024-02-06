@@ -10,7 +10,7 @@ import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
 // import "../src/style/style.css";
 import Success from "./components/Success";
 import Cancel from "./components/Cancel";
-import Navigation from "./customer/components/Navigation";
+import Navigation from "./components/Navigation";
 
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
